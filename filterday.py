@@ -3,29 +3,52 @@ import time
 from selenium import webdriver
 import time
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from selenium.webdriver import Firefox
+from selenium.webdriver import Firefox, FirefoxProfile
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.proxy import Proxy, ProxyType
+
 useragent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) ' \
             'Version/12.0 Mobile/15E148 Safari/604.1 '
 
 dcap = dict(DesiredCapabilities.PHANTOMJS)
 dcap["firefox.page.settings.userAgent"] = (useragent)
-httsps_proxy_domain = "93.159.236.30"
+https_proxy_domain = "93.159.236.30"
 https_proxy_port = "8080"
-#
-profile = webdriver.FirefoxProfile()
+https_proxy = https_proxy_domain + ":" + https_proxy_port
+profile = webdriver.FirefoxProfile("/home/ilya/.mozilla/firefox/vfwzppqq.avitoproxy")
+
+
 #proxy server settings
-profile.set_preference("network.proxy.type", 1)
-profile.set_preference("network.proxy.http", httsps_proxy_domain)
-profile.set_preference("network.proxy.http_port", https_proxy_port)
-profile.set_preference("network.proxy.ssl", httsps_proxy_domain)
-profile.set_preference("network.proxy.ssl_port", https_proxy_port)
+
+# webdriver.DesiredCapabilities.FIREFOX['proxy']={
+#     "httpProxy":https_proxy,
+#     "ftpProxy":https_proxy,
+#     "sslProxy":https_proxy,
+#     "noProxy":None,
+#     "proxyType":"MANUAL",
+#     'autodetect':None
+# }
+
+# proxy = Proxy({
+#     'proxyType': ProxyType.MANUAL,
+#     'httpProxy': https_proxy ,
+#     'ftpProxy': https_proxy,
+#     'sslProxy': https_proxy  ,
+#     'noProxy': '' # set this value as desired
+#     })
+
 #fake user agent
-profile.set_preference("general.useragent.override", useragent)
+# profile.set_preference("general.useragent.override", useragent)
+# profile.set_preference("network.proxy.type", 1)
+# profile.set_preference("network.proxy.http", https_proxy)
+# profile.set_preference("network.proxy.http_port", https_proxy_port)
+# profile.set_preference("network.proxy.https", https_proxy)
+# profile.set_preference("network.proxy.https_port", https_proxy_port)
+# profile.update_preferences()
 options = Options()
 options.headless = False
 
-driver = Firefox(options=options,firefox_profile=profile  )
+driver = Firefox(options = options,firefox_profile = profile )
 
 driver.get('https://m.avito.ru/obninsk/nedvizhimost?sort=date')
 #reference to the date in html code
