@@ -1,5 +1,7 @@
 import re
 import time
+from typing import Optional, Match
+
 from selenium import webdriver
 import time
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -7,11 +9,11 @@ from selenium.webdriver import Firefox, FirefoxProfile
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.proxy import Proxy, ProxyType
 
-useragent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) ' \
-            'Version/12.0 Mobile/15E148 Safari/604.1 '
+useragent = 'Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, ' \
+            'like Gecko) Version/4.0 Mobile Safari/534.30 '
 
-dcap = dict(DesiredCapabilities.PHANTOMJS)
-dcap["firefox.page.settings.userAgent"] = (useragent)
+# dcap = dict(DesiredCapabilities.PHANTOMJS)
+# dcap["firefox.page.settings.userAgent"] = (useragent)
 https_proxy_domain = "93.159.236.30"
 https_proxy_port = "8080"
 https_proxy = https_proxy_domain + ":" + https_proxy_port
@@ -45,10 +47,13 @@ profile = webdriver.FirefoxProfile("/home/ilya/.mozilla/firefox/vfwzppqq.avitopr
 # profile.set_preference("network.proxy.https", https_proxy)
 # profile.set_preference("network.proxy.https_port", https_proxy_port)
 # profile.update_preferences()
+# dcap = dict(DesiredCapabilities.FIREFOX)
+# dcap["firefox.page.settings.userAgent"] = (useragent)
+
+profile.set_preference("general.useragent.override",useragent )
 options = Options()
 options.headless = False
-
-driver = Firefox(options = options,firefox_profile = profile )
+driver = Firefox(options = options,firefox_profile = profile  )
 
 driver.get('https://m.avito.ru/obninsk/nedvizhimost?sort=date')
 #reference to the date in html code
@@ -88,7 +93,7 @@ ls = list(map(lambda x: x.text, timestamp ))
 print( ls)
 #split date into day an time
 for ts in ls:
-    m = re.search(r'(?P<day>^.*), (?P<timestamp>\d{2}:\d{2})', ts)
+    m: Optional[Match[str]] = re.search(r'(?P<day>^.*), (?P<timestamp>\d{2}:\d{2})', ts)
     if m :
         print( m.group('day'))
         print( m.group('timestamp'))
@@ -98,7 +103,8 @@ allday = False
 #scroll till the yesterday mark is not presend
 #to discover all day listing of ads
 while not allday :
-    m = re.search(r'(?P<day>^.*), (?P<timestamp>\d{2}:\d{2})', ls[-1])
+
+    m= re.search(r'(?P<day>^.*), (?P<timestamp>\d{2}:\d{2})', ls[-1])
     if m :
         #quit once the mark found
         if m.group('day') == 'Вчера' :
