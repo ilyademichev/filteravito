@@ -1,0 +1,15 @@
+1590589786616	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile5xPtXk"
+1590589787437	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1590589787438	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1590589787438	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1590589787438	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://197f1562-ce0a-40ef-bb26-39955c93752d/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1590589791504	Marionette	INFO	Listening on port 41809
+1590589791531	Marionette	WARN	TLS certificate errors will be ignored for this session
+Gdk-Message: 14:37:38.261: firefox-esr: Fatal IO error 104 (Соединение разорвано другой стороной) on X server :1.0.
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
