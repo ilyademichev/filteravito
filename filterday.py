@@ -1,3 +1,4 @@
+
 import tempfile
 import re
 import time
@@ -10,8 +11,12 @@ from selenium.webdriver import Firefox, FirefoxProfile
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.proxy import Proxy, ProxyType
 
-useragent = 'Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, ' \
-            'like Gecko) Version/4.0 Mobile Safari/534.30 '
+#import proxyServerRotator
+from collections import Counter
+
+
+useragent = 'Mozilla/5.0 (Linux; Android 7.0; SM-G892A Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.107 Mobile Safari/537.36'
+
 
 # dcap = dict(DesiredCapabilities.PHANTOMJS)
 # dcap["firefox.page.settings.userAgent"] = (useragent)
@@ -23,7 +28,7 @@ profile = webdriver.FirefoxProfile("/home/ilya/.mozilla/firefox/vfwzppqq.avitopr
 #locations
 #https://www.avito.ru/maloyaroslavets/nedvizhimost?s=104
 #https://www.avito.ru/obninsk/nedvizhimost?s=104
-sortedItemsLocationLink = 'https://m.avito.ru/maloyaroslavets/nedvizhimost?s=104'
+sortedItemsLocationLink = 'https://m.avito.ru/moskva/nedvizhimost?s=104'
 # proxy server settings
 
 # webdriver.DesiredCapabilities.FIREFOX['proxy']={
@@ -54,9 +59,12 @@ sortedItemsLocationLink = 'https://m.avito.ru/maloyaroslavets/nedvizhimost?s=104
 # dcap = dict(DesiredCapabilities.FIREFOX)
 # dcap["firefox.page.settings.userAgent"] = (useragent)
 
+#rotator
+
+
 profile.set_preference("general.useragent.override", useragent)
 options = Options()
-options.headless = True
+options.headless = False
 driver = Firefox(options=options, firefox_profile=profile)
 driver.set_page_load_timeout(240)
 
@@ -102,34 +110,28 @@ try:
         if new_height == last_height:
             break
         last_height = new_height
-    # parse links that are present after scroll
-    time.sleep(20)
-    realtylinks = driver.find_elements_by_xpath(appartmentxpath)
-    time.sleep(20)
-    # print em out
-    print(*(map(lambda x: x.get_attribute('href'), realtylinks)), sep='\n')
-    time.sleep(20)
-    # parse datastamps
-    timestamp = driver.find_elements_by_xpath(timestampxpath)
-    time.sleep(20)
-    ls = list(map(lambda x: x.text, timestamp))
-    # print them
-    print(ls)
-    # split date into day an time
-    allday = False
+
+    # scroll down the page till the yesterdays' mark is not present
+    # to discover daily listing of ads
+
     # initialization
+    # we feed in the cycle with the timestamps that have been already loaded
+    timestamp = driver.find_elements_by_xpath(timestampxpath)
+    ls = list(map(lambda x: x.text, timestamp))
+    allday = False
     # timestamp of the last item is set
-    # scroll till the yesterday mark is not presend
-    # to discover all day listing of ads
     while not allday:
         t = split_timestamps(ls)
         print(t)
         #get day tags and make up  a set
-        s = set(  map(lambda x: x[0], t ) )
+        days = map(lambda x: x[0], t )
+        uniquedays = set( days  )
         #    m= re.match(r'(?P<day>^.*), (?P<timestamp>\d{2}:\d{2})', ls[-1])
-        if 'Вчера' in s:
-            # quit once the mark found
-            allday = True
+        stoptag = 'Вчера'
+        if stoptag in uniquedays:
+            if Counter(days)[stoptag] > 30 :
+            # quit once the mark found more than 2 times
+                allday = True
         else:
                 # click a button to expand the list
                 loadmorebuttonxpath = "//span[contains(text(),'Загрузить еще')]"
@@ -140,6 +142,14 @@ try:
                 timestamp = driver.find_elements_by_xpath(timestampxpath)
                 time.sleep(10)
                 ls = list(map(lambda x: x.text, timestamp))
+
+   # parse links that are present after scroll
+    realtylinks = driver.find_elements_by_xpath(appartmentxpath)
+    # print em out
+    print(*(map(lambda x: x.get_attribute('href'), realtylinks)), sep='\n')
+    # parse datastamps
+    timestamp = driver.find_elements_by_xpath(timestampxpath)
+    print( list(map(lambda x: x.text, timestamp)) )
 
 # clean up the selenium driver resources in any case
 # memory leak could occur once not completed gracefully
