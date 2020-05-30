@@ -1,29 +1,33 @@
-
+import sys
 import tempfile
 import re
 import time
-from typing import Optional, Match
-
+import random
 from selenium import webdriver
-import time
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver import Firefox, FirefoxProfile
 from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.common.proxy import Proxy, ProxyType
-
-#import proxyServerRotator
-from collections import Counter
-
-
+#exceptions handled here
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import WebDriverException
+#rotator libs
+import userAgenetRotator
+#agregating the ads timestamps
+from itertools import groupby
+#frequencies of consequetive  occurencies in a list
+def freq_consecutive_duplicates(ls_str):
+    return [(key, sum(1 for i in group)) for key, group in groupby(ls_str)]
+#fake UA
 useragent = 'Mozilla/5.0 (Linux; Android 7.0; SM-G892A Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.107 Mobile Safari/537.36'
-
+useragent = random.choice(userAgenetRotator.USER_AGENTS_LIST)
 
 # dcap = dict(DesiredCapabilities.PHANTOMJS)
 # dcap["firefox.page.settings.userAgent"] = (useragent)
+#scrennshot of  a fully loaded page
 scrshotpath = '/home/ilya/scrshotavito'
-https_proxy_domain = "93.159.236.30"
-https_proxy_port = "8080"
-https_proxy = https_proxy_domain + ":" + https_proxy_port
+# https_proxy_domain = "93.159.236.30"
+# https_proxy_port = "8080"
+# https_proxy = https_proxy_domain + ":" + https_proxy_port
 profile = webdriver.FirefoxProfile("/home/ilya/.mozilla/firefox/vfwzppqq.avitoproxy")#asdf
 #locations
 #https://www.avito.ru/maloyaroslavets/nedvizhimost?s=104
@@ -61,12 +65,16 @@ sortedItemsLocationLink = 'https://m.avito.ru/moskva/nedvizhimost?s=104'
 
 #rotator
 
-
+#no images
+profile.set_preference('permissions.default.image', 2)
+profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
+#set fake UA
 profile.set_preference("general.useragent.override", useragent)
 options = Options()
 options.headless = False
 driver = Firefox(options=options, firefox_profile=profile)
-driver.set_page_load_timeout(240)
+timeout_int = 240
+driver.set_page_load_timeout(timeout_int)
 
 
 # rotate proxies technique should be applied to eliminate banning
@@ -81,13 +89,37 @@ def split_timestamps(timestamps_list):
         m: Optional[Match[str]] = re.match(r'(?P<day>^.*), (?P<timestamp>\d{2}:\d{2})', ts)
         if m:
             t = (m.group('day'), m.group('timestamp'))
-            print(t)
+#            print(t)
             tp.append(t)
     return tp
 
-
+attempts_int = 10
+attempts = 0
+page_loaded = False
+#for clean up actions the finalize block is set at the bottom of the code
 try:
-    driver.get(sortedItemsLocationLink)
+    #forcr page o load in case of proxy server slowdown
+    while attempts < attempts_int and not page_loaded:
+        try:
+            driver.get(sortedItemsLocationLink)
+        except WebDriverException as errw:
+            print('Tried ', attempts, ' out of ', attempts_int)
+            print("WebDriverException", errw)
+            if 'Reached error page' in str(errw) :
+                attempts = attempts + 1
+            else:
+                raise SystemExit(errw)
+        except TimeoutException as errt:
+            print('Tried ', attempts,' out of ',attempts_int)
+            print("Timeout Error:", errt)
+            timeout_int = 2 * timeout_int
+            driver.set_page_load_timeout(timeout_int)
+            attempts = attempts + 1
+            print('Timeout doubled ',timeout_int)
+        finally:
+            page_state = driver.execute_script('return document.readyState;')
+            if  page_state == 'complete' :
+                page_loaded = True
     # reference to the date in html code
     timestampxpath = "//div[@data-marker='item/datetime']"
     # reference to the realty item that stands for flat
@@ -119,28 +151,54 @@ try:
     timestamp = driver.find_elements_by_xpath(timestampxpath)
     ls = list(map(lambda x: x.text, timestamp))
     allday = False
+    scrolldown = True
     # timestamp of the last item is set
     while not allday:
         t = split_timestamps(ls)
-        print(t)
+   #     print(t)
         #get day tags and make up  a set
-        days = map(lambda x: x[0], t )
+        days = [*map(lambda x: x[0], t )]
         uniquedays = set( days  )
         #    m= re.match(r'(?P<day>^.*), (?P<timestamp>\d{2}:\d{2})', ls[-1])
         stoptag = 'Вчера'
         if stoptag in uniquedays:
-            if Counter(days)[stoptag] > 30 :
-            # quit once the mark found more than 2 times
+            freq = freq_consecutive_duplicates(days)
+            #eliminate the ads
+            #print([f[1] for f in  freq  if f[0] == stoptag])
+            if max([f[1] for f in  freq  if f[0] == stoptag]) >= 2:
+                # sample = open('freq.txt', 'w')
+                # print (freq, file = sample)
+                # sample.close()
+                # quit once the mark found more than 30 times ie about the size of the screen
                 allday = True
-        else:
+                scrolldown = False
+        if scrolldown:
                 # click a button to expand the list
                 loadmorebuttonxpath = "//span[contains(text(),'Загрузить еще')]"
-                loadmorebutton = driver.find_element_by_xpath(loadmorebuttonxpath)
-                time.sleep(3)
-                loadmorebutton.click()
-                time.sleep(3)
+                attempts_int = 10
+                attempts = 0
+                page_loaded = False
+                loadmorebutton = None
+                while attempts < attempts_int and not page_loaded:
+                    try:
+                        loadmorebutton = driver.find_element_by_xpath(loadmorebuttonxpath)
+                    except NoSuchElementException as errnoel:
+                        print('Tried ', attempts, ' out of ', attempts_int)
+                        print("No click more button error:", errnoel)
+                        attempts = attempts + 1
+                        print("Wait for more time..")
+                        time.sleep(10)
+                    finally:
+                        page_state = driver.execute_script('return document.readyState;')
+                        if page_state == 'complete':
+                            page_loaded = True
+                try:
+                    loadmorebutton.click()
+                except Exception as nobutton:
+                    raise SystemExit(nobutton)
+                time.sleep(1)
                 timestamp = driver.find_elements_by_xpath(timestampxpath)
-                time.sleep(10)
+                time.sleep(1)
                 ls = list(map(lambda x: x.text, timestamp))
 
    # parse links that are present after scroll
