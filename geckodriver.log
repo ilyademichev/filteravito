@@ -2686,3 +2686,37 @@ JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unre
 JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
 JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
 1590864970016	Marionette	INFO	Stopped listening on port 45957
+1590869364324	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilenm59Cn"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1590869369124	Marionette	INFO	Listening on port 37319
+1590869369147	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+1590871927851	Marionette	INFO	Stopped listening on port 37319
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
