@@ -1,4 +1,5 @@
 import sys
+from multiprocessing import Pool, cpu_count
 import tempfile
 import re
 import time
@@ -14,16 +15,81 @@ from selenium.common.exceptions import WebDriverException
 import userAgenetRotator
 #agregating the ads timestamps
 from itertools import groupby
+
+def run_parallel_selenium_singlecore(datalist, selenium_func):
+    pool = Pool()
+    for i in range(0, len(datalist) - 1):
+        try:
+            pool.apply_async(selenium_func, [datalist[i]])
+        except Exception as e:
+            print(e)
+
+
+def run_parallel_selenium_processes(datalist, selenium_func):
+
+    pool = Pool()
+
+    # max number of parallel process
+    ITERATION_COUNT = cpu_count()-1
+
+    count_per_iteration = len(datalist) / float(ITERATION_COUNT)
+
+    for i in range(0, ITERATION_COUNT):
+        list_start = int(count_per_iteration * i)
+        list_end = int(count_per_iteration * (i+1))
+        pool.apply_async(selenium_func, [datalist[list_start:list_end]])
+
+def parse_realty_page(realty_link):
+    useragent = random.choice(userAgenetRotator.USER_AGENTS_LIST)
+    profile = webdriver.FirefoxProfile("/home/ilya/.mozilla/firefox/vfwzppqq.avitoproxy")  # asdf
+    # no images
+    profile.set_preference('permissions.default.image', 2)
+    profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
+    # set fake UA
+    profile.set_preference("general.useragent.override", useragent)
+    options = Options()
+    options.headless = True
+    driver = Firefox(options=options, firefox_profile=profile)
+    timeout_int = 300
+    driver.set_page_load_timeout(timeout_int)
+    attempts = 0
+    attempts_int = 3
+    page_loaded = False
+    while attempts < attempts_int and not page_loaded:
+        try:
+            driver.get(realty_link)
+        except WebDriverException as errw:
+            print('Tried ', attempts, ' out of ', attempts_int)
+            print("WebDriverException", errw)
+            if 'Reached error page' in str(errw):
+                attempts = attempts + 1
+            else:
+                raise SystemExit(errw)
+        except TimeoutException as errt:
+            print('Tried ', attempts, ' out of ', attempts_int)
+            print("Timeout Error:", errt)
+            timeout_int = 2 * timeout_int
+            driver.set_page_load_timeout(timeout_int)
+            attempts = attempts + 1
+            print('Timeout doubled ', timeout_int)
+        finally:
+            page_state = driver.execute_script('return document.readyState;')
+            if page_state == 'complete':
+                page_loaded = True
+    scrshotpath = '/home/ilya/scrshotavito'
+    tmp = scrshotpath + tempfile.NamedTemporaryFile().name + ".png"
+    print(tmp)
+    driver.get_screenshot_as_file(tmp)
+    driver.quit()
+
 #frequencies of consequetive  occurencies in a list
 def freq_consecutive_duplicates(ls_str):
     return [(key, sum(1 for i in group)) for key, group in groupby(ls_str)]
 #fake UA
-useragent = 'Mozilla/5.0 (Linux; Android 7.0; SM-G892A Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.107 Mobile Safari/537.36'
+#useragent = 'Mozilla/5.0 (Linux; Android 7.0; SM-G892A Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.107 Mobile Safari/537.36'
 useragent = random.choice(userAgenetRotator.USER_AGENTS_LIST)
 
-# dcap = dict(DesiredCapabilities.PHANTOMJS)
-# dcap["firefox.page.settings.userAgent"] = (useragent)
-#scrennshot of  a fully loaded page
+#scrennshot of  a fully loaded page last screen after scrolling
 scrshotpath = '/home/ilya/scrshotavito'
 # https_proxy_domain = "93.159.236.30"
 # https_proxy_port = "8080"
@@ -32,7 +98,8 @@ profile = webdriver.FirefoxProfile("/home/ilya/.mozilla/firefox/vfwzppqq.avitopr
 #locations
 #https://www.avito.ru/maloyaroslavets/nedvizhimost?s=104
 #https://www.avito.ru/obninsk/nedvizhimost?s=104
-sortedItemsLocationLink = 'https://m.avito.ru/moskva/nedvizhimost?s=104'
+#sankt_peterburg_i_lo
+sortedItemsLocationLink = 'https://m.avito.ru/obninsk/nedvizhimost?s=104'
 # proxy server settings
 
 # webdriver.DesiredCapabilities.FIREFOX['proxy']={
@@ -71,9 +138,9 @@ profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
 #set fake UA
 profile.set_preference("general.useragent.override", useragent)
 options = Options()
-options.headless = False
+options.headless = True
 driver = Firefox(options=options, firefox_profile=profile)
-timeout_int = 240
+timeout_int = 300
 driver.set_page_load_timeout(timeout_int)
 
 
@@ -162,10 +229,11 @@ try:
         #    m= re.match(r'(?P<day>^.*), (?P<timestamp>\d{2}:\d{2})', ls[-1])
         stoptag = 'Вчера'
         if stoptag in uniquedays:
-            freq = freq_consecutive_duplicates(days)
+            #freq = freq_consecutive_duplicates(days)
             #eliminate the ads
             #print([f[1] for f in  freq  if f[0] == stoptag])
-            if max([f[1] for f in  freq  if f[0] == stoptag]) >= 2:
+            #if max([f[1] for f in  freq  if f[0] == stoptag]) >= 2:
+            if days[-1] == stoptag and days[-2] == stoptag:
                 # sample = open('freq.txt', 'w')
                 # print (freq, file = sample)
                 # sample.close()
@@ -187,7 +255,7 @@ try:
                         print("No click more button error:", errnoel)
                         attempts = attempts + 1
                         print("Wait for more time..")
-                        time.sleep(10)
+                        time.sleep(20)
                     finally:
                         page_state = driver.execute_script('return document.readyState;')
                         if page_state == 'complete':
@@ -198,16 +266,22 @@ try:
                     raise SystemExit(nobutton)
                 time.sleep(1)
                 timestamp = driver.find_elements_by_xpath(timestampxpath)
+                print('links found:', len(timestamp))
                 time.sleep(1)
                 ls = list(map(lambda x: x.text, timestamp))
 
    # parse links that are present after scroll
     realtylinks = driver.find_elements_by_xpath(appartmentxpath)
     # print em out
-    print(*(map(lambda x: x.get_attribute('href'), realtylinks)), sep='\n')
+    hrefs = list(map(lambda x: x.get_attribute('href'), realtylinks))
+    print (*hrefs, sep='\n')
     # parse datastamps
     timestamp = driver.find_elements_by_xpath(timestampxpath)
     print( list(map(lambda x: x.text, timestamp)) )
+    for i in range(0, len(hrefs) - 1):
+        parse_realty_page( hrefs[i])
+    #run_parallel_selenium_singlecore(realtylinks,parse_realty_page)
+    #time.sleep(20)
 
 # clean up the selenium driver resources in any case
 # memory leak could occur once not completed gracefully
@@ -217,3 +291,5 @@ finally:
     print(tmp)
     driver.get_screenshot_as_file(tmp)
     driver.quit()
+
+
