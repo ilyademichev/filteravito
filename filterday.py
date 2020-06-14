@@ -153,7 +153,7 @@ def split_timestamps(timestamps_list):
     t = tuple()
     tp = list()
     for ts in timestamps_list:
-        m: Optional[Match[str]] = re.match(r'(?P<day>^.*), (?P<timestamp>\d{2}:\d{2})', ts)
+        m = re.match(r'(?P<day>^.*), (?P<timestamp>\d{2}:\d{2})', ts)
         if m:
             t = (m.group('day'), m.group('timestamp'))
 #            print(t)

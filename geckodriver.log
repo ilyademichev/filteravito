@@ -4377,3 +4377,1568 @@ JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: 
 JavaScript error: undefined, line 14: Error: An unexpected error occurred
 JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
 1591902246196	Marionette	WARN	TLS certificate errors will be ignored for this session
+1591902341870	Marionette	INFO	Stopped listening on port 40491
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x35011D,name=PContent::Msg_DetachBrowsingContext) Closed channel: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x1E008F,name=PBrowser::Msg_Destroy) Closed channel: cannot send/recv
+
+[Parent 23360, Gecko_IOThread] WARNING: pipe error (117): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1591902344837	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGImnyW"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1591902348120	Marionette	INFO	Listening on port 35463
+1591902348268	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+1591902467223	Marionette	INFO	Stopped listening on port 35463
+[Parent 23618, Gecko_IOThread] WARNING: pipe error (133): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x35011D,name=PContent::Msg_DetachBrowsingContext) Closed channel: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x1E008F,name=PBrowser::Msg_Destroy) Closed channel: cannot send/recv
+
+[Parent 23618, Gecko_IOThread] WARNING: pipe error (116): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1591902469667	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile2yGmfs"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1591902472894	Marionette	INFO	Listening on port 37025
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1591902472997	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x240016,name=PCameras::Msg_AllDone) Channel error: cannot send/recv
+
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 22792, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 22740, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 22704, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 24004, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 23967, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 23953, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 23913, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1591902916109	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilefrc07n"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1591902921839	Marionette	INFO	Listening on port 34259
+1591902921932	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+1591902996426	Marionette	INFO	Stopped listening on port 34259
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x35011D,name=PContent::Msg_DetachBrowsingContext) Closed channel: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x1E008F,name=PBrowser::Msg_Destroy) Closed channel: cannot send/recv
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1591903013689	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileVNu4Ix"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1591903016058	Marionette	INFO	Listening on port 35703
+1591903016147	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+1591903111558	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileiR5mnr"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1591903115572	Marionette	INFO	Listening on port 39051
+1591903115650	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+1591903241453	Marionette	INFO	Stopped listening on port 39051
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x35011D,name=PContent::Msg_DetachBrowsingContext) Closed channel: cannot send/recv
+
+
+###!!! [Parent][RunMessage] Error: Channel error: cannot send/recv
+
+
+###!!! [Parent][RunMessage] Error: Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x1E008F,name=PBrowser::Msg_Destroy) Closed channel: cannot send/recv
+
+[Parent 2060, Gecko_IOThread] WARNING: pipe error (116): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1591903243436	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile7Kapc3"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1591903245752	Marionette	INFO	Listening on port 41979
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1591903245852	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+1591903292122	Marionette	INFO	Stopped listening on port 41979
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x35011D,name=PContent::Msg_DetachBrowsingContext) Closed channel: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x1E008F,name=PBrowser::Msg_Destroy) Closed channel: cannot send/recv
+
+[Parent 2252, Gecko_IOThread] WARNING: pipe error (116): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1591903294907	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile940zBr"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1591903297575	Marionette	INFO	Listening on port 44093
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+1591903297644	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+1591903369967	Marionette	INFO	Stopped listening on port 44093
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000E,name=PHttpChannel::Msg_DeletingChannel) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000E,name=PHttpChannel::Msg_DeletingChannel) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000E,name=PHttpChannel::Msg_DeletingChannel) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000E,name=PHttpChannel::Msg_DeletingChannel) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000E,name=PHttpChannel::Msg_DeletingChannel) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000E,name=PHttpChannel::Msg_DeletingChannel) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000D,name=PHttpChannel::Msg_RemoveCorsPreflightCacheEntry) Closed channel: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000D,name=PHttpChannel::Msg_RemoveCorsPreflightCacheEntry) Closed channel: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000D,name=PHttpChannel::Msg_RemoveCorsPreflightCacheEntry) Closed channel: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000D,name=PHttpChannel::Msg_RemoveCorsPreflightCacheEntry) Closed channel: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000D,name=PHttpChannel::Msg_RemoveCorsPreflightCacheEntry) Closed channel: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000D,name=PHttpChannel::Msg_RemoveCorsPreflightCacheEntry) Closed channel: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000D,name=PHttpChannel::Msg_RemoveCorsPreflightCacheEntry) Closed channel: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x35011D,name=PContent::Msg_DetachBrowsingContext) Closed channel: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x1E008F,name=PBrowser::Msg_Destroy) Closed channel: cannot send/recv
+
+[Parent 2421, Gecko_IOThread] WARNING: pipe error (116): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1591903372382	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile1LL4M7"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1591903374756	Marionette	INFO	Listening on port 44523
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1591903374826	Marionette	WARN	TLS certificate errors will be ignored for this session
+1591903459078	Marionette	INFO	Stopped listening on port 44523
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x35011D,name=PContent::Msg_DetachBrowsingContext) Closed channel: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x1E008F,name=PBrowser::Msg_Destroy) Closed channel: cannot send/recv
+
+[Parent 2641, Gecko_IOThread] WARNING: pipe error (116): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1591903462651	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilecoHdtk"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1591903469969	Marionette	INFO	Listening on port 37483
+1591903470003	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1591903565617	Marionette	INFO	Stopped listening on port 37483
+1591903567944	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilep7f9t7"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1591903570545	Marionette	INFO	Listening on port 42117
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+1591903570606	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1591903689470	Marionette	INFO	Stopped listening on port 42117
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x35011D,name=PContent::Msg_DetachBrowsingContext) Closed channel: cannot send/recv
+
+
+###!!! [Parent][RunMessage] Error: Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x1E008F,name=PBrowser::Msg_Destroy) Closed channel: cannot send/recv
+
+[Parent 3160, Gecko_IOThread] WARNING: pipe error (115): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1591903692192	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilehURAJh"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+1591903694963	Marionette	INFO	Listening on port 37831
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1591903695074	Marionette	WARN	TLS certificate errors will be ignored for this session
+1591903857124	Marionette	INFO	Stopped listening on port 37831
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000E,name=PHttpChannel::Msg_DeletingChannel) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x53000D,name=PHttpChannel::Msg_RemoveCorsPreflightCacheEntry) Closed channel: cannot send/recv
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x35011D,name=PContent::Msg_DetachBrowsingContext) Closed channel: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x1E008F,name=PBrowser::Msg_Destroy) Closed channel: cannot send/recv
+
+[Parent 3359, Gecko_IOThread] WARNING: pipe error (116): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1591903859713	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilewbvFJo"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+1591903862210	Marionette	INFO	Listening on port 44351
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1591903862279	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+1591904019431	Marionette	INFO	Stopped listening on port 44351
+[Parent 3648, Gecko_IOThread] WARNING: pipe error (37): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x35011D,name=PContent::Msg_DetachBrowsingContext) Closed channel: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x1E008F,name=PBrowser::Msg_Destroy) Closed channel: cannot send/recv
+
+[Parent 3648, Gecko_IOThread] WARNING: pipe error (116): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1591904021955	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile4SqQdT"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1591904024517	Marionette	INFO	Listening on port 33899
+1591904024593	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+1591904388440	Marionette	INFO	Stopped listening on port 35703
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1592065521500	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileEY6S8G"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+1592065528978	Marionette	INFO	Listening on port 45011
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592065529119	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+1592065626195	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilexbkHRp"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592065629074	Marionette	INFO	Listening on port 35467
+1592065629111	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+1592065704170	Marionette	INFO	Stopped listening on port 35467
+1592065707034	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilegqeqI1"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592065709431	Marionette	INFO	Listening on port 42223
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+1592065709459	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592065831895	Marionette	INFO	Stopped listening on port 42223
+1592065834025	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilee5m1bQ"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592065836553	Marionette	INFO	Listening on port 44211
+1592065836639	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:19441): dconf-WARNING **: 16:31:08.622: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592065931774	Marionette	INFO	Stopped listening on port 44211
+1592065934017	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile7cl6Jt"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592065936085	Marionette	INFO	Listening on port 37087
+1592065936151	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592066013741	Marionette	INFO	Stopped listening on port 37087
+1592066016139	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileJLM7IO"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592066018173	Marionette	INFO	Listening on port 33975
+1592066018267	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592066102750	Marionette	INFO	Stopped listening on port 33975
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1592066105055	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileSOkRH1"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592066107128	Marionette	INFO	Listening on port 43957
+1592066107195	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:19942): dconf-WARNING **: 16:35:54.583: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592066161395	Marionette	INFO	Stopped listening on port 43957
+1592066163875	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGZIBHC"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592066165931	Marionette	INFO	Listening on port 45991
+1592066166000	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592066262519	Marionette	INFO	Stopped listening on port 45991
+1592066264902	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileTyV5oE"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592066266968	Marionette	INFO	Listening on port 35455
+1592066267031	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:20243): dconf-WARNING **: 16:38:18.820: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592066448887	Marionette	INFO	Stopped listening on port 35455
+1592066450892	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile5DvOkN"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592066452953	Marionette	INFO	Listening on port 35721
+1592066453004	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592066627036	Marionette	INFO	Stopped listening on port 35721
+1592066629020	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileVh3hm8"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592066631070	Marionette	INFO	Listening on port 44429
+1592066631138	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592066704629	Marionette	INFO	Stopped listening on port 44429
+1592066706908	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilepiURhn"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592066708970	Marionette	INFO	Listening on port 42239
+1592066709037	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592066777800	Marionette	INFO	Stopped listening on port 42239
+[Parent 20688, Gecko_IOThread] WARNING: pipe error (122): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1592066780141	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilewfDH4s"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592066782180	Marionette	INFO	Listening on port 35073
+1592066782259	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:20876): dconf-WARNING **: 16:46:53.889: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592066884833	Marionette	INFO	Stopped listening on port 35073
+1592066887201	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileoyIQBV"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592066889281	Marionette	INFO	Listening on port 46705
+1592066889350	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:21034): dconf-WARNING **: 16:48:41.164: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592066963215	Marionette	INFO	Stopped listening on port 46705
+1592066965479	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilegWEG5B"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592066967523	Marionette	INFO	Listening on port 39487
+1592066967601	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:21182): dconf-WARNING **: 16:49:59.492: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592067101964	Marionette	INFO	Stopped listening on port 39487
+1592067104026	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileFHnYie"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592067106322	Marionette	INFO	Listening on port 38823
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592067106393	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592067166470	Marionette	INFO	Stopped listening on port 38823
+1592067168810	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileCfvm4A"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592067170913	Marionette	INFO	Listening on port 35573
+1592067170970	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592067271665	Marionette	INFO	Stopped listening on port 35573
+1592067273959	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilez2QUCz"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592067276033	Marionette	INFO	Listening on port 34869
+1592067276080	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592067369976	Marionette	INFO	Stopped listening on port 34869
+
+(/usr/lib/firefox-esr/firefox-esr:21659): dconf-WARNING **: 16:56:10.015: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592067372372	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileBRwdm5"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+1592067374374	Marionette	INFO	Listening on port 34907
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592067374437	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592067466488	Marionette	INFO	Stopped listening on port 34907
+1592067468750	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileuiGwyE"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592067470806	Marionette	INFO	Listening on port 41603
+1592067470870	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592067539442	Marionette	INFO	Stopped listening on port 41603
+1592067541731	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileZDjOtz"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592067543773	Marionette	INFO	Listening on port 38365
+1592067543873	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592067623580	Marionette	INFO	Stopped listening on port 38365
+1592067625831	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileHUBz0f"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592067627959	Marionette	INFO	Listening on port 39635
+1592067628055	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592067778129	Marionette	INFO	Stopped listening on port 39635
+1592067780077	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileuGaSx4"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592067782082	Marionette	INFO	Listening on port 34715
+1592067782189	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:22444): dconf-WARNING **: 17:03:33.826: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592067906780	Marionette	INFO	Stopped listening on port 34715
+1592067908743	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile4mz1fq"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592067910798	Marionette	INFO	Listening on port 33535
+1592067910882	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:22635): dconf-WARNING **: 17:05:42.594: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592068008928	Marionette	INFO	Stopped listening on port 33535
+1592068011185	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGkv0ED"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592068013277	Marionette	INFO	Listening on port 39209
+1592068013318	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592068207840	Marionette	INFO	Stopped listening on port 39209
+1592068209824	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileMY0pME"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592068211886	Marionette	INFO	Listening on port 41935
+1592068211949	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:22957): dconf-WARNING **: 17:10:43.652: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592068306937	Marionette	INFO	Stopped listening on port 41935
+1592068309205	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile4aLe5v"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592068311266	Marionette	INFO	Listening on port 33281
+1592068311332	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:23112): dconf-WARNING **: 17:12:23.237: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592068406530	Marionette	INFO	Stopped listening on port 33281
+1592068408782	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileJQ8pX9"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592068410823	Marionette	INFO	Listening on port 45641
+1592068410900	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592068480758	Marionette	INFO	Stopped listening on port 45641
+[Parent 23233, Gecko_IOThread] WARNING: pipe error (119): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1592068482993	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile3pa8nU"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592068485020	Marionette	INFO	Listening on port 42257
+1592068485109	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592068551132	Marionette	INFO	Stopped listening on port 42257
+1592068553467	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile0ZzZsa"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592068555528	Marionette	INFO	Listening on port 40349
+1592068555591	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:23560): dconf-WARNING **: 17:16:27.135: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592068696317	Marionette	INFO	Stopped listening on port 40349
+[Parent 23528, Gecko_IOThread] WARNING: pipe error (118): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1592068698491	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilegwbDe8"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592068700611	Marionette	INFO	Listening on port 39949
+1592068700703	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:23729): dconf-WARNING **: 17:18:52.358: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592068833521	Marionette	INFO	Stopped listening on port 39949
+1592068835554	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileljvba6"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592068837573	Marionette	INFO	Listening on port 44509
+1592068837664	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592068913639	Marionette	INFO	Stopped listening on port 44509
+[Parent 23853, Gecko_IOThread] WARNING: pipe error (119): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1592068915907	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiletnMa6A"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592068917970	Marionette	INFO	Listening on port 40385
+1592068918021	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592069034972	Marionette	INFO	Stopped listening on port 40385
+1592069037237	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilekx66xd"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592069039269	Marionette	INFO	Listening on port 37281
+1592069039354	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:24188): dconf-WARNING **: 17:24:31.053: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592069184998	Marionette	INFO	Stopped listening on port 37281
+1592069186971	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilezBkXxu"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592069189002	Marionette	INFO	Listening on port 40305
+1592069189094	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592069304255	Marionette	INFO	Stopped listening on port 40305
+1592069307062	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile12pDEw"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592069309093	Marionette	INFO	Listening on port 38831
+1592069309187	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592069392849	Marionette	INFO	Stopped listening on port 38831
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1592069395140	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileXy28vH"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592069397183	Marionette	INFO	Listening on port 33259
+1592069397257	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592069485275	Marionette	INFO	Stopped listening on port 33259
+1592069487641	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiletwbpsG"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592069489666	Marionette	INFO	Listening on port 34797
+1592069489757	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592069561037	Marionette	INFO	Stopped listening on port 34797
+1592069563262	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiledHJHRQ"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592069565323	Marionette	INFO	Listening on port 39797
+1592069565390	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:25007): dconf-WARNING **: 17:33:17.137: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592069684487	Marionette	INFO	Stopped listening on port 39797
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1592069687180	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile3Kb1o6"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592069689255	Marionette	INFO	Listening on port 41915
+1592069689328	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592069821154	Marionette	INFO	Stopped listening on port 41915
+1592069823750	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileIK7rRi"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592069825874	Marionette	INFO	Listening on port 41075
+1592069825964	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592069967606	Marionette	INFO	Stopped listening on port 41075
+1592069969475	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile8F1OSm"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592069971721	Marionette	INFO	Listening on port 37659
+1592069971798	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:25493): dconf-WARNING **: 17:40:03.658: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592070084831	Marionette	INFO	Stopped listening on port 37659
+1592070087094	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileKT5w8T"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592070089106	Marionette	INFO	Listening on port 35861
+1592070089202	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:25648): dconf-WARNING **: 17:42:00.903: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592070209246	Marionette	INFO	Stopped listening on port 35861
+1592070211183	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilebjT3TH"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592070213221	Marionette	INFO	Listening on port 43605
+1592070213305	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:25809): dconf-WARNING **: 17:44:05.069: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592070342114	Marionette	INFO	Stopped listening on port 43605
+1592070344083	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileEO0XTR"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592070346186	Marionette	INFO	Listening on port 34017
+1592070346241	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:25971): dconf-WARNING **: 17:46:17.923: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592070477283	Marionette	INFO	Stopped listening on port 34017
+1592070479237	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile9TdVTx"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592070481281	Marionette	INFO	Listening on port 34989
+1592070481355	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:26130): dconf-WARNING **: 17:48:33.104: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592070578237	Marionette	INFO	Stopped listening on port 34989
+1592070580484	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilezjuC3d"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592070582534	Marionette	INFO	Listening on port 37849
+1592070582609	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592070707355	Marionette	INFO	Stopped listening on port 37849
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1592070709328	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilesUNRrN"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592070711371	Marionette	INFO	Listening on port 35301
+1592070711446	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592070763736	Marionette	INFO	Stopped listening on port 35301
+[Parent 26416, Gecko_IOThread] WARNING: pipe error (118): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1592070766074	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileWM0Vba"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592070768085	Marionette	INFO	Listening on port 38085
+1592070768186	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:26597): dconf-WARNING **: 17:53:20.076: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592070855667	Marionette	INFO	Stopped listening on port 38085
+1592070858039	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile4WOm3W"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592070860113	Marionette	INFO	Listening on port 42069
+1592070860158	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:26749): dconf-WARNING **: 17:54:51.971: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592070971081	Marionette	INFO	Stopped listening on port 42069
+1592070973349	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileSJF3cZ"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592070975389	Marionette	INFO	Listening on port 39797
+1592070975473	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592071039967	Marionette	INFO	Stopped listening on port 39797
+[Parent 26876, Gecko_IOThread] WARNING: pipe error (118): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1592071042212	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilevMUe6x"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592071044220	Marionette	INFO	Listening on port 40027
+1592071044318	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592071103706	Marionette	INFO	Stopped listening on port 40027
+[Parent 27025, Gecko_IOThread] WARNING: pipe error (118): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1592071105937	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileDRAzZK"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592071107999	Marionette	INFO	Listening on port 36397
+1592071108063	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592071173319	Marionette	INFO	Stopped listening on port 36397
+1592071175601	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileuBwhj2"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592071177619	Marionette	INFO	Listening on port 33893
+1592071177716	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592071234967	Marionette	INFO	Stopped listening on port 33893
+1592071237307	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGVTI9g"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592071239355	Marionette	INFO	Listening on port 44961
+1592071239422	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592071308353	Marionette	INFO	Stopped listening on port 44961
+1592071310590	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileJ1u9tO"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592071312628	Marionette	INFO	Listening on port 40539
+1592071312715	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:27714): dconf-WARNING **: 18:02:24.580: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592071450851	Marionette	INFO	Stopped listening on port 40539
+1592071452734	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileiY9ANc"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592071454969	Marionette	INFO	Listening on port 34575
+1592071455057	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592071536871	Marionette	INFO	Stopped listening on port 34575
+1592071539282	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileObioHQ"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592071541345	Marionette	INFO	Listening on port 35759
+1592071541407	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592071641222	Marionette	INFO	Stopped listening on port 35759
+1592071643484	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileVK02yt"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592071645514	Marionette	INFO	Listening on port 42449
+1592071645601	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592071732198	Marionette	INFO	Stopped listening on port 42449
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1592071734432	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilep7ta5h"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592071736649	Marionette	INFO	Listening on port 33971
+1592071736757	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592071826847	Marionette	INFO	Stopped listening on port 33971
+1592071829106	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilejUD1PB"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592071831172	Marionette	INFO	Listening on port 36605
+1592071831237	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592071982811	Marionette	INFO	Stopped listening on port 36605
+1592071984760	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileYLzlfO"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592071986799	Marionette	INFO	Listening on port 33947
+1592071986885	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592072067796	Marionette	INFO	Stopped listening on port 33947
+1592072070034	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileK9tebF"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592072072116	Marionette	INFO	Listening on port 34137
+1592072072171	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592072155604	Marionette	INFO	Stopped listening on port 34137
+1592072157940	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile79iRuK"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592072159985	Marionette	INFO	Listening on port 39295
+1592072160052	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592072255954	Marionette	INFO	Stopped listening on port 39295
+1592072258216	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileakrplm"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592072260273	Marionette	INFO	Listening on port 39109
+1592072260335	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:29106): dconf-WARNING **: 18:18:12.037: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592072361444	Marionette	INFO	Stopped listening on port 39109
+1592072363694	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileWPMUZP"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592072365722	Marionette	INFO	Listening on port 37407
+1592072365809	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592072474685	Marionette	INFO	Stopped listening on port 37407
+
+(/usr/lib/firefox-esr/firefox-esr:29268): dconf-WARNING **: 18:21:14.720: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592072476983	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileRCxTka"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592072479006	Marionette	INFO	Listening on port 37507
+1592072479097	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:29440): dconf-WARNING **: 18:21:50.997: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592072567773	Marionette	INFO	Stopped listening on port 37507
+1592072570410	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileFcD0Oz"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592072572655	Marionette	INFO	Listening on port 33725
+1592072572740	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592072665702	Marionette	INFO	Stopped listening on port 33725
+1592072668471	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileNXOpIZ"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592072670583	Marionette	INFO	Listening on port 46841
+1592072670681	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:29863): dconf-WARNING **: 18:25:02.408: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592072817757	Marionette	INFO	Stopped listening on port 46841
+1592072819815	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileAK8rq7"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592072821960	Marionette	INFO	Listening on port 45659
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592072822043	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:30065): dconf-WARNING **: 18:27:33.959: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592072926967	Marionette	INFO	Stopped listening on port 45659
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1592072931190	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileK6GOLb"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592072934971	Marionette	INFO	Listening on port 35559
+1592072935040	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592072995349	Marionette	INFO	Stopped listening on port 35559
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1592072998742	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileqEhtQZ"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592073001233	Marionette	INFO	Listening on port 38165
+1592073001287	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:30485): dconf-WARNING **: 18:30:32.996: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592073163651	Marionette	INFO	Stopped listening on port 38165
+1592073166001	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile0flXuJ"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592073168711	Marionette	INFO	Listening on port 35871
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592073168790	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592073237274	Marionette	INFO	Stopped listening on port 35871
+1592073240805	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilen2SSkb"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592073243642	Marionette	INFO	Listening on port 36913
+1592073243720	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592073319829	Marionette	INFO	Stopped listening on port 36913
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1592073324701	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGgkpR7"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592073330599	Marionette	INFO	Listening on port 46769
+1592073330716	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592073459169	Marionette	INFO	Stopped listening on port 46769
+1592073461170	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile2nbgeo"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592073463495	Marionette	INFO	Listening on port 37349
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592073463582	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592073543903	Marionette	INFO	Stopped listening on port 37349
+1592073546440	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilev2KPo2"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592073549153	Marionette	INFO	Listening on port 37339
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592073549262	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:32399): dconf-WARNING **: 18:39:43.190: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592073656802	Marionette	INFO	Stopped listening on port 37339
+[Parent 32367, Gecko_IOThread] WARNING: pipe error (119): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1592073659372	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile1UyiHF"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592073661610	Marionette	INFO	Listening on port 40527
+1592073661695	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592073731765	Marionette	INFO	Stopped listening on port 40527
+1592073734170	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileErw5vt"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592073736361	Marionette	INFO	Listening on port 34839
+1592073736420	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592073832778	Marionette	INFO	Stopped listening on port 34839
+[Parent 32672, Gecko_IOThread] WARNING: pipe error (119): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1592073835770	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile1E84lb"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592073838790	Marionette	INFO	Listening on port 35365
+1592073838880	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+
+(/usr/lib/firefox-esr/firefox-esr:467): dconf-WARNING **: 18:44:30.796: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592073934080	Marionette	INFO	Stopped listening on port 35365
+1592073936344	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilezraIbc"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592073938500	Marionette	INFO	Listening on port 34129
+1592073938564	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592074047461	Marionette	INFO	Stopped listening on port 34129
+[Parent 631, Gecko_IOThread] WARNING: pipe error (119): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1592074049750	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilenWCdcW"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592074051946	Marionette	INFO	Listening on port 44225
+1592074052004	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592074154718	Marionette	INFO	Stopped listening on port 44225
+1592074157013	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileRW1yT0"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592074159163	Marionette	INFO	Listening on port 43189
+1592074159239	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:1036): dconf-WARNING **: 18:49:51.054: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592074362302	Marionette	INFO	Stopped listening on port 43189
+1592074364280	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilesUrTfA"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592074366384	Marionette	INFO	Listening on port 33681
+1592074366442	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592074454769	Marionette	INFO	Stopped listening on port 33681
+1592074458103	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile33UbbG"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592074461773	Marionette	INFO	Listening on port 36813
+1592074461875	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:1400): dconf-WARNING **: 18:54:53.667: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592074557181	Marionette	INFO	Stopped listening on port 36813
+1592074559653	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiled4Bb4x"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592074562051	Marionette	INFO	Listening on port 34767
+1592074562126	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:1592): dconf-WARNING **: 18:56:33.987: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592074664485	Marionette	INFO	Stopped listening on port 34767
+1592074670628	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile0W9jM9"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+1592074674590	Marionette	INFO	Listening on port 43263
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592074674672	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592074731673	Marionette	INFO	Stopped listening on port 43263
+1592074734299	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilesK1A5b"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592074736981	Marionette	INFO	Listening on port 43547
+1592074737087	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+
+(/usr/lib/firefox-esr/firefox-esr:1929): dconf-WARNING **: 18:59:29.234: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592074863415	Marionette	INFO	Stopped listening on port 43547
+1592074865509	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilepjw0Hc"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592074867823	Marionette	INFO	Listening on port 33829
+1592074867935	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:2096): dconf-WARNING **: 19:01:25.471: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592075010768	Marionette	INFO	Stopped listening on port 33829
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x3500BC,name=PContent::Msg_ScriptError) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1592075016689	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileBWu6MR"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592075021088	Marionette	INFO	Listening on port 46483
+1592075021137	Marionette	WARN	TLS certificate errors will be ignored for this session
+1592075090327	Marionette	INFO	Stopped listening on port 46483
+1592075094254	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilecwvrZL"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592075096924	Marionette	INFO	Listening on port 36357
+1592075096972	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+
+(/usr/lib/firefox-esr/firefox-esr:2446): dconf-WARNING **: 19:05:29.006: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592075192315	Marionette	INFO	Stopped listening on port 36357
+1592075194684	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiletnRqvn"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592075197602	Marionette	INFO	Listening on port 41753
+1592075197692	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+
+(/usr/lib/firefox-esr/firefox-esr:2600): dconf-WARNING **: 19:07:09.397: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592075303394	Marionette	INFO	Stopped listening on port 41753
+1592075306110	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileSOjhqP"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592075308582	Marionette	INFO	Listening on port 38193
+1592075308624	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+
+(/usr/lib/firefox-esr/firefox-esr:2768): dconf-WARNING **: 19:09:00.527: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+1592075444883	Marionette	INFO	Stopped listening on port 38193
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+1592075454862	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileiXKmAN"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1592075462760	Marionette	INFO	Listening on port 44429
+1592075462801	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1592075768879	Marionette	INFO	Stopped listening on port 45011
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+JavaScript warning: https://www.avito.st/mstatic/js/fingerprint.js, line 1: unreachable code after return statement
+out of memory: 0x0000000000000800 bytes requested
+Exiting due to channel error.
+Exiting due to channel error.
+[Child 2990, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 727
+[Child 2990, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 727
+[Child 2990, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 727
+[Child 2990, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 727
+[Child 2990, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 727
+[Child 2990, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 727
+[Child 2990, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 727
+[Child 2990, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 727
+[Child 2990, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 727
+[Child 2990, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 727
+[Child 2990, Chrome_ChildThread] WARNING: pipe error: Broken pipe: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 727
+Exiting due to channel error.
