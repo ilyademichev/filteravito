@@ -55,6 +55,8 @@ def parse_realty_page(realty_link):
     attempts = 0
     attempts_int = 3
     page_loaded = False
+    print("Loading realty item by link")
+    print(realty_link)
     while attempts < attempts_int and not page_loaded:
         try:
             driver.get(realty_link)
@@ -66,16 +68,17 @@ def parse_realty_page(realty_link):
             else:
                 raise SystemExit(errw)
         except TimeoutException as errt:
-            print('Tried ', attempts, ' out of ', attempts_int)
+            print('Tried: ', attempts, ' out of: ', attempts_int)
             print("Timeout Error:", errt)
             timeout_int = 2 * timeout_int
             driver.set_page_load_timeout(timeout_int)
             attempts = attempts + 1
-            print('Timeout doubled ', timeout_int)
+            print('Timeout doubled: ', timeout_int)
         finally:
             page_state = driver.execute_script('return document.readyState;')
             if page_state == 'complete':
                 page_loaded = True
+    print('timeout: ',timeout_int,' tries: ',attempts, ' screenshot link:')
     scrshotpath = '/home/ilya/scrshotavito'
     tmp = scrshotpath + tempfile.NamedTemporaryFile().name + ".png"
     print(tmp)
@@ -99,7 +102,7 @@ profile = webdriver.FirefoxProfile("/home/ilya/.mozilla/firefox/vfwzppqq.avitopr
 #https://www.avito.ru/maloyaroslavets/nedvizhimost?s=104
 #https://www.avito.ru/obninsk/nedvizhimost?s=104
 #sankt_peterburg_i_lo
-sortedItemsLocationLink = 'https://m.avito.ru/obninsk/nedvizhimost?s=104'
+sortedItemsLocationLink = 'https://m.avito.ru/moskva/nedvizhimost?s=104'
 # proxy server settings
 
 # webdriver.DesiredCapabilities.FIREFOX['proxy']={
@@ -263,7 +266,9 @@ try:
                 try:
                     loadmorebutton.click()
                 except Exception as nobutton:
-                    raise SystemExit(nobutton)
+                    print("No click more button appeared after ",attempts, " tries.",)
+                    print("Output of the web site exceeded.")
+#                    raise SystemExit(nobutton)
                 time.sleep(1)
                 timestamp = driver.find_elements_by_xpath(timestampxpath)
                 print('links found:', len(timestamp))
