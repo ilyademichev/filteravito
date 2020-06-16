@@ -57,6 +57,8 @@ def parse_realty_page(realty_link):
     page_loaded = False
     print("Loading realty item by link")
     print(realty_link)
+    print(useragent)
+
     while attempts < attempts_int and not page_loaded:
         try:
             driver.get(realty_link)
@@ -268,18 +270,23 @@ try:
                 except Exception as nobutton:
                     print("No click more button appeared after ",attempts, " tries.",)
                     print("Output of the web site exceeded.")
+                    #failed to wait for the page to load and the button to appear
+                    #go on processing timetamps
+                    break
 #                    raise SystemExit(nobutton)
                 time.sleep(1)
                 timestamp = driver.find_elements_by_xpath(timestampxpath)
-                print('links found:', len(timestamp))
+                print('timestamps found:', len(timestamp))
                 time.sleep(1)
                 ls = list(map(lambda x: x.text, timestamp))
 
    # parse links that are present after scroll
     realtylinks = driver.find_elements_by_xpath(appartmentxpath)
+    print('realty links found:', len(realtylinks))
+
     # print em out
     hrefs = list(map(lambda x: x.get_attribute('href'), realtylinks))
-    print (*hrefs, sep='\n')
+    #print (*hrefs, sep='\n')
     # parse datastamps
     timestamp = driver.find_elements_by_xpath(timestampxpath)
     print( list(map(lambda x: x.text, timestamp)) )

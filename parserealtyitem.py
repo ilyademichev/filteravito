@@ -19,7 +19,7 @@ class Locators():
     NUMOF_ROOMS_SPAN = (By.XPATH, '//span[@data-marker = "item-properties-item(7)/description"')
 #phone button link
     PHONE_POPUP_SHOW_LINK=(By.XPATH,"//a[@data-marker='item-contact-bar/call']")
-    data-marker="item-contact-bar/call"
+#    data-marker="item-contact-bar/call"
 #text phone number
     PHONE_TEXT=(By.XPATH,"//span[@data-marker='phone-popup/phone-number']")
 #exctract images' links by \u002F delimeter from embedded javascript
