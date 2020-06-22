@@ -12,17 +12,16 @@ class RealtyApartmentPage(BasePage):
     # by given location
     # throws ValueError once the driver is too slow in loading
     # throws WebDriverException on internal webdriver error
-    def __init__(self, driver, location):
+    def __init__(self, driver, realty_hyperlink):
         super().__init__(driver)
         self.timeout_int = CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
         self.page_loaded = False
         self.phone_popup_loaded = False
         attempts = 0
         # set geolocation
-        link = CrawlerData.SORTED_ITEMS_LOCATION_LINK.replace(CrawlerData.LOCATION_TAG, location)
         while attempts < CrawlerData.ATTEMPTS_INT and not self.phone_popup_loaded:
             try:
-                driver.get(link)
+                driver.get(realty_hyperlink)
             # possible slow proxy response
             # double the implicit timeout
             except TimeoutException as errt:

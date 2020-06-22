@@ -2,6 +2,10 @@ from selenium.webdriver.common.by import By
 
 
 class Locators:
+    #load more items button
+    LOAD_MORE_SPAN = (By.XPATH, "//span[contains(text(),'Загрузить еще')]")
+    #time
+    TIMESTAMP_DIV = (By.XPATH, "//div[@data-marker='item/datetime']")
     # price
     PRICE_SPAN = (By.XPATH, '//span[@data-marker="item-description/price"]')
     # full address
