@@ -1,4 +1,4 @@
-class TestData():
+class CrawlerData:
     FF_EXECUTABLE_PATH=""
     BASE_URL = "https://www.m.avito.ru"
     FF_PROFILE_PATH = "/home/ilya/.mozilla/firefox/vfwzppqq.avitoproxy"
