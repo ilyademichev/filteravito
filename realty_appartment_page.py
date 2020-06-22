@@ -1,15 +1,17 @@
 from crawler_data import CrawlerData
-from parserealtyitem import Locators
-from basepageclass import BasePage
+from locators_realty_item import Locators
+from base_page_class import BasePage
 from selenium.common.exceptions import WebDriverException, TimeoutException
 import logging
 
+
 class RealtyApartmentPage(BasePage):
     """loads filtered realty items page sorted by date"""
-#loads the page through driver
-#by given location
-#throws ValueError once the driver is too slow in loading
-#throws WebDriverException on internal webdriver error
+
+    # loads the page through driver
+    # by given location
+    # throws ValueError once the driver is too slow in loading
+    # throws WebDriverException on internal webdriver error
     def __init__(self, driver, location):
         super().__init__(driver)
         self.timeout_int = CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
@@ -21,42 +23,43 @@ class RealtyApartmentPage(BasePage):
         while attempts < CrawlerData.ATTEMPTS_INT and not self.phone_popup_loaded:
             try:
                 driver.get(link)
-            except WebDriverException as errw:
-                logging.error("WebDriverException", exc_info=True)
-                #possible slow proxy response
-                if 'Reached error page' in str(errw):
-                    attempts = attempts + 1
-                    logging.info('Tried ', attempts, ' out of ', CrawlerData.ATTEMPTS_INT)
-                #otherwise some webdriver internal exception
-                #pass it through to the caller
-                else:
-                    raise errw
-            #possible slow proxy response
-            #double the implicit timeout
+            # possible slow proxy response
+            # double the implicit timeout
             except TimeoutException as errt:
                 logging.error("TimeoutException", exc_info=True)
                 self.timeout_int = 2 * self.timeout_int
                 driver.set_page_load_timeout(self.timeout_int)
                 attempts = attempts + 1
                 logging.info('Tried: ', attempts, ' out of: ', CrawlerData.ATTEMPTS_INT)
-                logging.info('Timeout doubled: ', self.timeout_int, ' s for link:' ,link)
+                logging.info('Timeout doubled: ', self.timeout_int, ' s for link:', link)
+            #
+            except WebDriverException as errw:
+                logging.error("WebDriverException", exc_info=True)
+                # possible slow proxy response
+                if 'Reached error page' in str(errw):
+                    attempts = attempts + 1
+                    logging.info('Tried ', attempts, ' out of ', CrawlerData.ATTEMPTS_INT)
+                # otherwise some webdriver internal exception
+                # pass it through to the caller
+                else:
+                    raise errw
             finally:
-                if super().waitForJSandJQueryToLoad(self):
+                if super().wait_for_js_and_jquery_to_load(self):
                     self.page_loaded = True
-        #constructor failed:
-        #bad driver with too slow proxy or proxy has gone down.
-        #set proper constants in CrawlerData class to adjust the behaviour
+        # constructor failed:
+        # bad driver with too slow proxy or proxy has gone down.
+        # set proper constants in CrawlerData class to adjust the behaviour
         #    IMPLICIT_TIMEOUT_INT_SECONDS
         #    ATTEMPTS_INT
-        if not self.phone_popup_loaded :
+        if not self.phone_popup_loaded:
             raise ValueError
 
-    def displayPhonePopup(self):
+    def display_phone_popup(self):
         self.phone_popup_loaded = False
         attempts = 0
         while attempts < CrawlerData.ATTEMPTS_INT and not self.phone_popup_loaded:
             try:
-                logging.info('Clicking phone link ',Locators.PHONE_POPUP_SHOW_LINK)
+                logging.info('Clicking phone link ', Locators.PHONE_POPUP_SHOW_LINK)
                 self.click(Locators.PHONE_POPUP_SHOW_LINK)
             except WebDriverException as errw:
                 logging.error("WebDriverException", exc_info=True)

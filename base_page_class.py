@@ -1,3 +1,8 @@
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
+
+
 class BasePage:
     """This class is the parent class for all the pages in our application."""
     """It contains all common elements and functionalities available to all pages."""
@@ -8,7 +13,7 @@ class BasePage:
         self.driver = driver
 
     # the wait object for js and jquery
-    def waitForJSandJQueryToLoad(self):
+    def wait_for_js_and_jquery_to_load(self):
         # wait for jQuery to load
         class jQueryLoad:
             def __init__(self, driver):
