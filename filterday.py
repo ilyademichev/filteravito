@@ -50,7 +50,7 @@ def parse_realty_page(realty_link):
     options = Options()
     options.headless = True
     driver = Firefox(options=options, firefox_profile=profile)
-    timeout_int = 300
+    timeout_int = 600
     driver.set_page_load_timeout(timeout_int)
     attempts = 0
     attempts_int = 3

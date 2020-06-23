@@ -1,3 +1,4 @@
+import re
 from datetime import time
 from locators_realty_item import  Locators
 from crawler_data import CrawlerData
@@ -74,28 +75,30 @@ class AvitoFilterPage(BasePage):
 
     def scroll_till_loadmore_button_present(self):
         # we feed in the cycle with the timestamps that have been already loaded
-        try:
             timestamp = self.driver.find_elements_by_xpath(Locators.TIMESTAMP_DIV)
             ls = list(map(lambda x: x.text, timestamp))
-            allday = False
-            scrolldown = True
+            self.allday = False
+            self.scrolldown = True
             self.load_more_button_present = super().is_enabled(Locators.LOAD_MORE_SPAN)
             # timestamp of the last item is set
-            while not allday and  self.load_more_button_present:
-                t = split_timestamps(ls)
+            while not self.allday and  self.load_more_button_present:
+                t = self.split_timestamps(ls)
             # get day tags and make up  a set
-                days = [*map(lambda x: x[0], t)]
-                uniquedays = set(days)
-                if CrawlerData.STOP_TAG in uniquedays:
-                # eliminate the ads
-                if days[-1] == CrawlerData.STOP_TAG and days[-2] == CrawlerData.STOP_TAG:
-                    allday = True
-                    scrolldown = False
-                if scrolldown:
+                self.days = [*map(lambda x: x[0], t)]
+                self.uniquedays = set(self.days)
+                if CrawlerData.YESTERDAY_TAG in self.uniquedays:
+                #eliminate the ads
+                #check the tail of the days list
+                # (...,YESTERDAY_TAG,YESTERDAY_TAG)  means that we skipped ads and reached yesterday
+                #i.e. we crawled the whole day period or we get some more (due to pagianted avito output)
+                    if self.days[-1] == CrawlerData.YESTERDAY_TAG and self.days[-2] == CrawlerData.YESTERDAY_TAG:
+                        self.allday = True
+                        self.scrolldown = False
+                if self.scrolldown:
                 # click a button to expand the list
                     attempts = 0
                     self.page_loaded = False
-                    loadmorebutton = None
+                    self.load_more_button_present = None
                     while attempts < CrawlerData.ATTEMPTS_INT and not self.page_loaded:
                         try:
                             loadmorebutton = self.driver.find_element_by_xpath(Locators.LOAD_MORE_SPAN)
@@ -107,22 +110,24 @@ class AvitoFilterPage(BasePage):
                             time.sleep(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
                         finally:
                             self.page_loaded = super().wait_for_js_and_jquery_to_load()
-                        try:
+                        #press the button if present
+                        if super().is_enabled(Locators.LOAD_MORE_SPAN):
                             super().click(Locators.LOAD_MORE_SPAN)
-                        except Exception as nobutton:
-                            logging.error("No click more button appeared after ", attempts, " tries.", )
-                            logging.error("Output of the web site exceeded.")
+                        else:
+                            logging.info("No click more button appeared after ", attempts, " tries.", )
+                            logging.info("Output of the web site exceeded.")
                     # failed to wait for the page to load and the button to appear
                     # go on processing timetamps
-                            break
-                #                    raise SystemExit(nobutton)
+                            self.load_more_button_present = False
+                    # while attempts < CrawlerData.ATTEMPTS_INT and not self.page_loaded:
+
                     timestamp = self.driver.find_elements_by_xpath(Locators.TIMESTAMP_DIV)
                     logging.info("timestamps found: ", len(timestamp))
                     ls = list(map(lambda x: x.text, timestamp))
 
     # splits the string list of timestamps into tuple list ( day ,time )
     # timestamps_list : list of timestamps in string format
-    def split_timestamps(timestamps_list):
+    def split_timestamps(self,timestamps_list):
         t = tuple()
         tp = list()
         for ts in timestamps_list:
