@@ -22,18 +22,18 @@ profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
 # set fake UA
 profile.set_preference("general.useragent.override", useragent)
 options = Options()
-options.headless = False
+options.headless = True
 try:
     driver = Firefox(options=options, firefox_profile=profile)
     driver.set_page_load_timeout(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
-    #moscow_filter_page = AvitoFilterPage(driver, 'moskva')
-    #moscow_filter_page.scroll_day()
-    #moscow_filter_page.parse_filter_page()
+    moscow_filter_page = AvitoFilterPage(driver, 'moskva')
+    moscow_filter_page.scroll_day()
+    moscow_filter_page.parse_filter_page()
 
-    obninsk_filter_page = AvitoFilterPage(driver, 'obninsk')
-    obninsk_filter_page.parse_filter_page()
+    #obninsk_filter_page = AvitoFilterPage(driver, 'obninsk')
+    #obninsk_filter_page.parse_filter_page()
 
-    for realty_link in obninsk_filter_page.daily_hrefs:
+    for realty_link in moscow_filter_page.daily_hrefs:
         realty_page = RealtyApartmentPage(driver, realty_link)
         realty_page.parse_realty_apprment_page()
 except ValueError:

@@ -88,13 +88,13 @@ class RealtyApartmentPage(BasePage):
             #parse the fields except the phone
             #since the phone popup covers the fields
             self.address = self.driver.find_element(*Locators.ADDRESS_SPAN).text
-            self.area = self.driver.find_element(*Locators.AREA_SPAN).text
+#            self.area = self.driver.find_element(*Locators.AREA_SPAN).text
             self.company = self.driver.find_element(*Locators.COMPANY_SPAN).text
             self.contact_name = self.driver.find_element(*Locators.CONTACT_NAME_SPAN).text
             self.description = self.driver.find_element(*Locators.DESCRIPTION_SPAN).text
             self.price = self.driver.find_element(*Locators.PRICE_SPAN).text
-            self.rooms = self.driver.find_element(*Locators.NUMOF_ROOMS_SPAN).text
-            self.timestamp = self.driver.find_element(*Locators.TIMESTAMP_DIV).text
+#            self.rooms = self.driver.find_element(*Locators.NUMOF_ROOMS_SPAN).text
+#            self.timestamp = self.driver.find_element(*Locators.TIMESTAMP_ITEM_DIV).text
             #make phone popup visible
             self.display_phone_popup()
             self.phone = self.parse_phone()

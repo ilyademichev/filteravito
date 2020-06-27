@@ -74,7 +74,7 @@ class AvitoFilterPage(BasePage):
             scrolldown = True
             while not allday and load_more_button_present:
                 # ls list is filled with timestamps after complete scroll down
-                timestamp = self.driver.find_elements(*Locators.TIMESTAMP_DIV)
+                timestamp = self.driver.find_elements(*Locators.TIMESTAMP_FILTER_DIV)
                 logging.info("timestamps found: ", len(timestamp))
                 ls = list(map(lambda x: x.text, timestamp))
                 t = self.split_timestamps(ls)
