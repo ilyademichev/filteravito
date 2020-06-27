@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 
 
 class Locators:
+    #appartment
+    APPARTMENT_A = (By.XPATH,"//a[contains(text(),'квартира')]")
     #load more items button
     LOAD_MORE_SPAN = (By.XPATH, "//span[contains(text(),'Загрузить еще')]")
     #time

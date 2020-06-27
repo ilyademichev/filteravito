@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from crawler_data import CrawlerData
 from locators_realty_item import Locators
 from base_page_class import BasePage
@@ -7,6 +9,17 @@ import logging
 
 class RealtyApartmentPage(BasePage):
     """loads filtered realty items page sorted by date"""
+    phone_popup_loaded = None
+    # data
+    phone = None
+    timestamp = None
+    price = None
+    address = None
+    company = None
+    contact_name = None
+    description = None
+    area = None
+    rooms = None
 
     # loads the page through driver
     # by given location
@@ -16,97 +29,80 @@ class RealtyApartmentPage(BasePage):
         super().__init__(driver)
         self.timeout_int = CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
         self.page_loaded = False
-        self.phone_popup_loaded = False
-        attempts = 0
+        self.attempts = 0
         # set geolocation
-        while attempts < CrawlerData.ATTEMPTS_INT and not self.phone_popup_loaded:
+        while self.attempts < CrawlerData.ATTEMPTS_INT and not self.page_loaded:
             try:
                 driver.get(realty_hyperlink)
             # possible slow proxy response
             # double the implicit timeout
-            except TimeoutException as errt:
-                logging.error("TimeoutException", exc_info=True)
-                self.timeout_int = 2 * self.timeout_int
-                driver.set_page_load_timeout(self.timeout_int)
-                attempts = attempts + 1
-                logging.info('Tried: ', attempts, ' out of: ', CrawlerData.ATTEMPTS_INT)
-                logging.info('Timeout doubled: ', self.timeout_int, ' s for link:', link)
-            #
-            except WebDriverException as errw:
-                logging.error("WebDriverException", exc_info=True)
-                # possible slow proxy response
-                if 'Reached error page' in str(errw):
-                    attempts = attempts + 1
-                    logging.info('Tried ', attempts, ' out of ', CrawlerData.ATTEMPTS_INT)
-                # otherwise some webdriver internal exception
-                # pass it through to the caller
-                else:
-                    raise errw
-            finally:
-                if super().wait_for_js_and_jquery_to_load(self):
-                    self.page_loaded = True
+            except Exception as e:
+                self.bad_proxy_connection(e)
+                continue
+            if super().wait_for_js_and_jquery_to_load():
+                self.page_loaded = True
         # constructor failed:
         # bad driver with too slow proxy or proxy has gone down.
         # set proper constants in CrawlerData class to adjust the behaviour
         #    IMPLICIT_TIMEOUT_INT_SECONDS
         #    ATTEMPTS_INT
-        if not self.phone_popup_loaded:
+        if not self.page_loaded:
             raise ValueError
 
+    # raises WebDriverException on internal driver error
+    # raises ValueError if unable to load the phone window
     def display_phone_popup(self):
         self.phone_popup_loaded = False
-        attempts = 0
-        while attempts < CrawlerData.ATTEMPTS_INT and not self.phone_popup_loaded:
+        self.attempts = 0
+        while self.attempts < CrawlerData.ATTEMPTS_INT and not self.phone_popup_loaded:
             try:
-                logging.info('Clicking phone link ', Locators.PHONE_POPUP_SHOW_LINK)
+                logging.info('Clicking phone link ', *Locators.PHONE_POPUP_SHOW_LINK)
                 self.click(Locators.PHONE_POPUP_SHOW_LINK)
-            except WebDriverException as errw:
-                logging.error("WebDriverException", exc_info=True)
-                logging.info('Tried ', attempts, ' out of ', CrawlerData.ATTEMPTS_INT)
-                # possible slow proxy response
-                if 'Reached error page' in str(errw):
-                    attempts = attempts + 1
-                # otherwise some webdriver internal exception
-                # pass it through to the caller
-                else:
-                    raise errw
+            except Exception as e:
+                self.bad_proxy_connection(e)
+                continue
                     # possible slow proxy response
                     # double the implicit timeout
-            except TimeoutException as errt:
-                logging.error("TimeoutException", exc_info=True)
-                self.timeout_int = 2 * self.timeout_int
-                self.set_page_load_timeout(self.timeout_int)
-                attempts = attempts + 1
-                logging.info('Tried: ', attempts, ' out of: ', CrawlerData.ATTEMPTS_INT)
-                logging.info('Timeout doubled: ', self.timeout_int, ' s for pressing phone popup link:')
-            finally:
-                if super().waitForJSandJQueryToLoad(self):
-                    self.phone_popup_loaded = True
-                # instance is broken
-                # return ValueError
-                # bad driver with too slow proxy or proxy has gone down.
+            # wait for fully load the page
+            if super().wait_for_js_and_jquery_to_load():
+                self.phone_popup_loaded = True
+                # too slow proxy or proxy has gone down.
                 # set proper constants in CrawlerData to adjust the behaviour
                 #    IMPLICIT_TIMEOUT_INT_SECONDS
                 #    ATTEMPTS_INT
-            if not self.phone_popup_loaded:
-                logging.error("WebDriverException", exc_info=True)
-                logging.info('Tried ', attempts, ' out of ', CrawlerData.ATTEMPTS_INT)
-                # possible slow proxy response
-                if 'Reached error page' in str(errw):
-                    attempts = attempts + 1
-                # otherwise some webdriver internal exception
-                # pass it through to the caller
-                else:
-                    raise errw
-                raise ValueError
+        if not self.phone_popup_loaded:
+            raise ValueError
 
     def parse_phone(self):
         phone = None
         try:
             logging.info('fetching the phone number')
             phone = self.driver.find_element(*Locators.PHONE_TEXT).text
-        except WebDriverException as errw:
-            logging.error("WebDriverException", exc_info=True)
-            raise errw
+        except Exception as e:
+            self.bad_proxy_connection(e)
         finally:
             return phone
+
+    def parse_realty_apprment_page(self):
+        try:
+            #parse the fields except the phone
+            #since the phone popup covers the fields
+            self.address = self.driver.find_element(*Locators.ADDRESS_SPAN).text
+            self.area = self.driver.find_element(*Locators.AREA_SPAN).text
+            self.company = self.driver.find_element(*Locators.COMPANY_SPAN).text
+            self.contact_name = self.driver.find_element(*Locators.CONTACT_NAME_SPAN).text
+            self.description = self.driver.find_element(*Locators.DESCRIPTION_SPAN).text
+            self.price = self.driver.find_element(*Locators.PRICE_SPAN).text
+            self.rooms = self.driver.find_element(*Locators.NUMOF_ROOMS_SPAN).text
+            self.timestamp = self.driver.find_element(*Locators.TIMESTAMP_DIV).text
+            #make phone popup visible
+            self.display_phone_popup()
+            self.phone = self.parse_phone()
+            #list out all parsed fields
+            logging.info(pprint(vars(self)))
+        except Exception as e:
+            self.bad_proxy_connection(e)
+            logging.error("Unable to parse data fields", exc_info=True)
+            raise ValueError
+
+
