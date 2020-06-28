@@ -14589,3 +14589,98 @@ JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/pictu
 JavaScript warning: https://www.avito.st/mstatic/build/f.a20e7a3b4e8a4.js, line 6: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
 JavaScript warning: https://www.avito.st/mstatic/build/f.a20e7a3b4e8a4.js, line 6: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
 * Can't use WebGL in headless mode (https://bugzil.la/1375585).
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 5926, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 5897, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+Exiting due to channel error.
+1593319744920	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileQiA4tm"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1593319746844	Marionette	INFO	Listening on port 35265
+1593319746927	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.avito.st/mstatic/build/f.a20e7a3b4e8a4.js, line 6: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/build/f.a20e7a3b4e8a4.js, line 6: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x240016,name=PCameras::Msg_AllDone) Channel error: cannot send/recv
+
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 9521, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 9492, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 9455, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593320154476	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile4nc8x5"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1593320156408	Marionette	INFO	Listening on port 41671
+1593320156488	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.avito.st/mstatic/build/f.a20e7a3b4e8a4.js, line 6: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/build/f.a20e7a3b4e8a4.js, line 6: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x240016,name=PCameras::Msg_AllDone) Channel error: cannot send/recv
+
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 10085, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 10056, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 10019, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593321199910	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilesmFmhQ"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1593321204043	Marionette	INFO	Listening on port 46351
+1593321204078	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.avito.st/mstatic/build/f.a20e7a3b4e8a4.js, line 6: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/build/f.a20e7a3b4e8a4.js, line 6: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x240016,name=PCameras::Msg_AllDone) Channel error: cannot send/recv
+
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1539, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x160032,name=PBackground::Msg_PHttpBackgroundChannelConstructor) Channel error: cannot send/recv
+
+[Child 1510, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[Child 1460, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593321472929	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileX71IS1"
+*** You are running in headless mode.
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1593321474851	Marionette	INFO	Listening on port 41639
+1593321474937	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.avito.st/mstatic/build/f.a20e7a3b4e8a4.js, line 6: Error: WebGL warning: <SetDimensions>: Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://www.avito.st/mstatic/build/f.a20e7a3b4e8a4.js, line 6: Error: WebGL warning: <SetDimensions>: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x240016,name=PCameras::Msg_AllDone) Channel error: cannot send/recv
+
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1740, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1711, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+Exiting due to channel error.
