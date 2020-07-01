@@ -14684,3 +14684,655 @@ Exiting due to channel error.
 [Child 1711, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
 Exiting due to channel error.
 Exiting due to channel error.
+1593590988316	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiley7ByY3"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1593590992961	Marionette	INFO	Listening on port 39417
+1593590993055	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 11113, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 11062, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 10996, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593591931295	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileVAVFH9"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593591933832	Marionette	INFO	Listening on port 46089
+1593591933919	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+
+(/usr/lib/firefox-esr/firefox-esr:11480): dconf-WARNING **: 08:26:05.842: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 11571, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 11532, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 11517, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 11480, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593592164842	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileF3NS27"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593592167344	Marionette	INFO	Listening on port 39043
+1593592167380	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+
+(/usr/lib/firefox-esr/firefox-esr:11755): dconf-WARNING **: 08:29:59.316: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 11843, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 11791, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 11755, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593592446338	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileAdEaSZ"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593592448883	Marionette	INFO	Listening on port 46385
+1593592448972	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: https://www.avito.st/mstatic/build/runtime~fingerprint.986be88b03df6.js, line 2: Error: 
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 12090, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 12052, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 12038, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 12002, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593592699179	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileKvT9uM"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593592701572	Marionette	INFO	Listening on port 42059
+1593592701604	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 12336, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 12300, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 12284, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 12249, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593592892138	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileYmJKGC"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593592894851	Marionette	INFO	Listening on port 44733
+1593592894975	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+
+(/usr/lib/firefox-esr/firefox-esr:12513): dconf-WARNING **: 08:43:52.047: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 12602, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 12550, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+Exiting due to channel error.
+1593594229933	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileMn5j7i"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593594232590	Marionette	INFO	Listening on port 39101
+1593594232656	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 13205, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 13153, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 13116, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593596022590	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilefNqSXY"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593596025622	Marionette	INFO	Listening on port 37679
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1593596025728	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox-esr/firefox-esr:13863): dconf-WARNING **: 09:34:17.571: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 13954, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 13901, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 13863, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593597139860	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileErjGfm"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593597142523	Marionette	INFO	Listening on port 34479
+1593597142596	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+
+(/usr/lib/firefox-esr/firefox-esr:14447): dconf-WARNING **: 09:52:54.412: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Отказано в доступе
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 14536, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 14502, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 14484, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 14447, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593600539711	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGvRYhX"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593600549753	Marionette	INFO	Listening on port 46391
+1593600549844	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1848, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1816, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1730, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593601178986	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiley3zuuX"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593601181801	Marionette	INFO	Listening on port 35401
+1593601181896	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2486, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2434, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+Exiting due to channel error.
+1593601482953	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilekEgGHg"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593601485756	Marionette	INFO	Listening on port 35311
+1593601485808	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2738, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2703, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2682, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+Exiting due to channel error.
+1593601695062	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilexm1FlI"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593601698419	Marionette	INFO	Listening on port 40797
+1593601698486	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2973, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2916, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+Exiting due to channel error.
+1593602654923	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileYj8Rnf"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593602658080	Marionette	INFO	Listening on port 33545
+1593602658182	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1864, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1827, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1812, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1758, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593602867994	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilefMbuiZ"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593602870725	Marionette	INFO	Listening on port 43749
+1593602870815	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: https://m.avito.ru/moskva/kvartiry/3-k_kvartira_133_m_1332_et._1656292257 line 5140 > scriptElement, line 1: ReferenceError: yaCounter24618824 is not defined
+JavaScript error: https://m.avito.ru/moskva/kvartiry/3-k_kvartira_133_m_1332_et._1656292257 line 5140 > scriptElement, line 1: ReferenceError: yaCounter24618824 is not defined
+1593604122487	Marionette	INFO	Stopped listening on port 43749
+[Parent 2021, Gecko_IOThread] WARNING: pipe error (149): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+[Parent 2021, Gecko_IOThread] WARNING: pipe error (42): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1593604982921	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilegprx7q"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593604985632	Marionette	INFO	Listening on port 37775
+1593604985763	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+1593605566655	Marionette	INFO	Stopped listening on port 37775
+[Parent 2722, Gecko_IOThread] WARNING: pipe error (42): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1593605862813	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile3RmeEw"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593605865726	Marionette	INFO	Listening on port 35459
+1593605865870	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: https://m.avito.ru/moskva/kvartiry/2-k_kvartira_54.9_m_314_et._1826984715 line 5140 > scriptElement, line 1: ReferenceError: yaCounter24618824 is not defined
+1593606289169	Marionette	INFO	Stopped listening on port 35459
+1593606567974	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilerRfpy2"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593606570354	Marionette	INFO	Listening on port 37191
+1593606570419	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3549, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3535, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3498, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593606799903	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile8tPwbH"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593606802601	Marionette	INFO	Listening on port 38413
+1593606802655	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3818, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3780, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3766, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3730, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593607409945	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilePjmaN4"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593607418204	Marionette	INFO	Listening on port 34693
+1593607418290	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2108, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2073, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2011, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593608117398	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilet1pQdS"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593608120653	Marionette	INFO	Listening on port 33751
+1593608120737	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2485, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2451, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2433, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+Exiting due to channel error.
+1593608286529	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileCxC7W0"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593608288987	Marionette	INFO	Listening on port 45289
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+1593608289058	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: https://www.avito.st/mstatic/build/runtime~fingerprint.986be88b03df6.js, line 2: Error: 
+1593608744870	Marionette	INFO	Stopped listening on port 45289
+[Parent 2570, Gecko_IOThread] WARNING: pipe error (42): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1593608921453	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilenAXGtu"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593608924181	Marionette	INFO	Listening on port 36703
+1593608924265	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3002, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2968, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2945, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+Exiting due to channel error.
+1593608974038	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileeb0Y27"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593608976520	Marionette	INFO	Listening on port 40259
+1593608976562	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3182, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3130, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3095, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593610678656	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile9aAaAG"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593610683238	Marionette	INFO	Listening on port 40295
+1593610683272	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1583, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1531, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+Exiting due to channel error.
+1593612227329	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilePbTfx1"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593612230537	Marionette	INFO	Listening on port 45067
+1593612230631	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2165, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2212, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2159, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2122, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593612407258	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile6fTyEn"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593612410100	Marionette	INFO	Listening on port 39747
+1593612410168	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2438, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2400, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2384, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+Exiting due to channel error.
+1593612804467	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileuPSAak"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593612806836	Marionette	INFO	Listening on port 41085
+1593612806895	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+console.error: "Could not write session state file " (new Error("", "(unknown module)")) ""
+console.error: "Could not write session state file " (new Error("", "(unknown module)")) ""
+console.error: "Could not write session state file " (new Error("", "(unknown module)")) ""
+console.error: "Could not write session state file " (new Error("", "(unknown module)")) ""
+console.error: "Could not write session state file " (new Error("", "(unknown module)")) ""
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1593613533721	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile5tiP7Z"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+1593613537680	Marionette	INFO	Listening on port 44747
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1593613537762	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2780, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2729, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2668, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593615484693	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileitgh5Q"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593615488666	Marionette	INFO	Listening on port 45037
+1593615488725	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4212, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4174, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4160, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4101, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593616809119	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile7NJB02"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593616812142	Marionette	INFO	Listening on port 41565
+1593616812265	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4660, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4604, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4567, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593617802639	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile6iMn0m"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593617808158	Marionette	INFO	Listening on port 34681
+1593617808203	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+1593629721299	Marionette	INFO	Stopped listening on port 34681
+[Parent 1411, Gecko_IOThread] WARNING: pipe error (42): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+1593629882433	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileydFqS4"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593629884937	Marionette	INFO	Listening on port 45633
+1593629884971	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+1593632282009	Marionette	INFO	Stopped listening on port 45633
+1593632729494	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileaQYMr2"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+1593632734992	Marionette	INFO	Listening on port 37205
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1593632735089	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3903, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 3851, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+Exiting due to channel error.
+1593633126918	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile4bKdLF"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+1593633130271	Marionette	INFO	Listening on port 46145
+1593633130331	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4304, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4095, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4053, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593635518995	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileB0LnUX"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593635521380	Marionette	INFO	Listening on port 33803
+1593635521421	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4602, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4564, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4550, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 4514, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593636162299	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileKc8e7g"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593636166231	Marionette	INFO	Listening on port 34781
+1593636166292	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1815, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1764, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 1708, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593636883762	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile6zJZqr"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593636886837	Marionette	INFO	Listening on port 34059
+1593636886896	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2186, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2134, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 2097, Chrome_ChildThread] WARNING: pipe error (3): Соединение разорвано другой стороной: file /build/firefox-esr-5pCE1P/firefox-esr-68.9.0esr/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 358
+Exiting due to channel error.
+1593637240701	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilemvMqFZ"
+JavaScript error: resource:///modules/sessionstore/SessionStore.jsm, line 1325: uncaught exception: 2147746065
+1593637243399	Marionette	INFO	Listening on port 41853
+1593637243446	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: undefined, line 14: Error: An unexpected error occurred
+JavaScript error: moz-extension://d8f08c0c-9eea-4b80-bff1-de5aa6b9853a/lib/picture_in_picture_overrides.js, line 15: Error: Incorrect argument types for pictureInPictureParent.setOverrides.
+JavaScript error: chrome://global/content/browser-child.js, line 29: TypeError: req is null

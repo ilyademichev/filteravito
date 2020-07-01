@@ -2,6 +2,10 @@ from selenium.webdriver.common.by import By
 
 
 class Locators:
+    #
+    AVITO_OUTPUT_EXCEEDED_DIV = (By.XPATH,"//div[contains(text(),'Не удалось загрузить объявления.')]")
+    #buy appartment button
+    APPARTMENT_SPAN = (By.XPATH,"//span[contains(text(),'Купить')]")
     #appartment
     APPARTMENT_A = (By.XPATH,"//a[contains(text(),'квартира')]")
     #load more items button

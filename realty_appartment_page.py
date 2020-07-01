@@ -56,16 +56,21 @@ class RealtyApartmentPage(BasePage):
         self.attempts = 0
         while self.attempts < CrawlerData.ATTEMPTS_INT and not self.phone_popup_loaded:
             try:
-                logging.info('Clicking phone link ', *Locators.PHONE_POPUP_SHOW_LINK)
+                logging.info('Clicking phone link ')
                 self.click(Locators.PHONE_POPUP_SHOW_LINK)
+                # fully load the phone popup page
+                # if not fully loaded TimeoutException occurs and
+                # further on we utilize slow connection adaptation strategy
+                if super().is_enabled(Locators.PHONE_TEXT):
+                    self.phone_popup_loaded = True
+
             except Exception as e:
                 self.bad_proxy_connection(e)
                 continue
                     # possible slow proxy response
                     # double the implicit timeout
             # wait for fully load the page
-            if super().wait_for_js_and_jquery_to_load():
-                self.phone_popup_loaded = True
+
                 # too slow proxy or proxy has gone down.
                 # set proper constants in CrawlerData to adjust the behaviour
                 #    IMPLICIT_TIMEOUT_INT_SECONDS
@@ -85,6 +90,8 @@ class RealtyApartmentPage(BasePage):
 
     def parse_realty_apprment_page(self):
         try:
+            logging.info(self.driver.current_url)
+
             #parse the fields except the phone
             #since the phone popup covers the fields
             self.address = self.driver.find_element(*Locators.ADDRESS_SPAN).text

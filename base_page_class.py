@@ -3,7 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from crawler_data import CrawlerData
 import logging
-
+import time
 
 class BasePage:
     """This class is the parent class for all the pages in our application."""
@@ -21,6 +21,7 @@ class BasePage:
             logging.error("WebDriverException", exc_info=True)
             #  slow proxy response
             if 'Reached error page' in str(exception.args):
+                time.sleep(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
                 self.on_exception_prepare_page_reload()
                 # reload the page
             # otherwise some webdriver internal exception
@@ -28,14 +29,16 @@ class BasePage:
             # return from the constructor
             else:
                 raise exception
-
+#adaptaion strategy for slow internet connection
+#we double the wait time
+#increment the number of tries
     def on_exception_prepare_page_reload(self):
         logging.error("Connection problem", exc_info=True)
-        self.timeout_int = 2 * self.timeout_int
+        self.timeout_int = CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS + self.timeout_int
         self.driver.set_page_load_timeout(self.timeout_int)
         self.attempts = self.attempts + 1
-        logging.info('Tried: ', self.attempts, ' out of: ', CrawlerData.ATTEMPTS_INT)
-        logging.info('Timeout doubled: ', self.timeout_int, ' s ')
+        logging.info("Tried: {num_attempts} out of: {all_attempts}".format(num_attempts=self.attempts,all_attempts=CrawlerData.ATTEMPTS_INT))
+        logging.info("Timeout doubled: {timeout} s".format(timeout=self.timeout_int))
         self.page_loaded = False
 
     # this function is called every time a new object of the base class is created.
