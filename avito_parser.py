@@ -24,7 +24,7 @@ profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
 # set fake UA
 profile.set_preference("general.useragent.override", useragent)
 options = Options()
-options.headless = False
+options.headless = True
 try:
     driver = Firefox(options=options, firefox_profile=profile)
     driver.set_page_load_timeout(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
