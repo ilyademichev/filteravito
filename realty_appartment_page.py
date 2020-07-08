@@ -1,5 +1,5 @@
-from pprint import pprint
-
+import pprint
+import re
 from crawler_data import CrawlerData
 from locators_realty_item import Locators
 from base_page_class import BasePage
@@ -9,20 +9,8 @@ import logging
 class RealtyApartmentPage(BasePage):
     """loads filtered realty items page sorted by date"""
     phone_popup_loaded = None
+    realty_images = list()
     # data
-    phone = None
-    timestamp = None
-    price = None
-    address = None
-    company = None
-    contact_name = None
-    description = None
-    area = None
-    rooms = None
-
-    # loads the page through driver
-    # by given location
-    # throws ValueError once the driver is too slow in loading
     # throws WebDriverException on internal webdriver error
     def __init__(self, driver, realty_hyperlink):
         super().__init__(driver)
@@ -46,6 +34,7 @@ class RealtyApartmentPage(BasePage):
         #    IMPLICIT_TIMEOUT_INT_SECONDS
         #    ATTEMPTS_INT
         if not self.page_loaded:
+            super().save_scrshot_to_temp()
             raise ValueError
 
     # raises WebDriverException on internal driver error
@@ -54,7 +43,7 @@ class RealtyApartmentPage(BasePage):
     #  True if phone button exist - valid page structure
     #  False if not - invalid page structure
     def display_phone_popup(self):
-        els = self.driver.find_elements(Locators.PHONE_POPUP_SHOW_LINK)
+        els = self.driver.find_elements(*Locators.PHONE_POPUP_SHOW_LINK)
         if len(els) > 0:
             self.phone_popup_loaded = False
             self.attempts = 0
@@ -98,10 +87,12 @@ class RealtyApartmentPage(BasePage):
             return phone
 
     # check for presence of an element given by loc location
+    # location loc is the tuple
     # extract and return the text value of the element
     # return None if the element is not present
+
     def get_text_if_exist(self, loc):
-        els = self.driver.find_elements(loc)
+        els = self.driver.find_elements(*loc)
         if len(els) > 0:
             return els[0].text
         else:
@@ -113,18 +104,38 @@ class RealtyApartmentPage(BasePage):
             logging.info(self.driver.current_url)
             # parse the fields except the phone
             # since the phone popup covers the fields
-            self.address = self.get_text_if_exist(*Locators.ADDRESS_SPAN)
-            #            self.area = self.get_text_if_exist(*Locators.AREA_SPAN)
-            self.company = self.get_text_if_exist(*Locators.COMPANY_SPAN)
-            self.contact_name = self.get_text_if_exist(*Locators.CONTACT_NAME_SPAN)
-            self.description = self.get_text_if_exist(*Locators.DESCRIPTION_SPAN)
-            self.price = self.get_text_if_exist(*Locators.PRICE_SPAN)
-            #            self.rooms = self.get_text_if_exist(*Locators.NUMOF_ROOMS_SPAN)
-            #            self.timestamp = self.get_text_if_exist(*Locators.TIMESTAMP_ITEM_DIV)
+            self.address = self.get_text_if_exist(Locators.ADDRESS_SPAN)
+            self.area = self.get_text_if_exist(Locators.AREA_SPAN)
+            self.company = self.get_text_if_exist(Locators.COMPANY_SPAN)
+            self.contact_name = self.get_text_if_exist(Locators.CONTACT_NAME_SPAN)
+            self.description = self.get_text_if_exist(Locators.DESCRIPTION_SPAN)
+            self.price = self.get_text_if_exist(Locators.PRICE_SPAN)
+            self.rooms = self.get_text_if_exist(Locators.NUMOF_ROOMS_SPAN)
+            self.timestamp = self.get_text_if_exist(Locators.TIMESTAMP_ITEM_DIV)
             self.phone = self.parse_phone()
+            self.parse_realty_images_links()
             # list out all parsed fields
-            logging.info(pprint(vars(self)))
+            logging.info(pprint.pformat(vars(self)))
         except Exception as e:
             self.bad_proxy_connection(e)
             logging.error("Unable to parse data fields", exc_info=True)
             raise ValueError
+
+    def parse_realty_images_links(self):
+        imgs = self.driver.find_elements(*Locators.IMAGE_LINK)
+        self.realty_images = [img.get_attribute("src") for img in imgs]
+        #
+        #images are stored on cdn-servers
+        #resolution is set directly in the link
+        #for example resolution 75x55 for
+        # //60.img.avito.st/75x55/6279872160.jpg
+        #we remove heading // and change resolution numbers to 640x480
+        #the resultant link is
+        # 60.img.avito.st/640x480/6279872266.jpg
+        #
+        self.realty_images = [re.sub(r"\/\/","",w) for w in self.realty_images]
+        self.realty_images = [re.sub(r"\.st\/.*\/",".st/640x480/",w) for w in self.realty_images]
+
+
+
+

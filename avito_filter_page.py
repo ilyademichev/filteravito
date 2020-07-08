@@ -114,10 +114,11 @@ class AvitoFilterPage(BasePage):
                 self.uniquedays = set(self.days)
                 if CrawlerData.YESTERDAY_TAG in self.uniquedays:
                     # eliminate the ads
-                    # check the tail of the days list
-                    # (...,YESTERDAY_TAG,YESTERDAY_TAG)  means that we skipped ads and reached yesterday
+                    # check the tail of the days list , check three tail days
+                    # for example (...,ADV_SOME_DATE_TAG,YESTERDAY_TAG,YESTERDAY_TAG)  means that we skipped ads and reached yesterday
+                    # we don't have today tags any more only in ads
                     # i.e. we crawled the whole day period or we get some more (due to paginated avito output)
-                    if (self.days[-1] == CrawlerData.YESTERDAY_TAG and self.days[-2] == CrawlerData.YESTERDAY_TAG) or (self.days[-3] == CrawlerData.YESTERDAY_TAG and self.days[-4] == CrawlerData.YESTERDAY_TAG):
+                    if self.days[-1] != CrawlerData.TODAY_TAG and self.days[-2] != CrawlerData.TODAY_TAG and  self.days[-3] !=  CrawlerData.TODAY_TAG:
                         allday = True
                         scrolldown = False
                 if scrolldown:

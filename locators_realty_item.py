@@ -2,15 +2,17 @@ from selenium.webdriver.common.by import By
 
 
 class Locators:
-    #
-    AVITO_OUTPUT_EXCEEDED_DIV = (By.XPATH,"//div[contains(text(),'Не удалось загрузить объявления.')]")
-    #buy appartment button
-    APPARTMENT_SPAN = (By.XPATH,"//span[contains(text(),'Купить')]")
-    #appartment
-    APPARTMENT_A = (By.XPATH,"//a[contains(text(),'квартира')]")
-    #load more items button
+    # image link list
+    IMAGE_LINK = (By.XPATH, "//*[@class='gallery-list-item-link']//child::img")
+    # mark of excessive load by the server
+    AVITO_OUTPUT_EXCEEDED_DIV = (By.XPATH, "//div[contains(text(),'Не удалось загрузить объявления.')]")
+    # buy appartment button
+    APPARTMENT_SPAN = (By.XPATH, "//span[contains(text(),'Купить')]")
+    # appartment
+    APPARTMENT_A = (By.XPATH, "//a[contains(text(),'квартира')]")
+    # load more items button
     LOAD_MORE_SPAN = (By.XPATH, "//span[contains(text(),'Загрузить еще')]")
-    #time
+    # time
     TIMESTAMP_ITEM_DIV = (By.XPATH, "//div[@data-marker='item-stats/timestamp']")
     TIMESTAMP_FILTER_DIV = (By.XPATH, "//div[@data-marker='item/datetime']")
     # price

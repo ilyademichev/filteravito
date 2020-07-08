@@ -1,3 +1,5 @@
+import tempfile
+
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
@@ -15,6 +17,7 @@ class BasePage:
 
     def bad_proxy_connection(self,exception):
         # possible slow proxy or network response
+        self.save_scrshot_to_temp()
         if type(exception).__name__ == 'TimeoutException':
             self.on_exception_prepare_page_reload()
         if type(exception).__name__ == 'WebDriverException':
@@ -38,7 +41,7 @@ class BasePage:
         self.driver.set_page_load_timeout(self.timeout_int)
         self.attempts = self.attempts + 1
         logging.info("Tried: {num_attempts} out of: {all_attempts}".format(num_attempts=self.attempts,all_attempts=CrawlerData.ATTEMPTS_INT))
-        logging.info("Timeout doubled: {timeout} s".format(timeout=self.timeout_int))
+        logging.info("Timeout: {timeout} s".format(timeout=self.timeout_int))
         self.page_loaded = False
 
     # this function is called every time a new object of the base class is created.
@@ -90,3 +93,9 @@ class BasePage:
     def hover_to(self, by_locator):
         element = WebDriverWait(self.driver, self.timeout_int).until(EC.visibility_of_element_located(by_locator))
         ActionChains(self.driver).move_to_element(element).perform()
+    #takes the screenshot of current driver page and saves it to a random file
+    def save_scrshot_to_temp(self):
+        tmp = CrawlerData.SCR_SHOT_PATH + tempfile.NamedTemporaryFile().name + ".png"
+        logging.info(tmp)
+        self.driver.get_screenshot_as_file(tmp)
+
