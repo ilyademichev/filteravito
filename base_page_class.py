@@ -37,7 +37,7 @@ class BasePage:
 #increment the number of tries
     def on_exception_prepare_page_reload(self):
         logging.error("Connection problem", exc_info=True)
-        self.timeout_int = CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS + self.timeout_int
+        self.timeout_int += CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
         self.driver.set_page_load_timeout(self.timeout_int)
         self.attempts = self.attempts + 1
         logging.info("Tried: {num_attempts} out of: {all_attempts}".format(num_attempts=self.attempts,all_attempts=CrawlerData.ATTEMPTS_INT))

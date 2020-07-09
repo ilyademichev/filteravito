@@ -1,10 +1,13 @@
 import random
 import datetime
+import re
+
 from selenium.common.exceptions import WebDriverException
 import userAgenetRotator
 from avito_filter_page import AvitoFilterPage
 from crawler_data import CrawlerData
 from geolocation_data import geolocation_map
+from image_download_manager import DownloadManager
 from realty_appartment_page import RealtyApartmentPage
 from selenium import webdriver
 from selenium.webdriver import Firefox
@@ -40,9 +43,18 @@ def parse_location(driver,location):
     filter_page = AvitoFilterPage(driver, geolocation_map["Москва"])
     filter_page.parse_filter_page()
     if len(filter_page.daily_hrefs) > 0:
+        download_manager = DownloadManager(thread_count=4)
+        download_manager.begin_downloads()
         for realty_link in filter_page.daily_hrefs:
             realty_page = RealtyApartmentPage(driver, realty_link)
             realty_page.parse_realty_apprment_page()
+            #extract advertisment number
+            #Объявление: №507307470, Сегодня, 14:04
+            #make up a tuple of (507307470, {links})
+            #queue it up in the downloader
+            adv = (re.search('\d{9}', realty_page.timestamp),realty_page.realty_images)
+            download_manager.queue_image_links(adv)
+
     else:
         logging.info("No links parsed")
 
