@@ -1,7 +1,6 @@
 """ Import """
 # https://pastebin.com/QrZG9e9T
 import logging
-import sys
 import os
 import time
 from threading import Thread
@@ -28,7 +27,7 @@ class Downloader(Thread):
             # gets the url from the queue
             output_folder, links = self.queue.get()
             # download the file
-            for url in links
+            for url in links:
                 logging.info("* Thread {0} - processing URL".format(self.name))
                 if not self.download_file(url,output_folder):
                     logging.error("* Thread {0} - file not loaded {1}".format(self.name,url))
@@ -45,10 +44,12 @@ class Downloader(Thread):
     def download_file(self, url,output_directory):
         """ download file """
         self.timeout_int = CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
-        while self.attempts < CrawlerData.ATTEMPTS_INT
+        status = 0
+        while self.attempts < CrawlerData.ATTEMPTS_INT or status == 200:
             try:
                 t_start = time.clock()
                 r = requests.get(url,timeout=self.timeout_int)
+                status = r.status_code
             #network errors recoverable
             except requests.exceptions.HTTPError as errh:
                 logging.error("Http Error:",  exc_info=True)
@@ -93,7 +94,7 @@ class DownloadManager():
             t.start()
         return
 
-    def queue_image_links(self,download_dict)
+    def queue_image_links(self,download_dict):
         """
         fill the queue with the URLs and\n
         then feed the threads URLs via the queue
