@@ -68,11 +68,14 @@ class AvitoFilterPage(BasePage):
         last_height = self.driver.execute_script("return document.body.scrollHeight")
         while True:
             # Scroll down to bottom
+            logging.info("Filter page: scrolling down  ")
             self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             # Wait to scroll the page
             time.sleep(CrawlerData.SCROLL_PAUSE_TIME)
             if not super().wait_for_js_and_jquery_to_load():
-                raise ValueError
+                logging.info("Filter page: page can not be fully loaded")
+                return False
+
             # Calculate new scroll height and compare with last scroll height
             new_height = self.driver.execute_script("return document.body.scrollHeight")
             # Check for message from avito no more ads can be displayed
@@ -86,7 +89,7 @@ class AvitoFilterPage(BasePage):
                 break
             last_height = new_height
         if self.avito_output_exceeded:
-            logging.error("Avito doesn't send more ads.")
+            logging.error("Filter page: Avito doesn't send more ads.")
             return False
         else:
             return True
@@ -103,10 +106,9 @@ class AvitoFilterPage(BasePage):
             scrolldown = True
             self.avito_output_exceeded = False
             while not allday and load_more_button_present:
-
                 # ls list is filled with timestamps after complete scroll down
                 timestamp = self.driver.find_elements(*Locators.TIMESTAMP_FILTER_DIV)
-                logging.info("Timestamps found: {num_timestamps}".format(num_timestamps=len(timestamp)))
+                logging.info("Filter page: Timestamps found: {num_timestamps}".format(num_timestamps=len(timestamp)))
                 ls = list(map(lambda x: x.text, timestamp))
                 t = self.split_timestamps(ls)
                 # get day tags and make up a set
@@ -140,12 +142,12 @@ class AvitoFilterPage(BasePage):
                                 if len(els) > 0:
                                     if els[0].is_displayed():
                                         self.avito_output_exceeded = True
-                                        logging.error("Avito doesn't send more ads.")
+                                        logging.error("Filter page: Avito doesn't send more ads.")
                                         return False
                                 self.page_loaded = super().wait_for_js_and_jquery_to_load()
                             else:
-                                logging.info("No click more button appeared after ", self.attempts, " tries.", )
-                                logging.info("Output of the avito filter page exceeded.")
+                                logging.info("Filter page: No click more button appeared after ", self.attempts, " tries.", )
+                                logging.info("Filter page: Output of the avito filter page exceeded.")
                                 # failed to wait for the page to load and the button to appear
                                 # go on processing timetamps
                                 load_more_button_present = False
@@ -180,6 +182,6 @@ class AvitoFilterPage(BasePage):
             realtylinks = self.driver.find_elements(*Locators.APPARTMENT_A)
             self.daily_hrefs = list(map(lambda x: x.get_attribute('href'), realtylinks))
         else:
-            logging.info("Unable to load daily output.")
+            logging.info("Filter page: Unable to load daily output.")
             raise ValueError
 

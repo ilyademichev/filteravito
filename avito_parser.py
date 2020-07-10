@@ -27,7 +27,7 @@ class AvitoParser:
     driver = None
     download_manager = None
 
-    def __init__(self, queue):
+    def __init__(self):
         self.setup_driver()
 
     # generate a random UA
@@ -72,19 +72,18 @@ class AvitoParser:
         else:
             logging.info("No links parsed")
 
-    # feed the parses with certain algoritms
+    # feed the parses with certain algorithms
     def run_parser_task(self, tasks):
-
         for keys, locs in tasks.items():
             print(keys)
             logging.info(keys)
             print(*locs)
             for l in locs:
                 try:
-                    d = self.setup_driver()
                     print(l)
                     logging.info(l)
-                    self.parse_location(d, l)
+                    self.setup_driver()
+                    self.parse_location(l)
                 except ValueError:
                     logging.error("Avito wrapper object is broken.", exc_info=True)
                 except WebDriverException:
@@ -93,9 +92,10 @@ class AvitoParser:
                     logging.error("Parser crashed.", exc_info=True)
                 finally:
                     # gracefully waiting for picture download  to complete
-                    self.download_manager.endup_downloads()
+                    if not self.download_manager is None:
+                        self.download_manager.endup_downloads()
                     # gracefully closing the driver
                     logging.info("Closing all active windows. Disposing the driver")
-                    d.close()
-                    d.quit()
+                    self.driver.close()
+                    self.driver.quit()
                     logging.info("Parsing completed")
