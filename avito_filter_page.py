@@ -99,7 +99,11 @@ class AvitoFilterPage(BasePage):
             if not self.scroll_down():
                 return False
             self.wait_for_js_and_jquery_to_load()
-            load_more_button_present = super().is_enabled(Locators.LOAD_MORE_SPAN)
+            el =  self.driver.find_elements(*Locators.LOAD_MORE_SPAN)
+            if len(el)>0 :
+                load_more_button_present = True
+            else:
+                load_more_button_present = False
             # we feed in the cycle with the timestamps that have been already loaded
             # cycle flags
             allday = False
@@ -120,6 +124,7 @@ class AvitoFilterPage(BasePage):
                     # for example (...,ADV_SOME_DATE_TAG,YESTERDAY_TAG,YESTERDAY_TAG)  means that we skipped ads and reached yesterday
                     # we don't have today tags any more only in ads
                     # i.e. we crawled the whole day period or we get some more (due to paginated avito output)
+                    # SCROLL STOP CRITERIA
                     if self.days[-1] != CrawlerData.TODAY_TAG and self.days[-2] != CrawlerData.TODAY_TAG and  self.days[-3] !=  CrawlerData.TODAY_TAG:
                         allday = True
                         scrolldown = False

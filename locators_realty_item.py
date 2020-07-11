@@ -2,8 +2,10 @@ from selenium.webdriver.common.by import By
 
 
 class Locators:
+    # image filename regexp in the page
+    IMAGE_REGEXP = "\d{10}.jpg"
     # image link list
-    IMAGE_LINK = (By.XPATH, "//*div[@class='gallery-list-item-link']//child::img")
+    IMAGE_LINK_DIV = (By.XPATH, "//div[@class='gallery-list-item-link']//child::img")
     # mark of excessive load by the server
     AVITO_OUTPUT_EXCEEDED_DIV = (By.XPATH, "//div[contains(text(),'Не удалось загрузить объявления.')]")
     # buy appartment button
