@@ -1,7 +1,7 @@
 import random
 import datetime
 import re
-
+import selenium
 from selenium.common.exceptions import WebDriverException
 import userAgenetRotator
 from avito_filter_page import AvitoFilterPage
@@ -36,7 +36,8 @@ class AvitoParser:
         logging.info(useragent)
         # proxy set manually by firefox in a profile folders
         # load the profile with a set proxy
-        profile = webdriver.FirefoxProfile("/home/ilya/.mozilla/firefox/vfwzppqq.avitoproxy")
+        profile = webdriver.FirefoxProfile("C:\\Users\\Admin\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\aujqfub4"
+                                           ".avitoproxy")
         # no images
         profile.set_preference('permissions.default.image', 2)
         profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
@@ -82,7 +83,7 @@ class AvitoParser:
                 try:
                     print(l)
                     logging.info(l)
-                    self.setup_driver()
+                    #self.setup_driver()
                     self.parse_location(l)
                 except ValueError:
                     logging.error("Avito wrapper object is broken.", exc_info=True)

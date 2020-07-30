@@ -9,7 +9,6 @@ import argparse
 import binascii
 import urllib.request
 import requests
-import simplejson as json
 from crawler_data import CrawlerData
 
 #queue item is a tuple

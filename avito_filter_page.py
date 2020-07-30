@@ -12,7 +12,8 @@ class AvitoFilterPage(BasePage):
     days = None
     uniquedays = None
     daily_hrefs = None
-    avito_output_exceeded = False
+    avito_output_exceeded = None
+    allday = None
 
     # loads the filter page through driver
     # by given location
@@ -44,7 +45,7 @@ class AvitoFilterPage(BasePage):
         # set proper constants in CrawlerData class to adjust the behaviour
         #    IMPLICIT_TIMEOUT_INT_SECONDS - timeout of the driver
         #    ATTEMPTS_INT - num of tries
-        #press button show for sale only
+        # press button show for sale only
         if super().is_enabled(Locators.APPARTMENT_SPAN):
             super().click(Locators.APPARTMENT_SPAN)
             if super().wait_for_js_and_jquery_to_load():
@@ -52,21 +53,28 @@ class AvitoFilterPage(BasePage):
             else:
                 self.page_loaded = False
                 raise ValueError
-        #no button present - page not fully loaded
-        #constructor failed
+        # no button present - page not fully loaded
+        # constructor failed
         else:
             raise ValueError
-
-
 
     # scroll down the page till the yesterdays' mark is not present
     # to discover daily listing of ads
 
+    @property
     def scroll_down(self):
         # Get scroll height
         self.avito_output_exceeded = False
         last_height = self.driver.execute_script("return document.body.scrollHeight")
         while True:
+            #check for output
+            self.parse_timestamps()
+            if CrawlerData.YESTERDAY_TAG in self.uniquedays:
+                if self.days[-1] != CrawlerData.TODAY_TAG and self.days[-2] != CrawlerData.TODAY_TAG \
+                        and self.days[-3] != CrawlerData.TODAY_TAG:
+                    self.allday = True
+                    break
+
             # Scroll down to bottom
             logging.info("Filter page: scrolling down  ")
             self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -94,30 +102,33 @@ class AvitoFilterPage(BasePage):
         else:
             return True
 
+    def parse_timestamps(self):
+        timestamp = self.driver.find_elements(*Locators.TIMESTAMP_FILTER_DIV)
+        logging.info("Filter page: Timestamps found: {num_timestamps}".format(num_timestamps=len(timestamp)))
+        ls = list(map(lambda x: x.text, timestamp))
+        t = self.split_timestamps(ls)
+        # get day tags and make up a set
+        self.days = [*map(lambda x: x[0], t)]
+        self.uniquedays = set(self.days)
+
     def scroll_day(self):
         try:
-            if not self.scroll_down():
+            if not self.scroll_down:
                 return False
             self.wait_for_js_and_jquery_to_load()
-            el =  self.driver.find_elements(*Locators.LOAD_MORE_SPAN)
-            if len(el)>0 :
+            el = self.driver.find_elements(*Locators.LOAD_MORE_SPAN)
+            if len(el) > 0:
                 load_more_button_present = True
             else:
                 load_more_button_present = False
             # we feed in the cycle with the timestamps that have been already loaded
             # cycle flags
-            allday = False
+            #self.allday = False
             scrolldown = True
             self.avito_output_exceeded = False
-            while not allday and load_more_button_present:
+            while not self.allday and load_more_button_present:
                 # ls list is filled with timestamps after complete scroll down
-                timestamp = self.driver.find_elements(*Locators.TIMESTAMP_FILTER_DIV)
-                logging.info("Filter page: Timestamps found: {num_timestamps}".format(num_timestamps=len(timestamp)))
-                ls = list(map(lambda x: x.text, timestamp))
-                t = self.split_timestamps(ls)
-                # get day tags and make up a set
-                self.days = [*map(lambda x: x[0], t)]
-                self.uniquedays = set(self.days)
+                self.parse_timestamps()
                 if CrawlerData.YESTERDAY_TAG in self.uniquedays:
                     # eliminate the ads
                     # check the tail of the days list , check three tail days
@@ -125,8 +136,9 @@ class AvitoFilterPage(BasePage):
                     # we don't have today tags any more only in ads
                     # i.e. we crawled the whole day period or we get some more (due to paginated avito output)
                     # SCROLL STOP CRITERIA
-                    if self.days[-1] != CrawlerData.TODAY_TAG and self.days[-2] != CrawlerData.TODAY_TAG and  self.days[-3] !=  CrawlerData.TODAY_TAG:
-                        allday = True
+                    if self.days[-1] != CrawlerData.TODAY_TAG and self.days[-2] != CrawlerData.TODAY_TAG and self.days[
+                        -3] != CrawlerData.TODAY_TAG:
+                        self.allday = True
                         scrolldown = False
                 if scrolldown:
                     # click a button to expand the list
@@ -139,8 +151,8 @@ class AvitoFilterPage(BasePage):
                             if super().is_enabled(Locators.LOAD_MORE_SPAN):
                                 load_more_button_present = True
                                 super().click(Locators.LOAD_MORE_SPAN)
-                                #emulate user scroll
-                                if not self.scroll_down():
+                                # emulate user scroll
+                                if not self.scroll_down:
                                     return False
                                 # Check for message from avito no more ads can be displayed
                                 els = self.driver.find_elements(*Locators.AVITO_OUTPUT_EXCEEDED_DIV)
@@ -151,7 +163,8 @@ class AvitoFilterPage(BasePage):
                                         return False
                                 self.page_loaded = super().wait_for_js_and_jquery_to_load()
                             else:
-                                logging.info("Filter page: No click more button appeared after ", self.attempts, " tries.", )
+                                logging.info("Filter page: No click more button appeared after ", self.attempts,
+                                             " tries.", )
                                 logging.info("Filter page: Output of the avito filter page exceeded.")
                                 # failed to wait for the page to load and the button to appear
                                 # go on processing timetamps
@@ -159,21 +172,22 @@ class AvitoFilterPage(BasePage):
                         except Exception as e:
                             self.bad_proxy_connection(e)
 
-            if allday:
+            if self.allday:
                 return True
 
         except Exception as e:
             self.bad_proxy_connection(e)
             return False
+
     # splits the string list of timestamps into tuple list ( day ,time )
     # timestamps_list : list of timestamps in string format
     @staticmethod
     def split_timestamps(timestamps_list):
         tp = list()
         for ts in timestamps_list:
-            #regexp samples
-            #Вчера, 15:19 day=Вчера timestamp= 15:19
-            #Сегодня, 8:43 day=Сегодня timestamp= 8:43
+            # regexp samples
+            # Вчера, 15:19 day=Вчера timestamp= 15:19
+            # Сегодня, 8:43 day=Сегодня timestamp= 8:43
             m = re.match(r'(?P<day>^.*), (?P<timestamp>\d{1,2}:\d{2})', ts)
             if m:
                 t = (m.group('day'), m.group('timestamp'))
@@ -183,10 +197,10 @@ class AvitoFilterPage(BasePage):
 
     #
     def parse_filter_page(self):
+        self.allday = False
         if self.scroll_day():
             realtylinks = self.driver.find_elements(*Locators.APPARTMENT_A)
             self.daily_hrefs = list(map(lambda x: x.get_attribute('href'), realtylinks))
         else:
             logging.info("Filter page: Unable to load daily output.")
             raise ValueError
-

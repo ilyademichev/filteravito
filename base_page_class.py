@@ -39,6 +39,7 @@ class BasePage:
         logging.error("Connection problem", exc_info=True)
         self.timeout_int += CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
         self.driver.set_page_load_timeout(self.timeout_int)
+        self.driver.delete_all_cookies()
         self.attempts = self.attempts + 1
         logging.info("Tried: {num_attempts} out of: {all_attempts}".format(num_attempts=self.attempts,all_attempts=CrawlerData.ATTEMPTS_INT))
         logging.info("Timeout: {timeout} s".format(timeout=self.timeout_int))
@@ -48,6 +49,7 @@ class BasePage:
     def __init__(self, driver, timeout=10):
         self.timeout_int = timeout
         self.driver = driver
+        self.driver.set_page_load_timeout(self.timeout_int)
 
     # the wait object for js and jquery
     def wait_for_js_and_jquery_to_load(self):

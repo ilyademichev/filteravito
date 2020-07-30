@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import pprint
 import re
 from crawler_data import CrawlerData
@@ -113,7 +114,7 @@ class RealtyApartmentPage(BasePage):
             self.rooms = self.get_text_if_exist(Locators.NUMOF_ROOMS_SPAN)
             self.timestamp = self.get_text_if_exist(Locators.TIMESTAMP_ITEM_DIV)
             self.phone = self.parse_phone()
-            self.parse_realty_images_links()
+            #self.parse_realty_images_links()
             # list out all parsed fields
             logging.info(pprint.pformat(vars(self)))
         except Exception as e:
@@ -122,7 +123,7 @@ class RealtyApartmentPage(BasePage):
             raise ValueError
 
     def parse_realty_images_links(self):
-        imgs = self.driver.find_elements(*Locators.IMAGE_LINK)
+        imgs = self.driver.find_elements(*Locators.IMAGE_LINK_DIV)
         self.realty_images = [img.get_attribute("src") for img in imgs]
         #
         #images are stored on cdn-servers
