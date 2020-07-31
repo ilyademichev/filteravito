@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 
 
 class Locators:
+    #avito captcha input box
+    CAPTCHA_INPUT_ID = (By.ID, "captcha-field")
     # image filename regexp in the page
     IMAGE_REGEXP = "\d{10}.jpg"
     # image link list

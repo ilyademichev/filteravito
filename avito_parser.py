@@ -68,8 +68,8 @@ class AvitoParser:
                 # Объявление: №507307470, Сегодня, 14:04
                 # make up a tuple of (507307470, {links})
                 # queue it up in the image downloader
-                adv = (re.search('\d{9}', realty_page.timestamp), realty_page.realty_images)
-                self.download_manager.queue_image_links(adv)
+                #adv = (re.search('\d{9}', realty_page.timestamp), realty_page.realty_images)
+                #self.download_manager.queue_image_links(adv)
         else:
             logging.info("No links parsed")
 

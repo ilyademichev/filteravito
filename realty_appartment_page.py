@@ -1,4 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 import pprint
 import re
 from crawler_data import CrawlerData
@@ -18,9 +20,10 @@ class RealtyApartmentPage(BasePage):
         self.timeout_int = CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
         self.page_loaded = False
         self.attempts = 0
-        # set geolocation
+        # get realty item page
         while self.attempts < CrawlerData.ATTEMPTS_INT and not self.page_loaded:
             try:
+                logging.info("Requesting realty item page {0} :", realty_hyperlink)
                 driver.get(realty_hyperlink)
             # possible slow proxy response
             # double the implicit timeout
@@ -34,6 +37,13 @@ class RealtyApartmentPage(BasePage):
         # set proper constants in CrawlerData class to adjust the behaviour
         #    IMPLICIT_TIMEOUT_INT_SECONDS
         #    ATTEMPTS_INT
+            if self.check_for_captcha():
+                logging.warning("On requesting realty item page Captcha is displayed")
+                super().save_scrshot_to_temp()
+                self.crunch_captcha()
+                self.timeout_int += CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
+                self.attempts += 1
+
         if not self.page_loaded:
             super().save_scrshot_to_temp()
             raise ValueError
@@ -136,6 +146,17 @@ class RealtyApartmentPage(BasePage):
         #
         self.realty_images = [re.sub(r"\/\/","",w) for w in self.realty_images]
         self.realty_images = [re.sub(r"\.st\/.*\/",".st/640x480/",w) for w in self.realty_images]
+
+    def check_for_captcha(self):
+        els = self.driver.find_elements(Locators.CAPTCHA_INPUT_ID)
+        if len(els) > 0:
+            return True
+        else:
+            return False
+
+    def crunch_captcha(self):
+        logging.warning("Crunching captcha: pass")
+        pass
 
 
 
