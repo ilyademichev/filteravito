@@ -147,16 +147,7 @@ class RealtyApartmentPage(BasePage):
         self.realty_images = [re.sub(r"\/\/","",w) for w in self.realty_images]
         self.realty_images = [re.sub(r"\.st\/.*\/",".st/640x480/",w) for w in self.realty_images]
 
-    def check_for_captcha(self):
-        els = self.driver.find_elements(Locators.CAPTCHA_INPUT_ID)
-        if len(els) > 0:
-            return True
-        else:
-            return False
 
-    def crunch_captcha(self):
-        logging.warning("Crunching captcha: pass")
-        pass
 
 
 

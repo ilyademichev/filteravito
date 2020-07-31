@@ -67,7 +67,7 @@ class AvitoFilterPage(BasePage):
         self.avito_output_exceeded = False
         last_height = self.driver.execute_script("return document.body.scrollHeight")
         while True:
-            #check for output
+            # check for output
             self.parse_timestamps()
             if CrawlerData.YESTERDAY_TAG in self.uniquedays:
                 if self.days[-1] != CrawlerData.TODAY_TAG and self.days[-2] != CrawlerData.TODAY_TAG \
@@ -123,19 +123,17 @@ class AvitoFilterPage(BasePage):
                 load_more_button_present = False
             # we feed in the cycle with the timestamps that have been already loaded
             # cycle flags
-            #self.allday = False
+            # self.allday = False
             scrolldown = True
             self.avito_output_exceeded = False
             while not self.allday and load_more_button_present:
                 # ls list is filled with timestamps after complete scroll down
                 self.parse_timestamps()
                 if CrawlerData.YESTERDAY_TAG in self.uniquedays:
-                    # eliminate the ads
-                    # check the tail of the days list , check three tail days
-                    # for example (...,ADV_SOME_DATE_TAG,YESTERDAY_TAG,YESTERDAY_TAG)  means that we skipped ads and reached yesterday
-                    # we don't have today tags any more only in ads
-                    # i.e. we crawled the whole day period or we get some more (due to paginated avito output)
-                    # SCROLL STOP CRITERIA
+                    # eliminate the ads check the tail of the days list , check three tail days for example (...,
+                    # ADV_SOME_DATE_TAG,YESTERDAY_TAG,YESTERDAY_TAG)  means that we skipped ads and reached yesterday
+                    # we don't have today tags any more only in ads i.e. we crawled the whole day period or we get
+                    # some more (due to paginated avito output) SCROLL STOP CRITERIA
                     if self.days[-1] != CrawlerData.TODAY_TAG and self.days[-2] != CrawlerData.TODAY_TAG and self.days[
                         -3] != CrawlerData.TODAY_TAG:
                         self.allday = True

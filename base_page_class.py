@@ -7,6 +7,9 @@ from crawler_data import CrawlerData
 import logging
 import time
 
+from locators_realty_item import Locators
+
+
 class BasePage:
     """This class is the parent class for all the pages in our application."""
     """It contains all common elements and functionalities available to all pages."""
@@ -39,7 +42,8 @@ class BasePage:
         logging.error("Connection problem", exc_info=True)
         self.timeout_int += CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
         self.driver.set_page_load_timeout(self.timeout_int)
-        self.driver.delete_all_cookies()
+# cache clearing
+#        self.driver.delete_all_cookies()
         self.attempts = self.attempts + 1
         logging.info("Tried: {num_attempts} out of: {all_attempts}".format(num_attempts=self.attempts,all_attempts=CrawlerData.ATTEMPTS_INT))
         logging.info("Timeout: {timeout} s".format(timeout=self.timeout_int))
@@ -100,4 +104,15 @@ class BasePage:
         tmp = CrawlerData.SCR_SHOT_PATH + tempfile.NamedTemporaryFile().name + ".png"
         logging.info(tmp)
         self.driver.get_screenshot_as_file(tmp)
+    #check for captcha page
+    def check_for_captcha(self):
+        els = self.driver.find_elements(Locators.CAPTCHA_INPUT_ID)
+        if len(els) > 0:
+            return True
+        else:
+            return False
+    #decodes captcha
+    def crunch_captcha(self):
+        logging.warning("Crunching captcha: pass")
+        pass
 
