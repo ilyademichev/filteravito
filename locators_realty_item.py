@@ -1,12 +1,16 @@
 from selenium.webdriver.common.by import By
 
-
 class Locators:
+    #avito captcha button
+    CAPTCHA_BUTTON = (By.XPATH, "//button[contains(@class,'button-origin']")
+    #avito captcha image
+    CAPTCHA_IMG_CLASS = (By.XPATH, "//img[contains(@class,'form-captcha-image')]")
     #avito captcha input box
     CAPTCHA_INPUT_ID = (By.ID, "captcha-field")
-    # image filename regexp in the page
+    #images container
+    IMAGES_CONTAINER_DIV_ID = (By.ID, "modalPage")
     IMAGE_REGEXP = "\d{10}.jpg"
-    # image link list
+    # image link in full page version not mobile
     IMAGE_LINK_DIV = (By.XPATH, "//div[@class='gallery-list-item-link']//child::img")
     # mark of excessive load by the server
     AVITO_OUTPUT_EXCEEDED_DIV = (By.XPATH, "//div[contains(text(),'Не удалось загрузить объявления.')]")

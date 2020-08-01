@@ -40,6 +40,16 @@ class AvitoFilterPage(BasePage):
             # check for fully loaded  page
             if super().wait_for_js_and_jquery_to_load():
                 self.page_loaded = True
+#evaluating capcha if needed
+
+            if self.check_for_captcha():
+                logging.warning("On requesting avito filter page Captcha is displayed")
+                super().save_scrshot_to_temp()
+                self.resolve_captcha()
+
+
+
+
         # constructor failed:
         # bad driver with too slow proxy or proxy has gone down.
         # set proper constants in CrawlerData class to adjust the behaviour

@@ -1,12 +1,18 @@
 import tempfile
 
+from captcha_solver import CaptchaSolver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+
+from captcha_decoder import decoder
 from crawler_data import CrawlerData
 import logging
 import time
-
+#captcha-solver 0.1.5
+#from captcha_solver import  CaptchaSolver
+#Pillow lib for image handling
+from PIL import Image
 from locators_realty_item import Locators
 
 
@@ -106,13 +112,47 @@ class BasePage:
         self.driver.get_screenshot_as_file(tmp)
     #check for captcha page
     def check_for_captcha(self):
-        els = self.driver.find_elements(Locators.CAPTCHA_INPUT_ID)
+        els = self.driver.find_elements(*Locators.CAPTCHA_INPUT_ID)
         if len(els) > 0:
             return True
         else:
             return False
     #decodes captcha
     def crunch_captcha(self):
-        logging.warning("Crunching captcha: pass")
-        pass
-
+        logging.warning("Crunching captcha.")
+        solver = CaptchaSolver('rucaptcha', api_key='e3b85f77282f434d6fc90c642be8cce7')
+        #get image
+        els = self.driver.find_elements(*Locators.CAPTCHA_IMG_CLASS)
+        cap_img = els[0]
+        # getting element's location
+        loc1 = cap_img.location
+        # getting element's size
+        size1 = cap_img.size
+        # save page's screenshot
+        self.driver.save_screenshot('capcha_page_scrsht.png')
+        # open the image using Pillow
+        image2 = Image.open('capcha_page_scrsht.png')
+        # setting the crop attributes using image's location and size.
+        left = loc1['x']
+        top = loc1['y']
+        right = loc1['x'] + size1['width']
+        bottom1 = loc1['y'] + size1['height']
+        # crop the image using the attributes defined
+        image2 = image2.crop((left, top, right, bottom1))
+        # use the attribute to save image
+        captcha_fname = 'captcha.png'
+        image2.save(captcha_fname)
+        raw_data = open(captcha_fname, 'rb').read()
+        sol = solver.solve_captcha(raw_data)
+        #sol = decoder(captcha_fname,)
+        logging.info("CAPTCHA Solved:".format(sol))
+        return sol
+    #
+    def resolve_captcha(self):
+        el = self.driver.find_element(*Locators.CAPTCHA_INPUT_ID)
+        s = self.crunch_captcha()
+        el.sendKeys(s)
+        self.driver.find_element(*Locators.CAPTCHA_BUTTON).click()
+        self.timeout_int += CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
+        self.attempts += 1
+        self.page_loaded = False

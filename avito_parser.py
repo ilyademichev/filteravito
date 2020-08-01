@@ -1,6 +1,8 @@
 import random
 import datetime
 import re
+import time
+
 import selenium
 from selenium.common.exceptions import WebDriverException
 import userAgenetRotator
@@ -10,7 +12,7 @@ from geolocation_data import geolocation_map
 from image_download_manager import DownloadManager
 from realty_appartment_page import RealtyApartmentPage
 from selenium import webdriver
-from selenium.webdriver import Firefox
+from selenium.webdriver import Firefox, DesiredCapabilities
 from selenium.webdriver.firefox.options import Options
 import logging
 
@@ -34,18 +36,25 @@ class AvitoParser:
     def setup_driver(self):
         useragent = random.choice(userAgenetRotator.USER_AGENTS_LIST)
         logging.info(useragent)
+        #avoid loading side resources
+        caps = DesiredCapabilities().FIREFOX
+        caps["pageLoadStrategy"] = "normal"  # complete
+        #caps["pageLoadStrategy"] = "eager"  #  interactive
+        #caps["pageLoadStrategy"] = "none"
+
         # proxy set manually by firefox in a profile folders
         # load the profile with a set proxy
         profile = webdriver.FirefoxProfile("C:\\Users\\Admin\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\aujqfub4"
                                            ".avitoproxy")
-        # no images
-        profile.set_preference('permissions.default.image', 2)
+        #no images
+        #profile.set_preference('permissions.default.image', 2)
+        #no flash
         profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
         # set fake UA
         profile.set_preference("general.useragent.override", useragent)
         options = Options()
         options.headless = False
-        driver = Firefox(options=options, firefox_profile=profile)
+        driver = Firefox(options=options, firefox_profile=profile, desired_capabilities=caps)
         driver.set_page_load_timeout(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
         self.driver = driver
 
@@ -97,6 +106,8 @@ class AvitoParser:
                         self.download_manager.endup_downloads()
                     # gracefully closing the driver
                     logging.info("Closing all active windows. Disposing the driver")
-                    self.driver.close()
+                    #self.driver.close()
                     self.driver.quit()
+                    #introduce some delay between parser reruns to free up the resources
+                    time.sleep(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
                     logging.info("Parsing completed")

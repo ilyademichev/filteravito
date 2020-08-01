@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import pprint
 import re
 from crawler_data import CrawlerData
 from locators_realty_item import Locators
@@ -23,7 +22,7 @@ class RealtyApartmentPage(BasePage):
         # get realty item page
         while self.attempts < CrawlerData.ATTEMPTS_INT and not self.page_loaded:
             try:
-                logging.info("Requesting realty item page {0} :", realty_hyperlink)
+                logging.info("Requesting realty item page {0} :".format(realty_hyperlink))
                 driver.get(realty_hyperlink)
             # possible slow proxy response
             # double the implicit timeout
@@ -40,9 +39,7 @@ class RealtyApartmentPage(BasePage):
             if self.check_for_captcha():
                 logging.warning("On requesting realty item page Captcha is displayed")
                 super().save_scrshot_to_temp()
-                self.crunch_captcha()
-                self.timeout_int += CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
-                self.attempts += 1
+                self.resolve_captcha()
 
         if not self.page_loaded:
             super().save_scrshot_to_temp()
@@ -124,17 +121,20 @@ class RealtyApartmentPage(BasePage):
             self.rooms = self.get_text_if_exist(Locators.NUMOF_ROOMS_SPAN)
             self.timestamp = self.get_text_if_exist(Locators.TIMESTAMP_ITEM_DIV)
             self.phone = self.parse_phone()
-            #self.parse_realty_images_links()
+            self.parse_realty_images_links()
             # list out all parsed fields
-            logging.info(pprint.pformat(vars(self)))
+            #logging.info(', '.join("%s: %s" % item for item in vars(self).items()))
         except Exception as e:
             self.bad_proxy_connection(e)
             logging.error("Unable to parse data fields", exc_info=True)
             raise ValueError
 
     def parse_realty_images_links(self):
-        imgs = self.driver.find_elements(*Locators.IMAGE_LINK_DIV)
-        self.realty_images = [img.get_attribute("src") for img in imgs]
+        pat = re.compile(r"\d{2}\.img\.avito\.st\%2F\d{2,3}x\d{2,3}\%2F\d{10}.jpg")
+        images_div = self.driver.find_elements(*Locators.IMAGES_CONTAINER_DIV_ID)
+        res = pat.findall(images_div.get_attribute('innerHTML'))
+        res = [re.sub(r"\%2F","/",w) for w in res]
+
         #
         #images are stored on cdn-servers
         #resolution is set directly in the link
@@ -144,8 +144,8 @@ class RealtyApartmentPage(BasePage):
         #the resultant link is
         # 60.img.avito.st/640x480/6279872266.jpg
         #
-        self.realty_images = [re.sub(r"\/\/","",w) for w in self.realty_images]
-        self.realty_images = [re.sub(r"\.st\/.*\/",".st/640x480/",w) for w in self.realty_images]
+        #self.realty_images = [re.sub(r"\/\/","",w) for w in self.realty_images]
+        #self.realty_images = [re.sub(r"\.st\/.*\/",".st/640x480/",w) for w in self.realty_images]
 
 
 
