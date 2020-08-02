@@ -123,9 +123,13 @@ class AvitoFilterPage(BasePage):
 
     def scroll_day(self):
         try:
+            #scroll without show more button
             if not self.scroll_down:
                 return False
-            self.wait_for_js_and_jquery_to_load()
+            #if daily output reached
+            if self.allday:
+                return True
+            #otherwise scroll pressing show more button
             el = self.driver.find_elements(*Locators.LOAD_MORE_SPAN)
             if len(el) > 0:
                 load_more_button_present = True

@@ -8,7 +8,7 @@ class Locators:
     #avito captcha input box
     CAPTCHA_INPUT_ID = (By.ID, "captcha-field")
     #images container
-    IMAGES_CONTAINER_DIV_ID = (By.ID, "modalPage")
+    IMAGES_CONTAINER_SCRIPT = (By.XPATH, "(//body")
     IMAGE_REGEXP = "\d{10}.jpg"
     # image link in full page version not mobile
     IMAGE_LINK_DIV = (By.XPATH, "//div[@class='gallery-list-item-link']//child::img")
