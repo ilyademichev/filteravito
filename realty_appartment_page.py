@@ -131,9 +131,11 @@ class RealtyApartmentPage(BasePage):
 
     def parse_realty_images_links(self):
         pat = re.compile(r"\d{2}\.img\.avito\.st\%2F\d{2,3}x\d{2,3}\%2F\d{10}.jpg")
-        images_div = self.driver.find_elements(*Locators.IMAGES_CONTAINER_SCRIPT)
-        res = pat.findall(images_div[0].get_attribute('innerHTML'))
+        #images_div = self.driver.find_elements(*Locators.IMAGES_CONTAINER_SCRIPT)
+        #res = pat.findall(images_div[0].get_attribute('innerHTML'))
+        res = self.driver.page_source
         res = [re.sub(r"\%2F","/",w) for w in res]
+        print(res)
         #
         #images are stored on cdn-servers
         #resolution is set directly in the link

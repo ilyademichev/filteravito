@@ -9,6 +9,6 @@ class CrawlerData:
     IMPLICIT_TIMEOUT_INT_SECONDS = 120
     SCR_SHOT_PATH = '/home/ilya/scrshotavito'
     ATTEMPTS_INT = 5
-    SCROLL_PAUSE_TIME = 1.5
+    SCROLL_PAUSE_TIME = 15
 
 

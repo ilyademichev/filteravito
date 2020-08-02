@@ -46,15 +46,19 @@ class AvitoParser:
         # load the profile with a set proxy
         profile = webdriver.FirefoxProfile("C:\\Users\\Admin\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\aujqfub4"
                                            ".avitoproxy")
+        #no proxy
+        #profile = webdriver.FirefoxProfile()
         #no images
-        #profile.set_preference('permissions.default.image', 2)
+        profile.set_preference('permissions.default.image', 2)
         #no flash
         profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
         # set fake UA
         profile.set_preference("general.useragent.override", useragent)
         options = Options()
         options.headless = False
+
         driver = Firefox(options=options, firefox_profile=profile, desired_capabilities=caps)
+
         driver.set_page_load_timeout(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
         self.driver = driver
 
