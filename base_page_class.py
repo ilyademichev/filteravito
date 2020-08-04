@@ -110,7 +110,8 @@ class BasePage:
     def save_scrshot_to_temp(self):
         tmp = CrawlerData.SCR_SHOT_PATH + str(uuid.uuid4()) + ".png"
         logging.info(tmp)
-        self.driver.get_screenshot_as_file(tmp)
+        el = self.driver.find_element_by_tag_name('body')
+        el.screenshot(tmp)
     #check for captcha page
     def check_for_captcha(self):
         els = self.driver.find_elements(*Locators.CAPTCHA_INPUT_ID)

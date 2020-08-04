@@ -129,9 +129,11 @@ class RealtyApartmentPage(BasePage):
             self.price = self.get_text_if_exist(Locators.PRICE_SPAN)
             self.rooms = self.get_text_if_exist(Locators.NUMOF_ROOMS_SPAN)
             self.timestamp = self.get_text_if_exist(Locators.TIMESTAMP_ITEM_DIV)
-            self.realty_adv_avito_number = re.search('\d{10}', self.timestamp)[0]
+            # 9 or more digits for advertisment number
+            self.realty_adv_avito_number = re.search('\d{9,}', self.timestamp)[0]
             self.parse_realty_images_links()
             # ocassionally we need to reload the page to get the number
+            # the phone button is unclickable
             # so we fetch the phone in the end
             self.phone = self.parse_phone()
 

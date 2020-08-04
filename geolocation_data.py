@@ -5,5 +5,5 @@ geolocation_map = {
     "Балабаново": "balabanovo",
     "Малоярославец": "maloyaroslavets",
     "Наро-Фоминск":"naro-fominsk",
-    "жуков":"zhukov"
+    "Жуков":"zhukov"
 }

@@ -55,6 +55,7 @@ class AvitoParser:
         # set fake UA
         profile.set_preference("general.useragent.override", useragent)
         options = Options()
+        #options.headless = False
         options.headless = True
 
         driver = Firefox(options=options, firefox_profile=profile, desired_capabilities=caps)
@@ -97,7 +98,7 @@ class AvitoParser:
                 try:
                     print(l)
                     logging.info(l)
-                    #self.setup_driver()
+                    self.setup_driver()
                     self.parse_location(l)
                 except ValueError:
                     logging.error("Avito wrapper object is broken.", exc_info=True)
@@ -111,8 +112,8 @@ class AvitoParser:
                         self.download_manager.endup_downloads()
                     # gracefully closing the driver
                     logging.info("Closing all active windows. Disposing the driver")
-                    #self.driver.close()
                     self.driver.quit()
-                    #introduce some delay between parser reruns to free up the resources
-                    time.sleep(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
                     logging.info("Parsing completed")
+
+    def dispose(self):
+        self.driver.quit()
