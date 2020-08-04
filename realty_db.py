@@ -21,7 +21,6 @@ connection_string = (
 class RealtyItem(Base):
     __tablename__ = Table('Запись', metadata, autoload=True)
 
-
 class Company(Base):
     __tablename__ = Table('Организации', metadata, autoload=True)
 

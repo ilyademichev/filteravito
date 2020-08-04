@@ -12,10 +12,17 @@ class RealtyApartmentPage(BasePage):
     """loads filtered realty items page sorted by date"""
     phone_popup_loaded = None
     realty_images = list()
+    realty_adv_avito_number = None
+    realty_hyperlink = None
+
     # data
     # throws WebDriverException on internal webdriver error
     def __init__(self, driver, realty_hyperlink):
         super().__init__(driver)
+        self.realty_hyperlink =realty_hyperlink
+        self.load_page()
+
+    def load_page(self):
         self.timeout_int = CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
         self.page_loaded = False
         self.attempts = 0
@@ -23,7 +30,7 @@ class RealtyApartmentPage(BasePage):
         while self.attempts < CrawlerData.ATTEMPTS_INT and not self.page_loaded:
             try:
                 logging.info("Requesting realty item page {0} :".format(realty_hyperlink))
-                driver.get(realty_hyperlink)
+                self.driver.get(self.realty_hyperlink)
             # possible slow proxy response
             # double the implicit timeout
             except Exception as e:
@@ -31,11 +38,11 @@ class RealtyApartmentPage(BasePage):
                 continue
             if super().wait_for_js_and_jquery_to_load():
                 self.page_loaded = True
-        # constructor failed:
-        # bad driver with too slow proxy or proxy has gone down.
-        # set proper constants in CrawlerData class to adjust the behaviour
-        #    IMPLICIT_TIMEOUT_INT_SECONDS
-        #    ATTEMPTS_INT
+            # constructor failed:
+            # bad driver with too slow proxy or proxy has gone down.
+            # set proper constants in CrawlerData class to adjust the behaviour
+            #    IMPLICIT_TIMEOUT_INT_SECONDS
+            #    ATTEMPTS_INT
             if self.check_for_captcha():
                 logging.warning("On requesting realty item page Captcha is displayed")
                 super().save_scrshot_to_temp()
@@ -44,6 +51,7 @@ class RealtyApartmentPage(BasePage):
         if not self.page_loaded:
             super().save_scrshot_to_temp()
             raise ValueError
+
 
     # raises WebDriverException on internal driver error
     # raises ValueError if unable to load the phone window
@@ -66,11 +74,13 @@ class RealtyApartmentPage(BasePage):
                         self.phone_popup_loaded = True
 
                 except Exception as e:
-                    self.bad_proxy_connection(e)
-                    continue
                     # possible slow proxy response
                     # double the implicit timeout
-                # wait for fully load the page
+                    # fully reload the page
+                    self.bad_proxy_connection(e)
+                    self.load_page()
+                    continue
+
 
                 # too slow proxy or proxy has gone down.
                 # set proper constants in CrawlerData to adjust the behaviour
@@ -78,6 +88,7 @@ class RealtyApartmentPage(BasePage):
                 #    ATTEMPTS_INT
         else:
             return False
+
         if not self.phone_popup_loaded:
             raise ValueError
         else:
@@ -120,36 +131,26 @@ class RealtyApartmentPage(BasePage):
             self.price = self.get_text_if_exist(Locators.PRICE_SPAN)
             self.rooms = self.get_text_if_exist(Locators.NUMOF_ROOMS_SPAN)
             self.timestamp = self.get_text_if_exist(Locators.TIMESTAMP_ITEM_DIV)
-            self.phone = self.parse_phone()
+            self.realty_adv_avito_number = re.search('\d{10}', self.timestamp)[0]
             self.parse_realty_images_links()
+            #ocassionally we need to reload the page to get the number
+            #so we fetch the phone in the end
+            self.phone = self.parse_phone()
+
             # list out all parsed fields
-            #logging.info(', '.join("%s: %s" % item for item in vars(self).items()))
+            # logging.info(', '.join("%s: %s" % item for item in vars(self).items()))
         except Exception as e:
             self.bad_proxy_connection(e)
             logging.error("Unable to parse data fields", exc_info=True)
             raise ValueError
 
+    # extracts all links to  640x480 images and makes up a proper URL links
     def parse_realty_images_links(self):
-        pat = re.compile(r"\d{2}\.img\.avito\.st\%2F\d{2,3}x\d{2,3}\%2F\d{10}.jpg")
-        #images_div = self.driver.find_elements(*Locators.IMAGES_CONTAINER_SCRIPT)
-        #res = pat.findall(images_div[0].get_attribute('innerHTML'))
-        res = self.driver.page_source
-        res = [re.sub(r"\%2F","/",w) for w in res]
-        print(res)
-        #
-        #images are stored on cdn-servers
-        #resolution is set directly in the link
-        #for example resolution 75x55 for
-        # //60.img.avito.st/75x55/6279872160.jpg
-        #we remove heading // and change resolution numbers to 640x480
-        #the resultant link is
-        # 60.img.avito.st/640x480/6279872266.jpg
-        #
-        #self.realty_images = [re.sub(r"\/\/","",w) for w in self.realty_images]
-        #self.realty_images = [re.sub(r"\.st\/.*\/",".st/640x480/",w) for w in self.realty_images]
-
-
-
-
-
-
+        # images by the size 640x480
+        pat = re.compile(r"\d{2}\.img\.avito\.st\%2F640x480\%2F\d{10}.jpg")
+        # images_div = self.driver.find_elements(*Locators.IMAGES_CONTAINER_SCRIPT)
+        # res = pat.findall(images_div[0].get_attribute('innerHTML'))
+        res = pat.findall(self.driver.page_source)
+        # making up a proper link
+        self.realty_images = [ "http://" + re.sub(r"\%2F", "/", w) for w in res]
+        logging.info("Image links 640x480:{0}".format(res))

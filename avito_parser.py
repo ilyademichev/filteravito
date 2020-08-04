@@ -44,10 +44,10 @@ class AvitoParser:
 
         # proxy set manually by firefox in a profile folders
         # load the profile with a set proxy
-        profile = webdriver.FirefoxProfile("C:\\Users\\Admin\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\aujqfub4"
-                                           ".avitoproxy")
+        #profile = webdriver.FirefoxProfile("C:\\Users\\Admin\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\aujqfub4"
+       #                                    ".avitoproxy")
         #no proxy
-        #profile = webdriver.FirefoxProfile()
+        profile = webdriver.FirefoxProfile()
         #no images
         profile.set_preference('permissions.default.image', 2)
         #no flash
@@ -81,8 +81,9 @@ class AvitoParser:
                 # Объявление: №507307470, Сегодня, 14:04
                 # make up a tuple of (507307470, {links})
                 # queue it up in the image downloader
-                #adv = (re.search('\d{9}', realty_page.timestamp), realty_page.realty_images)
-                #self.download_manager.queue_image_links(adv)
+                # 507307470 will be the folder with links
+                adv = [(realty_page.realty_adv_avito_number,imgl) for imgl in realty_page.realty_images]
+                self.download_manager.queue_image_links(adv)
         else:
             logging.info("No links parsed")
 
