@@ -45,7 +45,7 @@ class AvitoParser:
         # proxy set manually by firefox in a profile folders
         # load the profile with a set proxy
         #profile = webdriver.FirefoxProfile("C:\\Users\\Admin\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\aujqfub4"
-       #                                    ".avitoproxy")
+        #                                   ".avitoproxy")
         #no proxy
         profile = webdriver.FirefoxProfile()
         #no images
@@ -55,7 +55,7 @@ class AvitoParser:
         # set fake UA
         profile.set_preference("general.useragent.override", useragent)
         options = Options()
-        options.headless = False
+        options.headless = True
 
         driver = Firefox(options=options, firefox_profile=profile, desired_capabilities=caps)
 

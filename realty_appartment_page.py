@@ -17,9 +17,9 @@ class RealtyApartmentPage(BasePage):
 
     # data
     # throws WebDriverException on internal webdriver error
-    def __init__(self, driver, realty_hyperlink):
+    def __init__(self, driver, realty_link):
         super().__init__(driver)
-        self.realty_hyperlink =realty_hyperlink
+        self.realty_hyperlink = realty_link
         self.load_page()
 
     def load_page(self):
@@ -29,7 +29,7 @@ class RealtyApartmentPage(BasePage):
         # get realty item page
         while self.attempts < CrawlerData.ATTEMPTS_INT and not self.page_loaded:
             try:
-                logging.info("Requesting realty item page {0} :".format(realty_hyperlink))
+                logging.info("Requesting realty item page {0} :".format(self.realty_hyperlink))
                 self.driver.get(self.realty_hyperlink)
             # possible slow proxy response
             # double the implicit timeout
@@ -51,7 +51,6 @@ class RealtyApartmentPage(BasePage):
         if not self.page_loaded:
             super().save_scrshot_to_temp()
             raise ValueError
-
 
     # raises WebDriverException on internal driver error
     # raises ValueError if unable to load the phone window
@@ -80,7 +79,6 @@ class RealtyApartmentPage(BasePage):
                     self.bad_proxy_connection(e)
                     self.load_page()
                     continue
-
 
                 # too slow proxy or proxy has gone down.
                 # set proper constants in CrawlerData to adjust the behaviour
@@ -133,8 +131,8 @@ class RealtyApartmentPage(BasePage):
             self.timestamp = self.get_text_if_exist(Locators.TIMESTAMP_ITEM_DIV)
             self.realty_adv_avito_number = re.search('\d{10}', self.timestamp)[0]
             self.parse_realty_images_links()
-            #ocassionally we need to reload the page to get the number
-            #so we fetch the phone in the end
+            # ocassionally we need to reload the page to get the number
+            # so we fetch the phone in the end
             self.phone = self.parse_phone()
 
             # list out all parsed fields
@@ -152,5 +150,5 @@ class RealtyApartmentPage(BasePage):
         # res = pat.findall(images_div[0].get_attribute('innerHTML'))
         res = pat.findall(self.driver.page_source)
         # making up a proper link
-        self.realty_images = [ "http://" + re.sub(r"\%2F", "/", w) for w in res]
+        self.realty_images = ["http://" + re.sub(r"\%2F", "/", w) for w in res]
         logging.info("Image links 640x480:{0}".format(res))

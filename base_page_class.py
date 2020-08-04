@@ -1,4 +1,5 @@
 import tempfile
+import uuid
 
 from captcha_solver import CaptchaSolver
 from selenium.webdriver.support.wait import WebDriverWait
@@ -107,7 +108,7 @@ class BasePage:
         ActionChains(self.driver).move_to_element(element).perform()
     #takes the screenshot of current driver page and saves it to a random file
     def save_scrshot_to_temp(self):
-        tmp = CrawlerData.SCR_SHOT_PATH + tempfile.NamedTemporaryFile().name + ".png"
+        tmp = CrawlerData.SCR_SHOT_PATH + str(uuid.uuid4()) + ".png"
         logging.info(tmp)
         self.driver.get_screenshot_as_file(tmp)
     #check for captcha page
