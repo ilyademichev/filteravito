@@ -1,14 +1,13 @@
 import urllib
 
 import pyodbc
-from sqlalchemy import create_engine, MetaData,Table
+from sqlalchemy import create_engine, MetaData, Table, Column, String, ForeignKey
 #Create and engine and get the metadata
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import create_session
+from sqlalchemy.orm import create_session, relationship
+from sqlalchemy_access import Integer
 
 Base = declarative_base()
-engine = create_engine("access+pyodbc://@your_dsn")
-metadata = MetaData(bind=engine)
 
 connection_string = (
     r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'
@@ -18,25 +17,58 @@ connection_string = (
     r'DBQ=C:\REALTYDB\realty.accdb;'
     r'ExtendedAnsiSQL=1;')
 # engine = create_engine(connection_string)
+connection_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(connection_string)}"
+
+
+
+# engine = create_engine(connection_string)
+class Person(Base):
+    __tablename__ = 'person'
+    # Here we define columns for the table person
+    # Notice that each column is also a normal Python instance attribute.
+    id = Column(Integer, primary_key=True)
+    name = Column(String(250), nullable=False)
+
 class RealtyItem(Base):
-    __tablename__ = Table('Запись', metadata, autoload=True)
+    __tablename__ = 'Запись'
+    # __table__ = Table(__tablename__, metadata, autoload=True,autoload_with=engine)
+    #__table__ = init_table('Запись')
+    # __mapper_args__ = {
+    #     'primary_key': ['Объект*']
+    # }
+    rooms=Column('Объект*', Integer, primary_key=True)
+    floor=Column('Этаж*', String(255), primary_key=True)
+    phone=Column('Телефон 1*', String(255), primary_key=True)
+    agent_name=Column('Организация*', Integer, primary_key=True)
+    forsale_forrent=Column('Актуальность*', Integer, primary_key=True)
+    s_property=Column('S общ*/объекта', String(255), primary_key=True)
+    s_land=Column('S уч, сот', String(255), primary_key=True)
+    address=Column('Адрес', String(255), primary_key=True)
+    company_id = Column(Integer, ForeignKey('Организации.Код'))
+
 
 class Company(Base):
-    __tablename__ = Table('Организации', metadata, autoload=True)
+     __tablename__ = 'Организации'
+     id = Column('Код', Integer, primary_key=True)
+     properties = relationship("RealtyItem", backref="parent")
+#
+# class Rooms(Base):
+#     __tablename__ = Table('Число комнат', metadata, autoload=True)
 
-class Rooms(Base):
-    __tablename__ = Table('Число комнат', metadata, autoload=True)
-
-class AdvertismentSource(Base):
-    __tablename__ = Table('Источники', metadata, autoload=True)
+# class AdvertismentSource(Base):
+#     __tablename__ = Table('Источники', metadata, autoload=True)
 
 
+# user_table = Table('Запись', metadata,
+#             Column('id', Integer, primary_key=True),
+#             Column('name', String),
+#         )
 
-connection_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(connection_string)}"
 engine = create_engine(connection_url)
 session = create_session(bind=engine)
-q = session.query(RealtyItem)
-res = q.all()
+metadata = MetaData(bind=engine)
+q = session.query(RealtyItem).filter_by(floor='1').all()
+print([i.st for i in q])
 session.close()
 engine.dispose()
 

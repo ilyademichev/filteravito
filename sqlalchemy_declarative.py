@@ -114,10 +114,12 @@ ABase.prepare(classname_for_table=camelize_classname,
 # # reflect db schema to MetaData
 metadata.reflect(bind=engine)
 ex_table = metadata.tables['Запись']
-col_num = 1
-columns = [(m.key, m.type) for m in ex_table.columns]
-# types = [col.type for col in ex_table.columns]
-print(*columns, sep='\n')
+cl = ABase.classes.items()
+print(cl)
+# col_num = 1
+# columns = [(m.key, m.type) for m in ex_table.columns]
+# # types = [col.type for col in ex_table.columns]
+# print(*columns, sep='\n')
 # while col_num < len(types):
 #     try:
 #         c = columns[col_num]
