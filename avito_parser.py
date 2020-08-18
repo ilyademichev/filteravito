@@ -44,8 +44,7 @@ class AvitoParser:
 
         # proxy set manually by firefox in a profile folders
         # load the profile with a set proxy
-        #profile = webdriver.FirefoxProfile("C:\\Users\\Admin\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\aujqfub4"
-        #                                   ".avitoproxy")
+        profile = webdriver.FirefoxProfile(CrawlerData.FF_PROFILE_PATH)
         #no proxy
         profile = webdriver.FirefoxProfile()
         #no images

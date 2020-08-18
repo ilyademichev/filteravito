@@ -1,7 +1,7 @@
 class CrawlerData:
     FF_EXECUTABLE_PATH=""
     BASE_URL = "https://www.m.avito.ru"
-    FF_PROFILE_PATH = "/home/ilya/.mozilla/firefox/vfwzppqq.avitoproxy"
+    FF_PROFILE_PATH = 'C:\Users\ilyademichev\AppData\Roaming\Mozilla\Firefox\Profiles\b9jixrd6.avitoproxy'
     SORTED_ITEMS_LOCATION_LINK = "https://m.avito.ru/LOCATION/kvartiry?s=104"
     LOCATION_TAG = "LOCATION"
     YESTERDAY_TAG = "Вчера"

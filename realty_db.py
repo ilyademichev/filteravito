@@ -1,11 +1,18 @@
+# -*- coding: utf-8 -*-
 import urllib
 
 import pyodbc
-from sqlalchemy import create_engine, MetaData, Table, Column, String, ForeignKey
+from sqlalchemy.ext.automap import automap_base
+
+from sqlalchemy import create_engine, MetaData, Table, Column, String, ForeignKey, Integer
 #Create and engine and get the metadata
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import create_session, relationship
-from sqlalchemy_access import Integer
+from sqlalchemy.orm import create_session, relationship,sessionmaker
+#from sqlalchemy. access import Integer
+from sqlalchemy.dialects import registry
+#registry.register("access", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
+#registry.register("access.pyodbc", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
+
 
 Base = declarative_base()
 
@@ -15,7 +22,7 @@ connection_string = (
     # r'PageTimeout=5;MaxScanRows=8;MaxBufferSize=2048;FIL=MS Access;'
     # r'DriverId=25;DefaultDir=C:\REALTYDB;'
     r'DBQ=C:\REALTYDB\realty.accdb;'
-    r'ExtendedAnsiSQL=1;')
+    r'ExtendedAnsiSQL=1')
 # engine = create_engine(connection_string)
 connection_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(connection_string)}"
 
@@ -30,7 +37,7 @@ class Person(Base):
     name = Column(String(250), nullable=False)
 
 class RealtyItem(Base):
-    __tablename__ = 'Запись'
+    __tablename__ = 'zap'
     # __table__ = Table(__tablename__, metadata, autoload=True,autoload_with=engine)
     #__table__ = init_table('Запись')
     # __mapper_args__ = {
@@ -64,9 +71,17 @@ class Company(Base):
 #             Column('name', String),
 #         )
 
+
+
 engine = create_engine(connection_url)
-session = create_session(bind=engine)
+#session = create_session(bind=engine)
 metadata = MetaData(bind=engine)
+ABase = automap_base(metadata=metadata)
+ABase.prepare()
+metadata.reflect(bind=engine)
+ex_table = metadata.tables
+cl = ABase.classes.items()
+print(cl)
 q = session.query(RealtyItem).filter_by(floor='1').all()
 print([i.st for i in q])
 session.close()
