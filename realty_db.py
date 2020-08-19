@@ -26,8 +26,6 @@ connection_string = (
 # engine = create_engine(connection_string)
 connection_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(connection_string)}"
 
-
-
 # engine = create_engine(connection_string)
 class Person(Base):
     __tablename__ = 'person'
@@ -37,53 +35,79 @@ class Person(Base):
     name = Column(String(250), nullable=False)
 
 class RealtyItem(Base):
-    __tablename__ = 'zap'
+    __tablename__ = 'Запись'
     # __table__ = Table(__tablename__, metadata, autoload=True,autoload_with=engine)
     #__table__ = init_table('Запись')
     # __mapper_args__ = {
     #     'primary_key': ['Объект*']
     # }
-    rooms=Column('Объект*', Integer, primary_key=True)
     floor=Column('Этаж*', String(255), primary_key=True)
     phone=Column('Телефон 1*', String(255), primary_key=True)
-    agent_name=Column('Организация*', Integer, primary_key=True)
-    forsale_forrent=Column('Актуальность*', Integer, primary_key=True)
+    #agent_name=Column('Организация*', Integer, )
     s_property=Column('S общ*/объекта', String(255), primary_key=True)
     s_land=Column('S уч, сот', String(255), primary_key=True)
     address=Column('Адрес', String(255), primary_key=True)
-    company_id = Column(Integer, ForeignKey('Организации.Код'))
-
+    company_id = Column('Организация*',Integer, ForeignKey('Организации.Код'),primary_key=True)
+    rooms=Column('Объект*', Integer,ForeignKey('Число комнат.Код'), primary_key=True)
+    forsale_forrent=Column('Актуальность*', Integer,ForeignKey('Продано, на задатке, не отвечает.Код'), primary_key=True)
+    source=Column('Источник', Integer,ForeignKey('Источники.Код'))
 
 class Company(Base):
-     __tablename__ = 'Организации'
-     id = Column('Код', Integer, primary_key=True)
-     properties = relationship("RealtyItem", backref="parent")
-#
-# class Rooms(Base):
-#     __tablename__ = Table('Число комнат', metadata, autoload=True)
+    __tablename__ = "Организации"
+    id = Column('Код', Integer, primary_key=True)
+     #realty_id = Column(Integer, ForeignKey('users.id'))
+    properties = relationship("RealtyItem", backref="Организации",\
+                     cascade="all, delete, delete-orphan")
 
-# class AdvertismentSource(Base):
-#     __tablename__ = Table('Источники', metadata, autoload=True)
+class Rooms(Base):
+    __tablename__ = "Число комнат"
+    id = Column('Код', Integer, primary_key=True)
+    description = Column('Объект', Integer, primary_key=True)
+    properties = relationship("RealtyItem", backref="Число комнат", \
+                          cascade="all, delete, delete-orphan")
 
+class RealtyStatus(Base):
+    __tablename__ = "Продано, на задатке, не отвечает"
+    id = Column('Код', Integer, primary_key=True)
+    status = Column('Продано', String(255))
+    properties = relationship("RealtyItem", backref="Продано, на задатке, не отвечает", \
+                              cascade="all, delete, delete-orphan")
+
+class AdvertismentSource(Base):
+    __tablename__ = "Источники"
+    id = Column('Код', Integer, primary_key=True)
+    source = Column('Источник/Реклама', String(255))
+
+    properties = relationship("RealtyItem", backref="Источники", \
+                          cascade="all, delete, delete-orphan")
 
 # user_table = Table('Запись', metadata,
 #             Column('id', Integer, primary_key=True),
 #             Column('name', String),
 #         )
 
-
-
 engine = create_engine(connection_url)
-#session = create_session(bind=engine)
 metadata = MetaData(bind=engine)
 ABase = automap_base(metadata=metadata)
 ABase.prepare()
 metadata.reflect(bind=engine)
-ex_table = metadata.tables
-cl = ABase.classes.items()
-print(cl)
-q = session.query(RealtyItem).filter_by(floor='1').all()
-print([i.st for i in q])
+session = create_session(bind=engine)
+# ex_table = metadata.tables
+#cl = ABase.classes.items()
+#print(ex_table)
+#q = session.query(RealtyItem,Company).filter(Company.id=='1').filter(RealtyItem.company_id==Company.id).all()
+r = RealtyItem()
+
+# r.company_id
+# r.rooms
+# r.address
+# r.floor
+# r.s_property
+# r.s_land
+# r.phone
+
+q = session.query(RealtyItem).filter_by(company_id=2).all()
+print([i.phone for i in q])
 session.close()
 engine.dispose()
 
