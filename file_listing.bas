@@ -1,4 +1,3 @@
-Attribute VB_Name = "file_listing"
 Option Compare Database
 
 '---------------------------------------------------------------------------------------
@@ -34,11 +33,11 @@ Function FF_ListFilesInDir(sPath As String, Optional sFilter As String = "*") As
     Dim aFiles()              As String
     Dim sFile                 As String
     Dim i                     As Long
- 
+
     On Error GoTo Error_Handler
- 
+
     If Right(sPath, 1) <> "\" Then sPath = sPath & "\"
-    sFile = Dir(sPath & "*." & sFilter)
+    sFile = Dir(sPath & "*." & sFilter, vbDirectory)
     Do While sFile <> vbNullString
         If sFile <> "." And sFile <> ".." Then
             ReDim Preserve aFiles(i)
