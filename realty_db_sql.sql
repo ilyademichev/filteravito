@@ -1,3 +1,5 @@
+'sql model for realty domain'
+
 CREATE DATABASE realty;
 
 CREATE TABLE Company (

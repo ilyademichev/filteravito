@@ -12,7 +12,7 @@ from sqlalchemy.orm import create_session, relationship,sessionmaker
 from sqlalchemy.dialects import registry
 #registry.register("access", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
 #registry.register("access.pyodbc", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
-
+from realty_appartment_page import RealtyApartmentPage
 
 Base = declarative_base()
 
@@ -55,6 +55,7 @@ class RealtyItem(Base):
 class Company(Base):
     __tablename__ = "Организации"
     id = Column('Код', Integer, primary_key=True)
+    company_name = Column('Организация', String(255))
      #realty_id = Column(Integer, ForeignKey('users.id'))
     properties = relationship("RealtyItem", backref="Организации",\
                      cascade="all, delete, delete-orphan")
@@ -85,7 +86,8 @@ class AdvertismentSource(Base):
 #             Column('id', Integer, primary_key=True),
 #             Column('name', String),
 #         )
-
+rap = RealtyApartmentPage()
+c = Company()
 engine = create_engine(connection_url)
 metadata = MetaData(bind=engine)
 ABase = automap_base(metadata=metadata)
@@ -105,7 +107,11 @@ r = RealtyItem()
 # r.s_property
 # r.s_land
 # r.phone
-
+c = session.query(Company).filter_by(company_name=rap.company)
+r = session.query(Rooms).filter_by(description=rap.rooms)
+st = session.query(RealtyStatus).filter_by(status="в Продаже")
+so = session.query(AdvertismentSource).filter_by(source="")
+#
 q = session.query(RealtyItem).filter_by(company_id=2).all()
 print([i.phone for i in q])
 session.close()

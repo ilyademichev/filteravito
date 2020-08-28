@@ -14,6 +14,20 @@ class RealtyApartmentPage(BasePage):
     realty_images = list()
     realty_adv_avito_number = None
     realty_hyperlink = None
+    # data fields
+    address = None
+    area = None
+    company = None
+    contact_name = None
+    description = None
+    price = None
+    rooms = None
+    timestamp = None
+    phone = None
+    #data field used to store images by the same name
+    realty_adv_avito_number = None
+
+
 
     # data
     # throws WebDriverException on internal webdriver error

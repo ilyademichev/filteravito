@@ -33,13 +33,13 @@ class Downloader(Thread):
             #for url in links:
             logging.info("* Thread {0} - processing URL".format(self.name))
             if not self.download_file(link, output_folder):
-                logging.error("* Thread {0} - file not loaded {1}".format(self.name, url))
+                logging.error("* Thread {0} - file not loaded {1}".format(self.name))
             # send a signal to the queue that the job is done
             self.queue.task_done()
 
     # increases the timeout of the get  request library
     def on_exception_prepare_image_reload(self):
-        self.timeout_int += CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
+        self.timeout_int += CrawlerData.IMPLICIT_CDN_TIMEOUT_INT_SECONDS
         self.attempts += 1
         logging.info("* Tried: {num_attempts} out of: {all_attempts}".format(num_attempts=self.attempts,
                                                                              all_attempts=CrawlerData.ATTEMPTS_INT))
@@ -47,7 +47,7 @@ class Downloader(Thread):
 
     def download_file(self, url, output_directory):
         """ download file """
-        self.timeout_int = CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
+        self.timeout_int = CrawlerData.IMPLICIT_CDN_TIMEOUT_INT_SECONDS
         status = 0
         self.attempts = 0
         while self.attempts < CrawlerData.ATTEMPTS_INT or status == 200:
@@ -115,5 +115,6 @@ class DownloadManager():
 
     # wait for the queue to finish
     def endup_downloads(self):
+        logging.info("Waiting for picture download to complete")
         self.queue.join()
         return
