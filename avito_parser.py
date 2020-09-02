@@ -116,3 +116,44 @@ class AvitoParser:
 
     def dispose(self):
         self.driver.quit()
+
+    #BAL
+    def
+        # class Parser:
+        #     def
+
+        # BA layer
+        r = RealtyItem()
+
+        # r.company_id
+        # r.rooms
+        # r.address
+        # r.floor
+        # r.s_property
+        # r.s_land
+        # r.phone
+        c = session.query(Company).filter_by(company_name=rap.company)
+        r = session.query(Rooms).filter_by(description=rap.rooms)
+        st = session.query(RealtyStatus).filter_by(status="в Продаже")
+        so = session.query(AdvertismentSource).filter_by(source="")
+        ret = Session.query(exists().where(RealtyItem.field == value)).scalar()
+
+        rap = RealtyApartmentPage()
+        par
+        sync:
+        if (
+            while (folder_queue) putimage(id))
+
+            if session.query(User.query.filter(User.id == 1).exists()).scalar():
+                session.commit()
+            else
+            session.commit()
+            rap.download()
+
+            else
+
+            if exist(Ri)
+            db.update(ri)
+            else
+            db.insert(ri)
+            ri.queueimages

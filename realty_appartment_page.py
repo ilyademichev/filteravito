@@ -9,7 +9,7 @@ import logging
 
 
 class RealtyApartmentPage(BasePage):
-    """loads filtered realty items page sorted by date"""
+    """loads  realty item page """
     phone_popup_loaded = None
     realty_images = list()
     realty_adv_avito_number = None
