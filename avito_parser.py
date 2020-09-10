@@ -16,7 +16,7 @@ from selenium.webdriver import Firefox, DesiredCapabilities
 from selenium.webdriver.firefox.options import Options
 import logging
 
-# log settings
+# log protocol settings
 now = datetime.datetime.now()
 logname = str(now.strftime('%Y-%m-%dT%H-%M-%S')) + " parser.log"
 logging.basicConfig(level=logging.INFO, filename=logname,
@@ -24,41 +24,53 @@ logging.basicConfig(level=logging.INFO, filename=logname,
                     format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
                     datefmt='%H:%M:%S')
 
+# AvitoParser class uses
+# RealtyApartmentPage
+# AvitoFilterPage
+# DownloadManager
+
+# DAL ORM classes
+# RealtyItem
+# Company
+# Rooms
+# RealtyStatus
+# AdvertismentSource
 
 class AvitoParser:
     driver = None
     download_manager = None
 
     def __init__(self):
-        self.setup_driver()
+        try:
+            self.setup_driver()
+        except Exception as e:
+            logging.error("Parser constructor error.", exc_info=True)
+            raise e
 
-    # generate a random UA
+    # generate a random UA with environment properties
     def setup_driver(self):
         useragent = random.choice(userAgenetRotator.USER_AGENTS_LIST)
         logging.info(useragent)
         #avoid loading side resources
         caps = DesiredCapabilities().FIREFOX
         caps["pageLoadStrategy"] = "normal"  # complete
-        #caps["pageLoadStrategy"] = "eager"  #  interactive
-        #caps["pageLoadStrategy"] = "none"
-
+        # caps["pageLoadStrategy"] = "eager"  #  interactive
+        # caps["pageLoadStrategy"] = "none"
         # proxy set manually by firefox in a profile folders
         # load the profile with a set proxy
-        profile = webdriver.FirefoxProfile(CrawlerData.FF_PROFILE_PATH)
-        #no proxy
+        # profile = webdriver.FirefoxProfile(CrawlerData.FF_PROFILE_PATH)
+        # no proxy
         profile = webdriver.FirefoxProfile()
-        #no images
+        # no images
         profile.set_preference('permissions.default.image', 2)
-        #no flash
+        # no flash
         profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
-        # set fake UA
+        # hide automation - set random UA
         profile.set_preference("general.useragent.override", useragent)
         options = Options()
         #options.headless = False
         options.headless = True
-
         driver = Firefox(options=options, firefox_profile=profile, desired_capabilities=caps)
-
         driver.set_page_load_timeout(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
         self.driver = driver
 
@@ -85,9 +97,9 @@ class AvitoParser:
                 adv = [(realty_page.realty_adv_avito_number,imgl) for imgl in realty_page.realty_images]
                 self.download_manager.queue_image_links(adv)
         else:
-            logging.info("No links parsed")
+            logging.info("No realty links parsed")
 
-    # feed the parses with certain algorithms
+    # feed the parser with  algorithm
     def run_parser_task(self, tasks):
         for keys, locs in tasks.items():
             print(keys)
@@ -106,16 +118,16 @@ class AvitoParser:
                 except Exception:
                     logging.error("Parser crashed.", exc_info=True)
                 finally:
-                    # gracefully waiting for picture download  to complete
-                    if not self.download_manager is None:
-                        self.download_manager.endup_downloads()
-                    # gracefully closing the driver
-                    logging.info("Closing all active windows. Disposing the driver")
-                    self.driver.quit()
-                    logging.info("Parsing completed")
+                    self.dispose()
 
     def dispose(self):
+        # gracefully waiting for picture download  to complete
+        if not self.download_manager is None:
+            self.download_manager.endup_downloads()
+        # gracefully closing the driver
+        logging.info("Closing all active windows. Disposing the driver.")
         self.driver.quit()
+        logging.info("Parsing completed.")
 
     #BAL
     def
@@ -138,19 +150,22 @@ class AvitoParser:
         so = session.query(AdvertismentSource).filter_by(source="")
         ret = Session.query(exists().where(RealtyItem.field == value)).scalar()
 
-        rap = RealtyApartmentPage()
-        par
-        sync:
-        if (
-            while (folder_queue) putimage(id))
-
+        async rap = RealtyApartmentPage(url)
+        async rap.parse
+        #if the folder exists put into database
+        while watch_for_new_files() critical ( putimages() , deletefolter(rap.realty_adv_avito_number) )
+        wait for parse
             if session.query(User.query.filter(User.id == 1).exists()).scalar():
+                #update, no images
                 session.commit()
             else
-            session.commit()
-            rap.download()
+                #insert
+                session.commit()
+                #queue images
+                #dowload into temp folder, once completed move into main
+                rap.download(rap.realty_adv_avito_number)
 
-            else
+
 
             if exist(Ri)
             db.update(ri)
