@@ -5,7 +5,6 @@ import os
 import time
 from threading import Thread
 from queue import Queue
-import argparse
 import binascii
 import urllib.request
 import requests

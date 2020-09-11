@@ -2,17 +2,27 @@ import logging
 
 import win32api,time
 from win32com.client import Dispatch
-
 from crawler_data import CrawlerData
-try:
-    strDbName = CrawlerData.MSACCESS_DB_PATH_WINDOWS + \
-        CrawlerData.MSACCESS_DB_FILENAME_WINDOWS
-    objAccess = Dispatch("Access.Application")
-    objAccess.Visible = True
-    objAccess.OpenCurrentDatabase(strDbName)
-    objDB = objAccess.CurrentDb()
-    objAccess.DoCmd.RunMacro(CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO)
-except Exception as e:
-    logging.error("COM ERROR", exc_info=True)
-finally:
-    objAccess.Application.Quit()
+
+class MSA_attachment_loader:
+    def __init__(self):
+        try:
+            strDbName = CrawlerData.MSACCESS_DB_PATH_WINDOWS + \
+                        CrawlerData.MSACCESS_DB_FILENAME_WINDOWS
+            self.objAccess = Dispatch("Access.Application")
+            self.objAccess.Visible = False
+            self.objAccess.OpenCurrentDatabase(strDbName)
+            objDB = self.objAccess.CurrentDb()
+        except Exception as e:
+            logging.error("COM ERROR", exc_info=True)
+            self.objAccess.Application.Quit()
+
+    #CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO
+    def launch_macro(self,macro_name):
+        try:
+            self.objAccess.DoCmd.RunMacro(macro_name)
+        except Exception as e:
+            logging.error("COM ERROR", exc_info=True)
+
+    def dispose(self):
+        self.objAccess.Application.Quit()

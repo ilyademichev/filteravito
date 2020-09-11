@@ -96,6 +96,7 @@ class AvitoParser:
                 # 507307470 will be the folder with links
                 adv = [(realty_page.realty_adv_avito_number,imgl) for imgl in realty_page.realty_images]
                 self.download_manager.queue_image_links(adv)
+
         else:
             logging.info("No realty links parsed")
 
@@ -130,7 +131,39 @@ class AvitoParser:
         logging.info("Parsing completed.")
 
     #BAL
-    def
+    def sync_database(self):
+
+        rap = RealtyApartmentPage()
+        c = Company()
+        engine = create_engine(connection_url)
+        metadata = MetaData(bind=engine)
+        ABase = automap_base(metadata=metadata)
+        ABase.prepare()
+        metadata.reflect(bind=engine)
+        session = create_session(bind=engine)
+        # ex_table = metadata.tables
+        # cl = ABase.classes.items()
+        # print(ex_table)
+        # q = session.query(RealtyItem,Company).filter(Company.id=='1').filter(RealtyItem.company_id==Company.id).all()
+        r = RealtyItem()
+
+        # r.company_id
+        # r.rooms
+        # r.address
+        # r.floor
+        # r.s_property
+        # r.s_land
+        # r.phone
+        c = session.query(Company).filter_by(company_name=rap.company)
+        r = session.query(Rooms).filter_by(description=rap.rooms)
+        st = session.query(RealtyStatus).filter_by(status="в Продаже")
+        so = session.query(AdvertismentSource).filter_by(source="")
+        #
+        q = session.query(RealtyItem).filter_by(company_id=2).all()
+        print([i.phone for i in q])
+        session.close()
+        engine.dispose()
+
         # class Parser:
         #     def
 

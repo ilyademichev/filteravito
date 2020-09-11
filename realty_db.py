@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import urllib
 
-import pyodbc
-from sqlalchemy.ext.automap import automap_base
 
-from sqlalchemy import create_engine, MetaData, Table, Column, String, ForeignKey, Integer
+
+from sqlalchemy import Column, String, ForeignKey, Integer
 #Create and engine and get the metadata
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import create_session, relationship,sessionmaker
+from sqlalchemy.orm import relationship
 #from sqlalchemy. access import Integer
 from sqlalchemy.dialects import registry
 #registry.register("access", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
@@ -15,16 +14,6 @@ from sqlalchemy.dialects import registry
 from realty_appartment_page import RealtyApartmentPage
 
 Base = declarative_base()
-
-connection_string = (
-    r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'
-    # r'UID=admin;UserCommitSync=Yes;Threads=3;SafeTransactions=0;'
-    # r'PageTimeout=5;MaxScanRows=8;MaxBufferSize=2048;FIL=MS Access;'
-    # r'DriverId=25;DefaultDir=C:\REALTYDB;'
-    r'DBQ=C:\REALTYDB\realty.accdb;'
-    r'ExtendedAnsiSQL=1')
-# engine = create_engine(connection_string)
-connection_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(connection_string)}"
 
 # engine = create_engine(connection_string)
 class Person(Base):
@@ -86,35 +75,6 @@ class AdvertismentSource(Base):
 #             Column('id', Integer, primary_key=True),
 #             Column('name', String),
 #         )
-rap = RealtyApartmentPage()
-c = Company()
-engine = create_engine(connection_url)
-metadata = MetaData(bind=engine)
-ABase = automap_base(metadata=metadata)
-ABase.prepare()
-metadata.reflect(bind=engine)
-session = create_session(bind=engine)
-# ex_table = metadata.tables
-#cl = ABase.classes.items()
-#print(ex_table)
-#q = session.query(RealtyItem,Company).filter(Company.id=='1').filter(RealtyItem.company_id==Company.id).all()
-r = RealtyItem()
 
-# r.company_id
-# r.rooms
-# r.address
-# r.floor
-# r.s_property
-# r.s_land
-# r.phone
-c = session.query(Company).filter_by(company_name=rap.company)
-r = session.query(Rooms).filter_by(description=rap.rooms)
-st = session.query(RealtyStatus).filter_by(status="в Продаже")
-so = session.query(AdvertismentSource).filter_by(source="")
-#
-q = session.query(RealtyItem).filter_by(company_id=2).all()
-print([i.phone for i in q])
-session.close()
-engine.dispose()
 
 
