@@ -6,8 +6,10 @@ import time
 import selenium
 from selenium.common.exceptions import WebDriverException
 import userAgenetRotator
+from MSACCESSAttachmentLoader import MSA_attachment_loader
 from avito_filter_page import AvitoFilterPage
 from crawler_data import CrawlerData
+from database_manager import DatabaseManager
 from geolocation_data import geolocation_map
 from image_download_manager import DownloadManager
 from realty_appartment_page import RealtyApartmentPage
@@ -39,7 +41,8 @@ logging.basicConfig(level=logging.INFO, filename=logname,
 class AvitoParser:
     driver = None
     download_manager = None
-
+    db_manager = None
+    msa = None
     def __init__(self):
         try:
             self.setup_driver()
@@ -85,6 +88,9 @@ class AvitoParser:
             # set up the downloader
             self.download_manager = DownloadManager(thread_count=4)
             self.download_manager.begin_downloads()
+            self.db_manager = DatabaseManager(thread_count=1)
+            self.db_manager.begin_db_sync()
+
             # go through each page sequentially
             for realty_link in filter_page.daily_hrefs:
                 realty_page = RealtyApartmentPage(self.driver, realty_link)
@@ -94,8 +100,10 @@ class AvitoParser:
                 # make up a tuple of (507307470, {links})
                 # queue it up in the image downloader
                 # 507307470 will be the folder with links
-                adv = [(realty_page.realty_adv_avito_number,imgl) for imgl in realty_page.realty_images]
-                self.download_manager.queue_image_links(adv)
+                self.db_manager.queue_realties(realty_page)
+                #pass a message from BAL to accept image download
+                #adv = [(realty_page.realty_adv_avito_number,imgl) for imgl in realty_page.realty_images]
+                #self.download_manager.queue_image_links(adv)
 
         else:
             logging.info("No realty links parsed")
@@ -125,6 +133,10 @@ class AvitoParser:
         # gracefully waiting for picture download  to complete
         if not self.download_manager is None:
             self.download_manager.endup_downloads()
+        # write images
+        self.msa = MSA_attachment_loader()
+        self.msa.launch_macro(CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO)
+        self.msa.dispose()
         # gracefully closing the driver
         logging.info("Closing all active windows. Disposing the driver.")
         self.driver.quit()
@@ -133,55 +145,6 @@ class AvitoParser:
     #BAL
     def sync_database(self):
 
-        rap = RealtyApartmentPage()
-        c = Company()
-        engine = create_engine(connection_url)
-        metadata = MetaData(bind=engine)
-        ABase = automap_base(metadata=metadata)
-        ABase.prepare()
-        metadata.reflect(bind=engine)
-        session = create_session(bind=engine)
-        # ex_table = metadata.tables
-        # cl = ABase.classes.items()
-        # print(ex_table)
-        # q = session.query(RealtyItem,Company).filter(Company.id=='1').filter(RealtyItem.company_id==Company.id).all()
-        r = RealtyItem()
-
-        # r.company_id
-        # r.rooms
-        # r.address
-        # r.floor
-        # r.s_property
-        # r.s_land
-        # r.phone
-        c = session.query(Company).filter_by(company_name=rap.company)
-        r = session.query(Rooms).filter_by(description=rap.rooms)
-        st = session.query(RealtyStatus).filter_by(status="в Продаже")
-        so = session.query(AdvertismentSource).filter_by(source="")
-        #
-        q = session.query(RealtyItem).filter_by(company_id=2).all()
-        print([i.phone for i in q])
-        session.close()
-        engine.dispose()
-
-        # class Parser:
-        #     def
-
-        # BA layer
-        r = RealtyItem()
-
-        # r.company_id
-        # r.rooms
-        # r.address
-        # r.floor
-        # r.s_property
-        # r.s_land
-        # r.phone
-        c = session.query(Company).filter_by(company_name=rap.company)
-        r = session.query(Rooms).filter_by(description=rap.rooms)
-        st = session.query(RealtyStatus).filter_by(status="в Продаже")
-        so = session.query(AdvertismentSource).filter_by(source="")
-        ret = Session.query(exists().where(RealtyItem.field == value)).scalar()
 
         async rap = RealtyApartmentPage(url)
         async rap.parse
