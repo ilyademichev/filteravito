@@ -8,6 +8,7 @@ from selenium.common.exceptions import WebDriverException
 import userAgenetRotator
 from MSACCESSAttachmentLoader import MSA_attachment_loader
 from avito_filter_page import AvitoFilterPage
+from base_parser_class import Parser
 from crawler_data import CrawlerData
 from database_manager import DatabaseManager
 from geolocation_data import geolocation_map
@@ -38,23 +39,20 @@ logging.basicConfig(level=logging.INFO, filename=logname,
 # RealtyStatus
 # AdvertismentSource
 
-class AvitoParser:
-    driver = None
-    download_manager = None
-    db_manager = None
+class AvitoParser(Parser):
+    #reference to MS ACCESS COM object
     msa = None
     def __init__(self):
-        try:
-            self.setup_driver()
-        except Exception as e:
-            logging.error("Parser constructor error.", exc_info=True)
-            raise e
+        super(AvitoParser, self).__init__()
 
-    # generate a random UA with environment properties
-    def setup_driver(self):
+    #
+    # setup depends on web-site crawler defense mechanism
+    # for avito.ru we generate a random UA with environment settings
+    #
+    def setup(self):
         useragent = random.choice(userAgenetRotator.USER_AGENTS_LIST)
         logging.info(useragent)
-        #avoid loading side resources
+        #avoid loading extra resources
         caps = DesiredCapabilities().FIREFOX
         caps["pageLoadStrategy"] = "normal"  # complete
         # caps["pageLoadStrategy"] = "eager"  #  interactive
@@ -68,7 +66,7 @@ class AvitoParser:
         profile.set_preference('permissions.default.image', 2)
         # no flash
         profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
-        # hide automation - set random UA
+        # hide automation - set fake UA
         profile.set_preference("general.useragent.override", useragent)
         options = Options()
         #options.headless = False
@@ -78,19 +76,12 @@ class AvitoParser:
         self.driver = driver
 
     # parses the given location into realty_page objects
-    # feeds up the image downloader with realty page images
-
+    # feeds up the db manager with realty page
     def parse_location(self, location):
         filter_page = AvitoFilterPage(self.driver, geolocation_map[location])
         filter_page.parse_filter_page()
         # some advertisments found
         if len(filter_page.daily_hrefs) > 0:
-            # set up the downloader
-            self.download_manager = DownloadManager(thread_count=4)
-            self.download_manager.begin_downloads()
-            self.db_manager = DatabaseManager(thread_count=1)
-            self.db_manager.begin_db_sync()
-
             # go through each page sequentially
             for realty_link in filter_page.daily_hrefs:
                 realty_page = RealtyApartmentPage(self.driver, realty_link)
@@ -100,40 +91,27 @@ class AvitoParser:
                 # make up a tuple of (507307470, {links})
                 # queue it up in the image downloader
                 # 507307470 will be the folder with links
-                self.db_manager.queue_realties(realty_page)
+                self.db_manager.queue_realties(self,realty_page)
                 #pass a message from BAL to accept image download
                 #adv = [(realty_page.realty_adv_avito_number,imgl) for imgl in realty_page.realty_images]
                 #self.download_manager.queue_image_links(adv)
-
         else:
             logging.info("No realty links parsed")
 
-    # feed the parser with  algorithm
+    # feed the parser with algorithm
     def run_parser_task(self, tasks):
-        for keys, locs in tasks.items():
-            print(keys)
-            logging.info(keys)
-            print(*locs)
-            for l in locs:
-                try:
-                    print(l)
-                    logging.info(l)
-                    self.setup_driver()
-                    self.parse_location(l)
-                except ValueError:
-                    logging.error("Avito wrapper object is broken.", exc_info=True)
-                except WebDriverException:
-                    logging.error("Web driver crashed.", exc_info=True)
-                except Exception:
-                    logging.error("Parser crashed.", exc_info=True)
-                finally:
-                    self.dispose()
+        logging.info("avito.ru parsing started.")
+        super(AvitoParser, self).run_parser_task(self,tasks)
+        logging.info("avito.ru parsing completed.")
 
     def dispose(self):
-        # gracefully waiting for picture download  to complete
-        if not self.download_manager is None:
-            self.download_manager.endup_downloads()
+        # all images must be downloaded
+        # all transactions must be completed
+        # we wait for threads to complete
+        super(AvitoParser, self).dispose()
         # write images
+        # call the macro of MSA
+        # single-user access to MSA is crucial
         self.msa = MSA_attachment_loader()
         self.msa.launch_macro(CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO)
         self.msa.dispose()
@@ -143,28 +121,24 @@ class AvitoParser:
         logging.info("Parsing completed.")
 
     #BAL
-    def sync_database(self):
+    # def sync_database(self):
+    #
+    #
+    #     async rap = RealtyApartmentPage(url)
+    #     async rap.parse
+    #     #if the folder exists put into database
+    #     while watch_for_new_files() critical ( putimages() , deletefolter(rap.realty_adv_avito_number) )
+    #     wait for parse
+    #         if session.query(User.query.filter(User.id == 1).exists()).scalar():
+    #             #update, no images
+    #             session.commit()
+    #         else
+    #             #insert
+    #             session.commit()
+    #             #queue images
+    #             #dowload into temp folder, once completed move into main
+    #             rap.download(rap.realty_adv_avito_number)
 
 
-        async rap = RealtyApartmentPage(url)
-        async rap.parse
-        #if the folder exists put into database
-        while watch_for_new_files() critical ( putimages() , deletefolter(rap.realty_adv_avito_number) )
-        wait for parse
-            if session.query(User.query.filter(User.id == 1).exists()).scalar():
-                #update, no images
-                session.commit()
-            else
-                #insert
-                session.commit()
-                #queue images
-                #dowload into temp folder, once completed move into main
-                rap.download(rap.realty_adv_avito_number)
 
 
-
-            if exist(Ri)
-            db.update(ri)
-            else
-            db.insert(ri)
-            ri.queueimages

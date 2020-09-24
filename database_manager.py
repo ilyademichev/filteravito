@@ -81,8 +81,6 @@ class DatabaseSynchronizerMSA:
                 if exist update
                 if not exist
                     launch image downloader for realty_id
-
-
             except Exception as e:
                 logging.error()
 
@@ -110,7 +108,7 @@ class DatabaseManager:
         t.start()
 
 
-    def queue_realties(self, realties_dict):
+    def queue_realties(self,, realties_dict):
         """
         fill the queue with realties
         """
@@ -124,7 +122,7 @@ class DatabaseManager:
         self.queue.join()
         #clean up
         self.engine.dispose()
-        self.msa.dispose()
+        # self.msa.dispose()
 
 
 

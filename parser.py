@@ -17,15 +17,15 @@ algorithm = {
 }
 for i in range(0,100):
     try:
-
         p = AvitoParser()
         p.run_parser_task(algorithm)
         # introduce some delay between parser reruns to free up the resources
         time.sleep(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
-
-
     except Exception as e:
         logging.error("Error on algorithm execution", exc_info=True)
+    finally:
+        p.dispose()
+
 
 
 
