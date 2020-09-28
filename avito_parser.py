@@ -2,17 +2,13 @@ import random
 import datetime
 import re
 import time
-
 import selenium
 from selenium.common.exceptions import WebDriverException
 import userAgenetRotator
-from MSACCESSAttachmentLoader import MSA_attachment_loader
 from avito_filter_page import AvitoFilterPage
 from base_parser_class import Parser
 from crawler_data import CrawlerData
-from database_manager import DatabaseManager
 from geolocation_data import geolocation_map
-from image_download_manager import DownloadManager
 from realty_appartment_page import RealtyApartmentPage
 from selenium import webdriver
 from selenium.webdriver import Firefox, DesiredCapabilities
@@ -30,7 +26,6 @@ logging.basicConfig(level=logging.INFO, filename=logname,
 # AvitoParser class uses
 # RealtyApartmentPage
 # AvitoFilterPage
-# DownloadManager
 
 # DAL ORM classes
 # RealtyItem
@@ -95,15 +90,10 @@ class AvitoParser(Parser):
         logging.info("avito.ru parsing completed.")
 
     def dispose(self):
-        # all images must be downloaded
-        # all transactions must be completed
-        # we wait for threads to complete
+       #specifi clean up for avito.ru
+       #general clean up
         super(AvitoParser, self).dispose()
 
-        # gracefully closing the driver
-        logging.info("Closing all active windows. Disposing the driver.")
-        self.driver.quit()
-        logging.info("Parsing completed.")
 
     #BAL
     # def sync_database(self):

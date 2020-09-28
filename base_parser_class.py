@@ -42,6 +42,12 @@ class Parser:
                 except Exception:
                     logging.error("Parser crashed.", exc_info=True)
                 finally:
-                    self.dispose()
+                    pass
+
+    def dispose(self):
+        # gracefully closing the driver
+        logging.info("Closing all active windows. Disposing the driver.")
+        self.driver.quit()
+        logging.info("Parsing completed.")
 
 

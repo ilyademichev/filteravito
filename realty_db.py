@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import urllib
-
-
-
+#ORM DAL
 from sqlalchemy import Column, String, ForeignKey, Integer
 #Create and engine and get the metadata
 from sqlalchemy.ext.declarative import declarative_base
@@ -12,9 +10,7 @@ from sqlalchemy.dialects import registry
 #registry.register("access", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
 #registry.register("access.pyodbc", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
 from realty_appartment_page import RealtyApartmentPage
-
 Base = declarative_base()
-
 # engine = create_engine(connection_string)
 class Person(Base):
     __tablename__ = 'person'
@@ -67,7 +63,6 @@ class AdvertismentSource(Base):
     __tablename__ = "Источники"
     id = Column('Код', Integer, primary_key=True)
     source = Column('Источник/Реклама', String(255))
-
     properties = relationship("RealtyItem", backref="Источники", \
                           cascade="all, delete, delete-orphan")
 
