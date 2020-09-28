@@ -32,7 +32,7 @@ class Downloader(Thread):
             #for url in links:
             logging.info("* Thread {0} - processing URL".format(self.name))
             if not self.download_file(link, output_folder):
-                logging.error("* Thread {0} - file not loaded {1}".format(self.name))
+                logging.error("* Thread {0} - file not loaded {1}".format(self.name,link))
             # send a signal to the queue that the job is done
             self.queue.task_done()
 
@@ -49,6 +49,8 @@ class Downloader(Thread):
         self.timeout_int = CrawlerData.IMPLICIT_CDN_TIMEOUT_INT_SECONDS
         status = 0
         self.attempts = 0
+        r = None
+        t_start = None
         while self.attempts < CrawlerData.ATTEMPTS_INT or status == 200:
             try:
                 t_start = time.process_time()
@@ -84,10 +86,14 @@ class Downloader(Thread):
 
 class DownloadManager():
     """ Spawns dowloader threads and manages URL downloads queue """
+    thread_count = None
+    download_dict = None
+    database_manager = None #DownloadManager uses a DatabaseManager
 
     def __init__(self, download_dict=None, thread_count=4):
         self.thread_count = thread_count
         self.download_dict = download_dict
+
 
     def begin_downloads(self):
         """

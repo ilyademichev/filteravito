@@ -1,11 +1,6 @@
 import logging
-
 from selenium.common.exceptions import WebDriverException
-
-from database_manager import DatabaseManager
-from image_download_manager import DownloadManager
-
-
+#base class for parsing
 class Parser:
     driver = None
     download_manager = None
@@ -17,17 +12,18 @@ class Parser:
         except Exception as e:
             logging.error("Parser constructor error.", exc_info=True)
             raise e
-
+    #prepares the driver and the environment
     def setup(self):
         pass
-
+    #parses the geolocation
     def parse_location(self, location):
         pass
-
-    def run_parser_task(self, tasks):
-        self.download_manager = DownloadManager(thread_count=4)
+    #
+    def run_parser_task(self, tasks ,dw_manager, db_manager):
+        #launch managers for input
+        self.download_manager = dw_manager
         self.download_manager.begin_downloads()
-        self.db_manager = DatabaseManager(thread_count=1)
+        self.db_manager = db_manager
         self.db_manager.begin_db_sync()
         for keys, locs in tasks.items():
             print(keys)
@@ -48,10 +44,4 @@ class Parser:
                 finally:
                     self.dispose()
 
-    def dispose(self):
-        # gracefully waiting for picture download  to complete
-        if not self.download_manager is None:
-            self.download_manager.endup_downloads()
-        # gracefully waiting for db operations to complete
-        if not self.download_manager is None:
-            self.db_manager.endup_db_sync()
+

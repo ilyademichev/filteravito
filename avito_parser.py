@@ -40,11 +40,8 @@ logging.basicConfig(level=logging.INFO, filename=logname,
 # AdvertismentSource
 
 class AvitoParser(Parser):
-    #reference to MS ACCESS COM object
-    msa = None
     def __init__(self):
         super(AvitoParser, self).__init__()
-
     #
     # setup depends on web-site crawler defense mechanism
     # for avito.ru we generate a random UA with environment settings
@@ -86,15 +83,8 @@ class AvitoParser(Parser):
             for realty_link in filter_page.daily_hrefs:
                 realty_page = RealtyApartmentPage(self.driver, realty_link)
                 realty_page.parse_realty_apprment_page()
-                # extract advertisment number
-                # Объявление: №507307470, Сегодня, 14:04
-                # make up a tuple of (507307470, {links})
-                # queue it up in the image downloader
-                # 507307470 will be the folder with links
-                self.db_manager.queue_realties(self,realty_page)
-                #pass a message from BAL to accept image download
-                #adv = [(realty_page.realty_adv_avito_number,imgl) for imgl in realty_page.realty_images]
-                #self.download_manager.queue_image_links(adv)
+                self.db_manager.queue_realties(realty_page)
+
         else:
             logging.info("No realty links parsed")
 
@@ -109,12 +99,7 @@ class AvitoParser(Parser):
         # all transactions must be completed
         # we wait for threads to complete
         super(AvitoParser, self).dispose()
-        # write images
-        # call the macro of MSA
-        # single-user access to MSA is crucial
-        self.msa = MSA_attachment_loader()
-        self.msa.launch_macro(CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO)
-        self.msa.dispose()
+
         # gracefully closing the driver
         logging.info("Closing all active windows. Disposing the driver.")
         self.driver.quit()
