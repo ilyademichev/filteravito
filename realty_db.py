@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import urllib
 #ORM DAL
-from sqlalchemy import Column, String, ForeignKey, Integer
+from sqlalchemy import Column, String, ForeignKey, Integer, DateTime
 #Create and engine and get the metadata
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -36,6 +36,11 @@ class RealtyItem(Base):
     rooms=Column('Объект*', Integer,ForeignKey('Число комнат.Код'), primary_key=True)
     forsale_forrent=Column('Актуальность*', Integer,ForeignKey('Продано, на задатке, не отвечает.Код'), primary_key=True)
     source=Column('Источник', Integer,ForeignKey('Источники.Код'))
+    timestamp=Column('Дата Подачи', DateTime)
+    call_timestamp=Column('Дата Прозвона/Преостановлено до/Позвонить', DateTime)
+    price=Column('Цена min*1000', String(255))
+
+
 
 class Company(Base):
     __tablename__ = "Организации"

@@ -13,6 +13,7 @@ import logging
 from crawler_data import CrawlerData
 from realty_appartment_page import RealtyApartmentPage
 from realty_db import RealtyItem, Company, Rooms, RealtyStatus, AdvertismentSource
+import datetime
 connection_string = (
     r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'
     # r'UID=admin;UserCommitSync=Yes;Threads=3;SafeTransactions=0;'
@@ -55,30 +56,39 @@ class DatabaseSynchronizerMSA:
                 r = RealtyItem()
                 rap = RealtyApartmentPage()
                 c = Company()
-                # r.company_id = realty_item
-                # r.rooms
-                # r.address
-                # r.floor
-                # r.s_property
-                # r.s_land
-                # r.phone
-                c = session.query(Company).filter_by(company_name=rap.company)
-                r = session.query(Rooms).filter_by(description=rap.rooms)
+                #map POM into ORM object
+                r.company_id = realty_item.company
+                r.rooms = realty_item.rooms
+                r.address = realty_item.address
+                #r.floor =
+                r.s_property = realty_item.area
+                #r.s_land = realty_item
+                r.phone = realty_item.phone
+                r.
+                c = session.query(Company).filter_by(company_name=realty_item.company)
+                r = session.query(Rooms).filter_by(description=realty_item.rooms)
                 st = session.query(RealtyStatus).filter_by(status="в Продаже")
-                so = session.query(AdvertismentSource).filter_by(source="")
-                q = session.query(RealtyItem).filter_by(company_id=2).all()
+                so = session.query(AdvertismentSource).filter_by(source="Avito сайт")
+                q = session.query(RealtyItem).all()
                 #key BAL , update or insert
-                if exist update
-                if not exist
-                    #queue up the image downloader
+                #insert new  realty item
+                if not q:
+                    # queue up the image downloader
                     # extract advertisment number
                     # Объявление: №507307470, Сегодня, 14:04
                     # make up a tuple of (507307470, {links})
                     # queue it up in the image downloader
                     # 507307470 will be the folder with links
-                    adv = [(realty_item.realty_adv_avito_number,imgl) for imgl in realty_item.realty_images]
+                    adv = [(realty_item.realty_adv_avito_number, imgl) for imgl in realty_item.realty_images]
                     self.download_manager.queue_image_links(adv)
-                    insert
+                    session.add(r)
+                #update current item
+                else:
+                    #set current date
+                    #set price
+                    #set source "Avito сайт"
+                    session.update({RealtyItem.timestamp = datetime.datetime.utcnow, RealtyItem.price=r.price, RealtyItem.source  = so})
+                session.commit()
                 session.close()
             except Exception as e:
                 logging.error()
