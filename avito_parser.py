@@ -1,9 +1,5 @@
 import random
 import datetime
-import re
-import time
-import selenium
-from selenium.common.exceptions import WebDriverException
 import userAgenetRotator
 from avito_filter_page import AvitoFilterPage
 from base_parser_class import Parser
@@ -34,6 +30,7 @@ logging.basicConfig(level=logging.INFO, filename=logname,
 # RealtyStatus
 # AdvertismentSource
 
+
 class AvitoParser(Parser):
     def __init__(self):
         super(AvitoParser, self).__init__()
@@ -41,10 +38,11 @@ class AvitoParser(Parser):
     # setup depends on web-site crawler defense mechanism
     # for avito.ru we generate a random UA with environment settings
     #
+
     def setup(self):
         useragent = random.choice(userAgenetRotator.USER_AGENTS_LIST)
         logging.info(useragent)
-        #avoid loading extra resources
+        # avoid loading extra resources
         caps = DesiredCapabilities().FIREFOX
         caps["pageLoadStrategy"] = "normal"  # complete
         # caps["pageLoadStrategy"] = "eager"  #  interactive
@@ -61,7 +59,7 @@ class AvitoParser(Parser):
         # hide automation - set fake UA
         profile.set_preference("general.useragent.override", useragent)
         options = Options()
-        #options.headless = False
+        # options.headless = False
         options.headless = True
         driver = Firefox(options=options, firefox_profile=profile, desired_capabilities=caps)
         driver.set_page_load_timeout(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
@@ -84,36 +82,11 @@ class AvitoParser(Parser):
             logging.info("No realty links parsed")
 
     # feed the parser with algorithm
-    def run_parser_task(self, tasks):
+    def run_parser_task(self, tasks, dw_manager, db_manager):
         logging.info("avito.ru parsing started.")
-        super(AvitoParser, self).run_parser_task(self,tasks)
+        super(AvitoParser, self).run_parser_task(tasks, dw_manager, db_manager)
         logging.info("avito.ru parsing completed.")
 
+    # clean up
     def dispose(self):
-       #specifi clean up for avito.ru
-       #general clean up
         super(AvitoParser, self).dispose()
-
-
-    #BAL
-    # def sync_database(self):
-    #
-    #
-    #     async rap = RealtyApartmentPage(url)
-    #     async rap.parse
-    #     #if the folder exists put into database
-    #     while watch_for_new_files() critical ( putimages() , deletefolter(rap.realty_adv_avito_number) )
-    #     wait for parse
-    #         if session.query(User.query.filter(User.id == 1).exists()).scalar():
-    #             #update, no images
-    #             session.commit()
-    #         else
-    #             #insert
-    #             session.commit()
-    #             #queue images
-    #             #dowload into temp folder, once completed move into main
-    #             rap.download(rap.realty_adv_avito_number)
-
-
-
-

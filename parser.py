@@ -30,7 +30,7 @@ finally:
         dbm.endup_db_sync()
         #wait for images queue
         dwm.endup_downloads()
-        #load attachments into db
+        #load attachments: images into db
         dbm.MSA_image_sync()
 
 
