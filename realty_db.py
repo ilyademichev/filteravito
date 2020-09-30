@@ -5,6 +5,8 @@ from sqlalchemy import Column, String, ForeignKey, Integer, DateTime
 #Create and engine and get the metadata
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from sqlalchemy.dialects.mysql import LONGTEXT
+from sqlalchemy_utils import URLType
 #from sqlalchemy. access import Integer
 from sqlalchemy.dialects import registry
 #registry.register("access", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
@@ -26,21 +28,22 @@ class RealtyItem(Base):
     # __mapper_args__ = {
     #     'primary_key': ['Объект*']
     # }
-    floor=Column('Этаж*', String(255), primary_key=True)
     phone=Column('Телефон 1*', String(255), primary_key=True)
-    #agent_name=Column('Организация*', Integer, )
-    s_property=Column('S общ*/объекта', String(255), primary_key=True)
-    s_land=Column('S уч, сот', String(255), primary_key=True)
-    address=Column('Адрес', String(255), primary_key=True)
     company_id = Column('Организация*',Integer, ForeignKey('Организации.Код'),primary_key=True)
     rooms=Column('Объект*', Integer,ForeignKey('Число комнат.Код'), primary_key=True)
+    address=Column('Адрес', String(255), primary_key=True)
+    floor=Column('Этаж*', String(255), primary_key=True)
+    #agent_name=Column('Организация*', Integer, )
+    s_property=Column('S общ*/объекта', String(255), primary_key=True)
+    #s_land=Column('S уч, сот', String(255), primary_key=True)
     forsale_forrent=Column('Актуальность*', Integer,ForeignKey('Продано, на задатке, не отвечает.Код'), primary_key=True)
+    description=Column('Примечание 3', LONGTEXT)
+    contact_name=Column('Имя 1', String(255))
+    url=Column('Ссылка', URLType)
+    price=Column('Цена min*1000', String(255))
     source=Column('Источник', Integer,ForeignKey('Источники.Код'))
     timestamp=Column('Дата Подачи', DateTime)
     call_timestamp=Column('Дата Прозвона/Преостановлено до/Позвонить', DateTime)
-    price=Column('Цена min*1000', String(255))
-
-
 
 class Company(Base):
     __tablename__ = "Организации"

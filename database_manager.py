@@ -1,7 +1,7 @@
 import os
 import threading
 import urllib
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, exists
 import pyodbc
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import create_session
@@ -27,6 +27,7 @@ connection_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(conne
 #creates DB thread fed from realties queue
 class DatabaseSynchronizerMSA:
     download_manager = None
+    name = None #thread name
     def __init__(self, queue ,download_manager):
         self.download_manager = download_manager
         #thread for database CRUD business logic
@@ -53,23 +54,21 @@ class DatabaseSynchronizerMSA:
             try:
                 session = create_session(bind=self.engine)
                 #ORM operations on DB
-                r = RealtyItem()
-                rap = RealtyApartmentPage()
-                c = Company()
-                #map POM into ORM object
-                r.company_id = realty_item.company
-                r.rooms = realty_item.rooms
-                r.address = realty_item.address
-                #r.floor =
-                r.s_property = realty_item.area
-                #r.s_land = realty_item
-                r.phone = realty_item.phone
-                r.
+                #linked tables
                 c = session.query(Company).filter_by(company_name=realty_item.company)
                 r = session.query(Rooms).filter_by(description=realty_item.rooms)
                 st = session.query(RealtyStatus).filter_by(status="в Продаже")
-                so = session.query(AdvertismentSource).filter_by(source="Avito сайт")
-                q = session.query(RealtyItem).all()
+                so = session.query(AdvertismentSource).filter_by(source="Avito робот")
+                #check for existance
+                q = session.query(exists().where(
+                    RealtyItem.phone == realty_item.phone,
+                    RealtyItem.company_id == c.id,
+                    RealtyItem.rooms == r.id,
+                    RealtyItem.address == realty_item.address,
+                    RealtyItem.floor == realty_item.floor,
+                    RealtyItem.s_property == realty_item.area,
+                    #RealtyItem.s_land = "0"
+                    RealtyItem.forsale_forrent == st.id)).scalar()
                 #key BAL , update or insert
                 #insert new  realty item
                 if not q:
@@ -81,17 +80,43 @@ class DatabaseSynchronizerMSA:
                     # 507307470 will be the folder with links
                     adv = [(realty_item.realty_adv_avito_number, imgl) for imgl in realty_item.realty_images]
                     self.download_manager.queue_image_links(adv)
-                    session.add(r)
-                #update current item
+                    q = RealtyItem(
+                        phone=realty_item.phone,
+                        company_id=c.id,
+                        rooms=r.id,
+                        address=realty_item.address,
+                        floor=realty_item.floor,
+                        s_property=realty_item.area,
+                        forsale_forrent=st.id,
+                        description=realty_item.description,
+                        contact_name=realty_item.contact_name,
+                        url = realty_item.realty_hyperlink,
+                        source=so.id,
+                        timestamp=datetime.datetime.utcnow,
+                        call_timestamp=datetime.datetime.utcnow
+                    )
+                    #price field could be fictious
+                    try:
+                        q.price = str(int(realty_item.price) / 1000)
+                    except ValueError:
+                        logging.error("Thread {0} - price conversion failed. Set 0 price . RealtyItem:{1}}".format(self.name,realty_item))
+                        q.price = str("0")
+                    #insert new realty item
+                    session.add(q)
+                #update realty item
                 else:
                     #set current date
                     #set price
-                    #set source "Avito сайт"
-                    session.update({RealtyItem.timestamp = datetime.datetime.utcnow, RealtyItem.price=r.price, RealtyItem.source  = so})
+                    #set source "Avito робот"
+                    q.timestamp = datetime.datetime.utcnow
+                    q.price = r.price
+                    q.source = so.id
                 session.commit()
                 session.close()
             except Exception as e:
-                logging.error()
+                self.error = logging.error(
+                    "Thread {0} - ORM session failed on RealtyItem:{1}}".format(self.name, realty_item),exc_info=True)
+
 
 class DatabaseManager:
     download_manager = None

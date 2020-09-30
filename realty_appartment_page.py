@@ -24,6 +24,7 @@ class RealtyApartmentPage(BasePage):
     rooms = None
     timestamp = None
     phone = None
+    floor = None
     #data field used to store images by the same name
     realty_adv_avito_number = None
 
@@ -143,6 +144,7 @@ class RealtyApartmentPage(BasePage):
             self.price = self.get_text_if_exist(Locators.PRICE_SPAN)
             self.rooms = self.get_text_if_exist(Locators.NUMOF_ROOMS_SPAN)
             self.timestamp = self.get_text_if_exist(Locators.TIMESTAMP_ITEM_DIV)
+            self.floor = self.get_text_if_exist(Locators.TIMESTAMP_ITEM_DIV)
             # 9 or more digits for advertisment number
             self.realty_adv_avito_number = re.search('\d{9,}', self.timestamp)[0]
             self.parse_realty_images_links()
