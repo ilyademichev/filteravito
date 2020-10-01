@@ -6,7 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 
-from captcha_decoder import decoder
+# from captcha_decoder import decoder
 from crawler_data import CrawlerData
 import logging
 import time
@@ -15,7 +15,6 @@ import time
 #Pillow lib for image handling
 from PIL import Image
 from locators_realty_item import Locators
-
 
 class BasePage:
     """This class is the parent class for all the pages in our application."""
@@ -42,9 +41,10 @@ class BasePage:
             # return from the constructor
             else:
                 raise exception
-#adaptaion strategy for slow internet connection
-#we double the wait time
-#increment the number of tries
+
+# adaptaion strategy for slow internet connection
+# we double the wait time
+# increment the number of tries
     def on_exception_prepare_page_reload(self):
         logging.error("Connection problem", exc_info=True)
         self.timeout_int += CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
@@ -106,20 +106,23 @@ class BasePage:
     def hover_to(self, by_locator):
         element = WebDriverWait(self.driver, self.timeout_int).until(EC.visibility_of_element_located(by_locator))
         ActionChains(self.driver).move_to_element(element).perform()
-    #takes the screenshot of current driver page and saves it to a random file
+
+    # takes the screenshot of current driver page and saves it to a random file
     def save_scrshot_to_temp(self):
         tmp = CrawlerData.SCR_SHOT_PATH + str(uuid.uuid4()) + ".png"
         logging.info(tmp)
         el = self.driver.find_element_by_tag_name('body')
         el.screenshot(tmp)
-    #check for captcha page
+
+    # check for captcha page
     def check_for_captcha(self):
         els = self.driver.find_elements(*Locators.CAPTCHA_INPUT_ID)
         if len(els) > 0:
             return True
         else:
             return False
-    #decodes captcha
+
+    # decodes captcha
     def crunch_captcha(self):
         logging.warning("Crunching captcha.")
         solver = CaptchaSolver('rucaptcha', api_key='e3b85f77282f434d6fc90c642be8cce7')
@@ -149,6 +152,7 @@ class BasePage:
         #sol = decoder(captcha_fname,)
         logging.info("CAPTCHA Solved:".format(sol))
         return sol
+
     #
     def resolve_captcha(self):
         el = self.driver.find_element(*Locators.CAPTCHA_INPUT_ID)

@@ -27,11 +27,14 @@ except Exception as e:
         logging.error("Error on algorithm execution: ", exc_info=True)
 finally:
         #wait for CRUD queue
-        dbm.endup_db_sync()
+        if dbm is not  None:
+                dbm.endup_db_sync()
         #wait for images queue
-        dwm.endup_downloads()
-        #load attachments: images into db
-        dbm.MSA_image_sync()
+        if dwm is not  None:
+                dwm.endup_downloads()
+        if dbm is not  None:
+        # load attachments: images into db
+                dbm.MSA_image_sync()
 
 
 
