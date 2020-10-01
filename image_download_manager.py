@@ -88,12 +88,12 @@ class DownloadManager():
     """ Spawns dowloader threads and manages URL downloads queue """
     thread_count = None
     download_dict = None
-    database_manager = None #DownloadManager uses a DatabaseManager
+    #database_manager = None #DownloadManager uses a DatabaseManager
+    queue = None
 
     def __init__(self, download_dict=None, thread_count=4):
         self.thread_count = thread_count
         self.download_dict = download_dict
-
 
     def begin_downloads(self):
         """

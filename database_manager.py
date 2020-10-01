@@ -24,7 +24,7 @@ connection_string = (
 connection_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(connection_string)}"
 #Singleton for CRUD operations on MS ACCESS DB
 #creates DB thread fed from realties queue
-class DatabaseSynchronizerMSA:
+class DatabaseSynchronizerMSA(Thread):
     download_manager = None
     engine = None
     name = None #thread name
@@ -123,6 +123,8 @@ class DatabaseSynchronizerMSA:
             except Exception as e:
                 self.error = logging.error(
                     "Thread {0} - ORM session failed on RealtyItem:{1}}".format(self.name, realty_item),exc_info=True)
+                return False
+        return True
 
 class DatabaseManager:
     """ singleton database manager. """
@@ -147,16 +149,16 @@ class DatabaseManager:
             raise Exception("This class is a singleton!")
         else:
             DatabaseManager.__instance = self
-        self.download_manager =download_manager
+        self.download_manager = download_manager
         self.download_dict = download_dict
         self.thread_count = thread_count
         #initiate the Database Engine
         self.engine = create_engine(connection_url)
         self.lock = threading.Lock()
         metadata = MetaData(bind=self.engine)
-        ABase = automap_base(metadata=metadata)
-        ABase.prepare()
-        metadata.reflect(bind=self.engine)
+        #ABase = automap_base(metadata=metadata)
+        #ABase.prepare()
+        #metadata.reflect(bind=self.engine)
 
     def begin_db_sync(self):
         """
@@ -170,12 +172,16 @@ class DatabaseManager:
         t = DatabaseSynchronizerMSA(self.engine,self.queue,self.download_manager)
         t.setDaemon(False)
         t.start()
+        return
+
     def queue_realties(self, realties_dict):
         """
         fill the queue with realties
         """
         for realty in realties_dict:
             self.queue.put(realty)
+        return
+
     def endup_db_sync(self):
         """
                wait for the queue to empty
@@ -184,6 +190,7 @@ class DatabaseManager:
         self.queue.join()
         #stop the Database Engine
         self.engine.dispose()
+        return
 
     def MSA_image_sync(self):
         """
@@ -194,6 +201,7 @@ class DatabaseManager:
             self.msa = MSA_attachment_loader()
             self.msa.launch_macro(CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO)
             self.msa.dispose()
+        return
 
 
 

@@ -15,11 +15,13 @@ try:
         #Parser uses DatabaseManager
         #DownloadManager uses DatabaseManager
         #DatabaseManager uses DownloadManager
+        dwm = None
+        dbm = None
         p = AvitoParser()
         #pc = CianParser()
         #pd = DomClickParser()
         dwm = DownloadManager(thread_count=4)
-        dbm = DatabaseManager(thread_count=1)
+        dbm = DatabaseManager(dwm,thread_count=1)
         dwm.database_manager = dbm
         dbm.download_manager = dwm
         p.run_parser_task(algorithm,dwm , dbm)
