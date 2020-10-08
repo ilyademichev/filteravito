@@ -49,9 +49,9 @@ class AvitoParser(Parser):
         # caps["pageLoadStrategy"] = "none"
         # proxy set manually by firefox in a profile folders
         # load the profile with a set proxy
-        # profile = webdriver.FirefoxProfile(CrawlerData.FF_PROFILE_PATH)
+        profile = webdriver.FirefoxProfile(CrawlerData.FF_PROFILE_PATH)
         # no proxy
-        profile = webdriver.FirefoxProfile()
+        #profile = webdriver.FirefoxProfile()
         # no images
         profile.set_preference('permissions.default.image', 2)
         # no flash

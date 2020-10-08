@@ -40,16 +40,11 @@ class AvitoFilterPage(BasePage):
             # check for fully loaded  page
             if super().wait_for_js_and_jquery_to_load():
                 self.page_loaded = True
-#evaluating capcha if needed
-
+            # evaluating capcha if needed
             if self.check_for_captcha():
                 logging.warning("On requesting avito filter page Captcha is displayed")
                 super().save_scrshot_to_temp()
                 self.resolve_captcha()
-
-
-
-
         # constructor failed:
         # bad driver with too slow proxy or proxy has gone down.
         # set proper constants in CrawlerData class to adjust the behaviour
@@ -123,31 +118,39 @@ class AvitoFilterPage(BasePage):
 
     def scroll_day(self):
         try:
-            #scroll without show more button
+            # scroll without show more button
             if not self.scroll_down:
                 return False
-            #if daily output reached
+            # if daily output reached
             if self.allday:
                 return True
-            #otherwise scroll pressing show more button
+            # otherwise scroll pressing show more button
             el = self.driver.find_elements(*Locators.LOAD_MORE_SPAN)
             if len(el) > 0:
                 load_more_button_present = True
             else:
                 load_more_button_present = False
             # we feed in the cycle with the timestamps that have been already loaded
-            # cycle flags
-            # self.allday = False
+
             scrolldown = True
             self.avito_output_exceeded = False
             while not self.allday and load_more_button_present:
-                # ls list is filled with timestamps after complete scroll down
+                # self.days list is filled with timestamps after complete scroll down
                 self.parse_timestamps()
                 if CrawlerData.YESTERDAY_TAG in self.uniquedays:
-                    # eliminate the ads check the tail of the days list , check three tail days for example (...,
-                    # ADV_SOME_DATE_TAG,YESTERDAY_TAG,YESTERDAY_TAG)  means that we skipped ads and reached yesterday
-                    # we don't have today tags any more only in ads i.e. we crawled the whole day period or we get
-                    # some more (due to paginated avito output) SCROLL STOP CRITERIA
+                    # SCROLL STOP CRITERIA
+                    # We scroll the mobile version of avito.ru
+                    # The problem is that realty posts are mixed up with promoted advertisments.
+                    # To eliminate the ads we check timestamps. We put them into the list
+                    # and check the tail of it ,specifically we check three tail days. For example (...,
+                    # ADV_SOME_DATE_TAG,YESTERDAY_TAG,YESTERDAY_TAG)  means that we skipped ads and  reached yesterday's
+                    # realty post. We don't have today tags any more. It could present only in ads
+                    # i.e. we crawled the whole day period or we get some more output (due to paginated avito output)
+                    #
+                    # for criteria we must have 3 items
+                    # one we have less we put extra empty items to go through criteria in any case
+                    while len(self.days) < 3:
+                        self.days.append('')
                     if self.days[-1] != CrawlerData.TODAY_TAG and self.days[-2] != CrawlerData.TODAY_TAG and self.days[
                         -3] != CrawlerData.TODAY_TAG:
                         self.allday = True
@@ -183,7 +186,6 @@ class AvitoFilterPage(BasePage):
                                 load_more_button_present = False
                         except Exception as e:
                             self.bad_proxy_connection(e)
-
             if self.allday:
                 return True
 

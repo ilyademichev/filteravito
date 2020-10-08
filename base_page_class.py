@@ -42,7 +42,7 @@ class BasePage:
             else:
                 raise exception
 
-# adaptaion strategy for slow internet connection
+# adaptaiton strategy for slow internet connection
 # we double the wait time
 # increment the number of tries
     def on_exception_prepare_page_reload(self):

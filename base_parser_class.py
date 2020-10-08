@@ -2,7 +2,6 @@ import logging
 from selenium.common.exceptions import WebDriverException
 # base class for parsing
 
-
 class Parser:
     driver = None
     download_manager = None
@@ -26,10 +25,13 @@ class Parser:
 
     def run_parser_task(self, tasks, dw_manager, db_manager):
         # launch managers for input
+        if dw_manager is None or db_manager is None:
+            logging.error("Avito parser needs dw_manager, db_manager  objects initiated: None passed  ")
+            raise ValueError
         self.download_manager = dw_manager
         self.download_manager.begin_downloads()
         self.db_manager = db_manager
-        self.db_manager.begin_db_sync()
+#        self.db_manager.begin_db_sync()
         for keys, locs in tasks.items():
             print(keys)
             logging.info(keys)
@@ -38,10 +40,10 @@ class Parser:
                 try:
                     print(location)
                     logging.info(location)
-                    self.setup()
+                    #  self.setup()
                     self.parse_location(location)
                 except ValueError:
-                    logging.error("Avito POM  object is broken (wrapper object).", exc_info=True)
+                    logging.error("Avito parser is broken .", exc_info=True)
                 except WebDriverException:
                     logging.error("Web driver crashed.", exc_info=True)
                 except Exception as e:
