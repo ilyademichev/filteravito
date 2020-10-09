@@ -134,6 +134,7 @@ class DatabaseManager:
     thread_count = None
     engine = None
     __instance = None
+    queue = None
 
     @staticmethod
     def getInstance():

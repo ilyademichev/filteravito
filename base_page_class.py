@@ -15,6 +15,8 @@ import time
 #Pillow lib for image handling
 from PIL import Image
 from locators_realty_item import Locators
+import pytesseract
+import cv2
 
 class BasePage:
     """This class is the parent class for all the pages in our application."""
@@ -23,6 +25,7 @@ class BasePage:
     timeout_int = None
     attempts = None
     page_loaded = None
+    captcha_fname = None
 
     def bad_proxy_connection(self,exception):
         # possible slow proxy or network response
@@ -122,11 +125,9 @@ class BasePage:
         else:
             return False
 
-    # decodes captcha
-    def crunch_captcha(self):
-        logging.warning("Crunching captcha.")
-        solver = CaptchaSolver('rucaptcha', api_key='e3b85f77282f434d6fc90c642be8cce7')
-        #get image
+    # save image
+    def save_captcha_image(self):
+        # get image
         els = self.driver.find_elements(*Locators.CAPTCHA_IMG_CLASS)
         cap_img = els[0]
         # getting element's location
@@ -145,20 +146,51 @@ class BasePage:
         # crop the image using the attributes defined
         image2 = image2.crop((left, top, right, bottom1))
         # use the attribute to save image
-        captcha_fname = 'captcha.png'
-        image2.save(captcha_fname)
-        raw_data = open(captcha_fname, 'rb').read()
+        self.captcha_fname = 'captcha.png'
+        image2.save(self.captcha_fname)
+
+    # decodes captcha
+    def crunch_captcha_by_rucaptcha(self):
+        logging.warning("Crunching captcha with rucaptcha.")
+        solver = CaptchaSolver('rucaptcha', api_key='e3b85f77282f434d6fc90c642be8cce7')
+        self.save_captcha_image()
+        raw_data = open(self.captcha_fname, 'rb').read()
         sol = solver.solve_captcha(raw_data)
         #sol = decoder(captcha_fname,)
         logging.info("CAPTCHA Solved:".format(sol))
         return sol
 
+    def crunch_captcha_by_teserract(self):
+        logging.warning("Crunching captcha with rucaptcha.")
+        self.save_captcha_image()
+        # https://stackoverflow.com/questions/48279667/scrapy-simple-captcha-solving-example
+        # remove color
+        image = cv2.imread(self.captcha_fname)
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+        # gray = cv2.medianBlur(gray, 3)
+        filename = "{}.png".format("temp")
+        cv2.imwrite(filename, gray)
+        # crunch by pytesseract
+        sol = pytesseract.image_to_string(Image.open('temp.png'))
+        logging.info("CAPTCHA Solved:".format(sol))
+        return sol
     #
     def resolve_captcha(self):
         el = self.driver.find_element(*Locators.CAPTCHA_INPUT_ID)
-        s = self.crunch_captcha()
+        # try:
+        #     s = self.crunch_captcha_by_rucaptcha()
+        # except Exception as e:
+        #     logging.error("captcha by rucaptcha solver failed")
+        try:
+            s = self.crunch_captcha_by_teserract()
+        except Exception as e:
+             logging.error("captcha by teserract solver failed",exc_info=True)
+             return False
+
         el.sendKeys(s)
         self.driver.find_element(*Locators.CAPTCHA_BUTTON).click()
         self.timeout_int += CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
         self.attempts += 1
         self.page_loaded = False
+        return True

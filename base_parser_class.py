@@ -9,13 +9,9 @@ class Parser:
     msa = None
 
     def __init__(self):
-        try:
-            self.setup()
-        except Exception as e:
-            logging.error("Parser constructor error.", exc_info=True)
-            raise e
-    # prepares the driver and the environment
+        raise Exception ("Parser.__init__ Not Implemented")
 
+    # prepares the driver and the environment
     def setup(self):
         raise Exception ("Parser.setup Not Implemented")
 
@@ -40,8 +36,9 @@ class Parser:
                 try:
                     print(location)
                     logging.info(location)
-                    #  self.setup()
+                    self.setup()
                     self.parse_location(location)
+
                 except ValueError:
                     logging.error("Avito parser is broken .", exc_info=True)
                 except WebDriverException:

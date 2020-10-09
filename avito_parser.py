@@ -33,7 +33,7 @@ logging.basicConfig(level=logging.INFO, filename=logname,
 
 class AvitoParser(Parser):
     def __init__(self):
-        super(AvitoParser, self).__init__()
+        logging.info("Avito parser instance created.")
     #
     # setup depends on web-site crawler defense mechanism
     # for avito.ru we generate a random UA with environment settings
@@ -53,17 +53,18 @@ class AvitoParser(Parser):
         # no proxy
         #profile = webdriver.FirefoxProfile()
         # no images
-        profile.set_preference('permissions.default.image', 2)
+        # profile.set_preference('permissions.default.image', 2)
         # no flash
         profile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
         # hide automation - set fake UA
         profile.set_preference("general.useragent.override", useragent)
         options = Options()
-        # options.headless = False
-        options.headless = True
+        options.headless = False
+        # options.headless = True
         driver = Firefox(options=options, firefox_profile=profile, desired_capabilities=caps)
         driver.set_page_load_timeout(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
         self.driver = driver
+        logging.info("Avito parser profiled driver created.")
 
     # parses the given location into realty_page objects
     # feeds up the db manager with realty page

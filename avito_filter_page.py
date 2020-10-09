@@ -44,7 +44,9 @@ class AvitoFilterPage(BasePage):
             if self.check_for_captcha():
                 logging.warning("On requesting avito filter page Captcha is displayed")
                 super().save_scrshot_to_temp()
-                self.resolve_captcha()
+                # try to resolve
+                if not self.resolve_captcha():
+                    raise ValueError
         # constructor failed:
         # bad driver with too slow proxy or proxy has gone down.
         # set proper constants in CrawlerData class to adjust the behaviour
