@@ -27,7 +27,7 @@ class Parser:
         self.download_manager = dw_manager
         self.download_manager.begin_downloads()
         self.db_manager = db_manager
-#        self.db_manager.begin_db_sync()
+        self.db_manager.begin_db_sync()
         for keys, locs in tasks.items():
             print(keys)
             logging.info(keys)

@@ -161,6 +161,7 @@ class DatabaseManager:
         #ABase.prepare()
         #metadata.reflect(bind=self.engine)
 
+
     def begin_db_sync(self):
         """
         Start CRUD threads
