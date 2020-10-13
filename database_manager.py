@@ -66,10 +66,10 @@ class DatabaseSynchronizerMSA(Thread):
 
                 #ORM operations on DB
                 #get adjacent data from linked tables
-                c = session.query(Company).filter_by(company_name=realty_item.company)
-                r = session.query(Rooms).filter_by(description=realty_item.rooms)
-                st = session.query(RealtyStatus).filter_by(status="в Продаже")
-                so = session.query(AdvertismentSource).filter_by(source="Avito робот")
+                c = session.query(Company).filter_by(company_name=realty_item.company).scalar()
+                r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
+                st = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
+                so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
                 #check for existence of a realty item
                 q = session.query(exists().where(
                     RealtyItem.phone == realty_item.phone,
