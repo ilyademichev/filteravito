@@ -1,3 +1,4 @@
+import os
 from contextlib import contextmanager
 import urllib
 from sqlalchemy import create_engine, exists, MetaData
@@ -28,7 +29,6 @@ connection_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(conne
 class DatabaseSynchronizerMSA(Thread):
     download_manager = None
     engine = None
-    name = None #thread name
 
     def __init__(self, queue ,download_manager):
         """  thread initiation """
@@ -36,8 +36,7 @@ class DatabaseSynchronizerMSA(Thread):
         self.queue = queue         #realties queue
         self.download_manager = download_manager
         #thread for database CRUD business logic
-#        Thread.__init__( self, name=binascii.hexlify(os.urandom(16)))
-        Thread.__init__( self ,name="test")
+        Thread.__init__( self ,name=binascii.hexlify(os.urandom(16)))
         #protect CRUD operations against thread-racing
         self.lock = Lock()
 
