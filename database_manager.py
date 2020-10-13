@@ -129,7 +129,7 @@ class DatabaseSynchronizerMSA(Thread):
                 session.close()
             except Exception as e:
                 self.error = logging.error(
-                    "Thread {0} - ORM session failed on RealtyItem:{1}}".format(self.name, realty_item),exc_info=True)
+                    "Thread {0} - ORM session failed on RealtyItem:{1}".format(self.name, realty_item),exc_info=True)
                 return False
         return True
 

@@ -26,19 +26,17 @@ class RealtyApartmentPage(BasePage):
     phone = None
     floor = None
     #data field used to store images by the same name
-    realty_adv_avito_number = None
 
 
 
     # data
     # throws WebDriverException on internal webdriver error
     def __init__(self, driver, realty_link):
-        super().__init__(driver)
+        super().__init__(driver, CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
         self.realty_hyperlink = realty_link
         self.load_page()
 
     def load_page(self):
-        self.timeout_int = CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
         self.page_loaded = False
         self.attempts = 0
         # get realty item page
