@@ -20,19 +20,22 @@ class Downloader(Thread):
 
     def __init__(self, queue):
         Thread.__init__(self, name=binascii.hexlify(os.urandom(16)))
+        # Thread.__init__(self, name=binascii.hexlify(os.urandom(16)))
         self.queue = queue
 
     def run(self):
         while True:
             # gets the url from the queue
             # (output_folder, links) = self.queue.get()
-            item = self.queue.get()
+            # blocks till at least one item is availiable in the queue ,
+            # thread is a deamon, so it shuts up after main thread is done
+            item = self.queue.get(block=True,timeout=None)
             (output_folder, link) = item
             # download the file
             #for url in links:
             logging.info("* Thread {0} - processing URL".format(self.name))
             if not self.download_file(link, output_folder):
-                logging.error("* Thread {0} - file not loaded {1}".format(self.name,link))
+                logging.error("* Thread {0} - file not downloaded {1}".format(self.name,link))
             # send a signal to the queue that the job is done
             self.queue.task_done()
 

@@ -77,7 +77,8 @@ class AvitoParser(Parser):
             for realty_link in filter_page.daily_hrefs:
                 realty_page = RealtyApartmentPage(self.driver, realty_link)
                 realty_page.parse_realty_apprment_page()
-                self.db_manager.queue_realties(realty_page)
+                # put a list into the queue
+                self.db_manager.queue_realties([realty_page])
 
         else:
             logging.info("No realty links parsed")

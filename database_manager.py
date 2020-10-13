@@ -1,12 +1,11 @@
-import os
-import threading
+from contextlib import contextmanager
 import urllib
 from sqlalchemy import create_engine, exists, MetaData
 import pyodbc
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import create_session
 from MSACCESSAttachmentLoader import MSA_attachment_loader
-from threading import Thread
+from threading import Thread, Lock
 from queue import Queue
 import binascii
 import logging
@@ -24,31 +23,38 @@ connection_string = (
 connection_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(connection_string)}"
 #Singleton for CRUD operations on MS ACCESS DB
 #creates DB thread fed from realties queue
+
+
 class DatabaseSynchronizerMSA(Thread):
     download_manager = None
     engine = None
     name = None #thread name
 
-    def __init__(self,engine, queue ,download_manager):
+    def __init__(self, queue ,download_manager):
         """  thread initiation """
-        self.engine = engine
+       # self.engine = engine
         self.queue = queue         #realties queue
         self.download_manager = download_manager
         #thread for database CRUD business logic
-        Thread.__init__( self, name=binascii.hexlify(os.urandom(16)) )
+#        Thread.__init__( self, name=binascii.hexlify(os.urandom(16)))
+        Thread.__init__( self ,name="test")
         #protect CRUD operations against thread-racing
-        self.lock = threading.Lock()
+        self.lock = Lock()
+
+
 
     def run(self):
         """  thread queue cycle """
         while True:
             # gets the realty item from the queue
-            realty = self.queue.get()
+            realty = self.queue.get(block=True,timeout=None)
             logging.info("* Thread {0} - syncing db".format(self.name))
             if not self.sync_database(realty):
                 logging.error("* Thread {0} - syncing failed ".format(self.name))
             # send a signal to the queue that the job is done
             self.queue.task_done()
+
+
 
     def sync_database(self, realty_item):
         """  BAL business access logic"""
@@ -58,6 +64,7 @@ class DatabaseSynchronizerMSA(Thread):
             try:
                 #transaction covered by ORM session
                 session = create_session(bind=self.engine)
+
                 #ORM operations on DB
                 #get adjacent data from linked tables
                 c = session.query(Company).filter_by(company_name=realty_item.company)
@@ -155,7 +162,7 @@ class DatabaseManager:
         self.thread_count = thread_count
         #initiate the Database Engine
         self.engine = create_engine(connection_url)
-        self.lock = threading.Lock()
+        self.lock = Lock()
         metadata = MetaData(bind=self.engine)
         #ABase = automap_base(metadata=metadata)
         #ABase.prepare()
@@ -169,18 +176,18 @@ class DatabaseManager:
         self.queue = Queue()
         # Create a thread pool and give them a queue
         # optional: for DBA engine with m-thread support
-        # for i in range(self.thread_count):
+        for i in range(self.thread_count):
         # for MSA create only one single thread
-        t = DatabaseSynchronizerMSA(self.engine,self.queue,self.download_manager)
-        t.setDaemon(False)
-        t.start()
+            t = DatabaseSynchronizerMSA(self.queue,self.download_manager)
+            t.setDaemon(True)
+            t.start()
         return
 
-    def queue_realties(self, realties_dict):
+    def queue_realties(self, realties_list):
         """
         fill the queue with realties
         """
-        for realty in realties_dict:
+        for realty in realties_list:
             self.queue.put(realty)
         return
 
