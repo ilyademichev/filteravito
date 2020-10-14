@@ -11,7 +11,8 @@ from queue import Queue
 import binascii
 import logging
 from crawler_data import CrawlerData
-from realty_db import RealtyItem, Company, Rooms, RealtyStatus, AdvertismentSource
+from realty_db import RealtyItem, Company, Rooms, RealtyStatus, AdvertismentSource, Base
+from sqlalchemy.ext.declarative import declarative_base
 import datetime
 connection_string = (
     r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'
@@ -40,8 +41,6 @@ class DatabaseSynchronizerMSA(Thread):
         #protect CRUD operations against thread-racing
         self.lock = Lock()
 
-
-
     def run(self):
         """  thread queue cycle """
         while True:
@@ -54,82 +53,80 @@ class DatabaseSynchronizerMSA(Thread):
             self.queue.task_done()
 
 
-
     def sync_database(self, realty_item):
         """  BAL business access logic"""
         #CRUD operations for MS ACCESS are single-user
         #lock is for safety
         with self.lock:
-            try:
+        #    try:
                 #transaction covered by ORM session
                 session = create_session(bind=self.engine)
-
                 #ORM operations on DB
                 #get adjacent data from linked tables
                 c = session.query(Company).filter_by(company_name=realty_item.company).scalar()
                 r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
                 st = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
                 so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
-                #check for existence of a realty item
-                q = session.query(exists().where(
-                    RealtyItem.phone == realty_item.phone,
-                    RealtyItem.company_id == c.id,
-                    RealtyItem.rooms == r.id,
-                    RealtyItem.address == realty_item.address,
-                    RealtyItem.floor == realty_item.floor,
-                    RealtyItem.s_property == realty_item.area,
-                    #RealtyItem.s_land = "0"
-                    RealtyItem.forsale_forrent == st.id)).scalar()
-                #key BAL , update or insert
-                #no tiem found : insert new  realty item
-                if not q:
-                    # queue up the image downloader
-                    # extract advertisment number
-                    # Объявление: №507307470, Сегодня, 14:04
-                    # make up a tuple of (507307470, {links})
-                    # queue it up in the image downloader
-                    # 507307470 will be the folder with links
-                    adv = [(realty_item.realty_adv_avito_number, imgl) for imgl in realty_item.realty_images]
-                    self.download_manager.queue_image_links(adv)
-                    q = RealtyItem(
-                        phone=realty_item.phone,
-                        company_id=c.id,
-                        rooms=r.id,
-                        address=realty_item.address,
-                        floor=realty_item.floor,
-                        s_property=realty_item.area,
-                        forsale_forrent=st.id,
-                        description=realty_item.description,
-                        contact_name=realty_item.contact_name,
-                        url = realty_item.realty_hyperlink,
-                        source=so.id,
-                        timestamp=datetime.datetime.utcnow,
-                        call_timestamp=datetime.datetime.utcnow
-                    )
-                    #price field could be fictious -we go through validation
-                    #once invalid price is set to 0
-                    try:
-                        q.price = str(int(realty_item.price) / 1000)
-                    except ValueError:
-                        logging.error("Thread {0} - price conversion failed. Set 0 price . RealtyItem:{1}}".format(self.name,realty_item))
-                        q.price = str("0")
-                    #insert new realty item
-                    session.add(q)
-                #update realty item
-                else:
-                    #set current date
-                    #set price
-                    #set source "Avito робот"
-                    q.timestamp = datetime.datetime.utcnow
-                    q.price = r.price
-                    q.source = so.id
-                session.commit()
-                #end up the transaction
-                session.close()
-            except Exception as e:
-                self.error = logging.error(
-                    "Thread {0} - ORM session failed on RealtyItem:{1}".format(self.name, realty_item),exc_info=True)
-                return False
+        #         #check for existence of a realty item
+        #         q = session.query(exists().where(
+        #             RealtyItem.phone == realty_item.phone,
+        #             RealtyItem.company_id == c.id,
+        #             RealtyItem.rooms == r.id,
+        #             RealtyItem.address == realty_item.address,
+        #             RealtyItem.floor == realty_item.floor,
+        #             RealtyItem.s_property == realty_item.area,
+        #             #RealtyItem.s_land = "0"
+        #             RealtyItem.forsale_forrent == st.id)).scalar()
+        #         #key BAL , update or insert
+        #         #no tiem found : insert new  realty item
+        #         if not q:
+        #             # queue up the image downloader
+        #             # extract advertisment number
+        #             # Объявление: №507307470, Сегодня, 14:04
+        #             # make up a tuple of (507307470, {links})
+        #             # queue it up in the image downloader
+        #             # 507307470 will be the folder with links
+        #             adv = [(realty_item.realty_adv_avito_number, imgl) for imgl in realty_item.realty_images]
+        #             self.download_manager.queue_image_links(adv)
+        #             q = RealtyItem(
+        #                 phone=realty_item.phone,
+        #                 company_id=c.id,
+        #                 rooms=r.id,
+        #                 address=realty_item.address,
+        #                 floor=realty_item.floor,
+        #                 s_property=realty_item.area,
+        #                 forsale_forrent=st.id,
+        #                 description=realty_item.description,
+        #                 contact_name=realty_item.contact_name,
+        #                 url = realty_item.realty_hyperlink,
+        #                 source=so.id,
+        #                 timestamp=datetime.datetime.utcnow,
+        #                 call_timestamp=datetime.datetime.utcnow
+        #             )
+        #             #price field could be fictious -we go through validation
+        #             #once invalid price is set to 0
+        #             try:
+        #                 q.price = str(int(realty_item.price) / 1000)
+        #             except ValueError:
+        #                 logging.error("Thread {0} - price conversion failed. Set 0 price . RealtyItem:{1}}".format(self.name,realty_item))
+        #                 q.price = str("0")
+        #             #insert new realty item
+        #             session.add(q)
+        #         #update realty item
+        #         else:
+        #             #set current date
+        #             #set price
+        #             #set source "Avito робот"
+        #             q.timestamp = datetime.datetime.utcnow
+        #             q.price = r.price
+        #             q.source = so.id
+        #         session.commit()
+        #         #end up the transaction
+        #         session.close()
+        #     except Exception as e:
+        #         self.error = logging.error(
+        #             "Thread {0} - ORM session failed on RealtyItem:{1}".format(self.name, realty_item),exc_info=True)
+        #         return False
         return True
 
 class DatabaseManager:
@@ -160,9 +157,10 @@ class DatabaseManager:
         self.download_dict = download_dict
         self.thread_count = thread_count
         #initiate the Database Engine
-        self.engine = create_engine(connection_url)
+        self.engine = create_engine(connection_url, echo=True)
         self.lock = Lock()
-        metadata = MetaData(bind=self.engine)
+        # connect orm models to db tables
+        Base.metadata.create_all(self.engine, checkfirst=True)
         #ABase = automap_base(metadata=metadata)
         #ABase.prepare()
         #metadata.reflect(bind=self.engine)
