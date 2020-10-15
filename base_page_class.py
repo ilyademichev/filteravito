@@ -121,7 +121,8 @@ class BasePage:
     def check_for_poll_popup(self):
         els = self.driver.find_elements(*Locators.POLL_POP_UP_ID)
         if len(els) > 0:
-            return True
+            if els[0].isDisplayed():
+                return True
         else:
             return False
     # close pop-up
