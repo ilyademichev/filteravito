@@ -3,6 +3,7 @@ import urllib
 #ORM DAL
 from sqlalchemy import Column, String, ForeignKey, Integer, DateTime, MetaData
 #Create and engine and get the metadata
+from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.mysql import LONGTEXT
@@ -13,7 +14,7 @@ from sqlalchemy.dialects import registry
 #registry.register("access.pyodbc", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
 from realty_appartment_page import RealtyApartmentPage
 mymetadata = MetaData()
-Base = declarative_base(metadata=mymetadata)
+Base = automap_base(metadata=mymetadata)
 # engine = create_engine(connection_string)
 class Person(Base):
     __tablename__ = 'person'

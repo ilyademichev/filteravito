@@ -56,10 +56,18 @@ class RealtyApartmentPage(BasePage):
             # set proper constants in CrawlerData class to adjust the behaviour
             #    IMPLICIT_TIMEOUT_INT_SECONDS
             #    ATTEMPTS_INT
-            if self.check_for_captcha():
-                logging.warning("On requesting realty item page Captcha is displayed")
+
+            # by-passing capchas and pop-ups
+            if super().check_for_captcha():
+                logging.warning("On requesting realty item page Captcha is displayed.")
                 super().save_scrshot_to_temp()
-                self.resolve_captcha()
+                if not self.resolve_captcha():
+                    logging.info("Realty item skipped since Captcha is not resolved.")
+            if super().check_for_poll_popup():
+                logging.warning("On requesting avito item page Poll Pop-up is displayed")
+                super().save_scrshot_to_temp()
+                if not super().resolve_poll_popup():
+                    logging.info("Realty item skipped since Poll Pop-up is not resolved.")
 
         if not self.page_loaded:
             super().save_scrshot_to_temp()

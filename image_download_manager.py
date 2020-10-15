@@ -124,5 +124,6 @@ class DownloadManager():
     # wait for the queue to finish
     def endup_downloads(self):
         logging.info("Waiting for picture download to complete")
-        self.queue.join()
+        if not self.queue is None:
+            self.queue.join()
         return

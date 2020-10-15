@@ -55,6 +55,9 @@ class DatabaseSynchronizerMSA(Thread):
 
     def sync_database(self, realty_item):
         """  BAL business access logic"""
+        #debug print out
+        print(', '.join("%s: %s" % item for item in vars(realty_item).items()))
+
         #CRUD operations for MS ACCESS are single-user
         #lock is for safety
         with self.lock:
@@ -63,7 +66,8 @@ class DatabaseSynchronizerMSA(Thread):
                 session = create_session(bind=self.engine)
                 #ORM operations on DB
                 #get adjacent data from linked tables
-                c = session.query(Company).filter_by(company_name=realty_item.company).scalar()
+                c = session.query(Company).filter_by(company_name=realty_item.company)
+
                 r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
                 st = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
                 so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
@@ -159,8 +163,10 @@ class DatabaseManager:
         #initiate the Database Engine
         self.engine = create_engine(connection_url, echo=True)
         self.lock = Lock()
-        # connect orm models to db tables
-        Base.metadata.create_all(self.engine, checkfirst=True)
+        # mediate orm doamin models with  db tables
+        #Base.metadata.create_all(self.engine, checkfirst=False)
+        Base.prepare(self.engine, reflect=True)
+        #Base.metadata.reflect(self.engine,reflect=True)
         #ABase = automap_base(metadata=metadata)
         #ABase.prepare()
         #metadata.reflect(bind=self.engine)
@@ -193,7 +199,8 @@ class DatabaseManager:
                wait for the queue to empty
         """
         logging.info("Waiting for  db sync  to complete")
-        self.queue.join()
+        if not self.queue is None:
+            self.queue.join()
         #stop the Database Engine
         self.engine.dispose()
         return

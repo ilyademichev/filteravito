@@ -1,6 +1,9 @@
 from selenium.webdriver.common.by import By
 
 class Locators:
+    #poll pop-up
+    POLL_POP_UP_ID = (By.ID, "modal")
+    POLL_POP_UP_CLOSECROSS_DIV = (By.XPATH, "//div[contains(@data-marker,'close-fin-survey')]")
     #avito captcha button
     CAPTCHA_BUTTON = (By.XPATH, "//button[contains(@class,'button-origin']")
     #avito captcha image

@@ -41,11 +41,16 @@ class AvitoFilterPage(BasePage):
             if super().wait_for_js_and_jquery_to_load():
                 self.page_loaded = True
             # evaluating capcha if needed
-            if self.check_for_captcha():
+            if super().check_for_captcha():
                 logging.warning("On requesting avito filter page Captcha is displayed")
                 super().save_scrshot_to_temp()
                 # try to resolve
                 if not self.resolve_captcha():
+                    raise ValueError
+            if super().check_for_poll_popup():
+                logging.warning("On requesting avito filter page Poll Pop-up is displayed")
+                super().save_scrshot_to_temp()
+                if not super().resolve_poll_popup():
                     raise ValueError
         # constructor failed:
         # bad driver with too slow proxy or proxy has gone down.

@@ -117,6 +117,22 @@ class BasePage:
         el = self.driver.find_element_by_tag_name('body')
         el.screenshot(tmp)
 
+    # check for poll pop-up
+    def check_for_poll_popup(self):
+        els = self.driver.find_elements(*Locators.POLL_POP_UP_ID)
+        if len(els) > 0:
+            return True
+        else:
+            return False
+    # close pop-up
+    def resolve_poll_popup(self):
+        try:
+            self.driver.find_element(*Locators.CAPTCHA_BUTTON).click()
+        except Exception as e:
+            logging.error("Unable to close pop up", exc_info=True)
+            return False
+        return True
+
     # check for captcha page
     def check_for_captcha(self):
         els = self.driver.find_elements(*Locators.CAPTCHA_INPUT_ID)
@@ -185,12 +201,18 @@ class BasePage:
         try:
             s = self.crunch_captcha_by_teserract()
         except Exception as e:
-             logging.error("captcha by teserract solver failed",exc_info=True)
+             logging.error("Resolving captcha by teserract solver failed",exc_info=True)
              return False
-
-        el.sendKeys(s)
-        self.driver.find_element(*Locators.CAPTCHA_BUTTON).click()
+        # send solution
+        try:
+            el.sendKeys(s)
+            self.driver.find_element(*Locators.CAPTCHA_BUTTON).click()
+        except Exception as e:
+             logging.error("Unable to send resolved captcha",exc_info=True)
+             return False
+        # slow down intensity to avoid re-blocking
         self.timeout_int += CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
         self.attempts += 1
+        # initiate page reload
         self.page_loaded = False
         return True
