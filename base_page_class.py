@@ -119,16 +119,15 @@ class BasePage:
 
     # check for poll pop-up
     def check_for_poll_popup(self):
-        els = self.driver.find_elements(*Locators.POLL_POP_UP_ID)
+        els = self.driver.find_elements(*Locators.POLL_POP_UP_DIV)
         if len(els) > 0:
-            if els[0].isDisplayed():
                 return True
         else:
             return False
     # close pop-up
     def resolve_poll_popup(self):
         try:
-            self.driver.find_element(*Locators.CAPTCHA_BUTTON).click()
+            self.driver.find_element(*Locators.POLL_POP_UP_CLOSECROSS_DIV).click()
         except Exception as e:
             logging.error("Unable to close pop up", exc_info=True)
             return False

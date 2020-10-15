@@ -56,7 +56,7 @@ class DatabaseSynchronizerMSA(Thread):
     def sync_database(self, realty_item):
         """  BAL business access logic"""
         #debug print out
-        print(', '.join("%s: %s" % item for item in vars(realty_item).items()))
+        print(', '.join("%s: %s \n" % item for item in vars(realty_item).items()))
 
         #CRUD operations for MS ACCESS are single-user
         #lock is for safety
@@ -67,7 +67,6 @@ class DatabaseSynchronizerMSA(Thread):
                 #ORM operations on DB
                 #get adjacent data from linked tables
                 c = session.query(Company).filter_by(company_name=realty_item.company)
-
                 r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
                 st = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
                 so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
