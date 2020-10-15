@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 
 class Locators:
+    # expired ad
+    EXPIRED_ADV_SPAN = (By.XPATH, "//span[contains(@class,'item-closed-warning__content')]")
     #poll pop-up
     POLL_POP_UP_DIV = (By.XPATH, "//div[contains(@data-marker,'bottom-sheet')]")
     POLL_POP_UP_CLOSECROSS_DIV = (By.XPATH, "//div[contains(@data-marker,'close-fin-survey')]")

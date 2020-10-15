@@ -59,8 +59,8 @@ class AvitoParser(Parser):
         # hide automation - set fake UA
         profile.set_preference("general.useragent.override", useragent)
         options = Options()
-        options.headless = False
-        # options.headless = True
+        # options.headless = False
+        options.headless = True
         driver = Firefox(options=options, firefox_profile=profile, desired_capabilities=caps)
         driver.set_page_load_timeout(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
         self.driver = driver
@@ -76,9 +76,9 @@ class AvitoParser(Parser):
             # go through each page sequentially
             for realty_link in filter_page.daily_hrefs:
                 realty_page = RealtyApartmentPage(self.driver, realty_link)
-                realty_page.parse_realty_apprment_page()
-                # put a list into the queue
-                self.db_manager.queue_realties([realty_page])
+                if realty_page.parse_realty_apprment_page():
+                    # put a list into the queue
+                    self.db_manager.queue_realties([realty_page])
 
         else:
             logging.info("No realty links parsed")
