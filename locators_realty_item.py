@@ -7,7 +7,7 @@ class Locators:
     POLL_POP_UP_DIV = (By.XPATH, "//div[contains(@data-marker,'bottom-sheet')]")
     POLL_POP_UP_CLOSECROSS_DIV = (By.XPATH, "//div[contains(@data-marker,'close-fin-survey')]")
     #avito captcha button
-    CAPTCHA_BUTTON = (By.XPATH, "//button[contains(@class,'button-origin']")
+    CAPTCHA_BUTTON = (By.XPATH, "//button[contains(@class,'button-origin')]")
     #avito captcha image
     CAPTCHA_IMG_CLASS = (By.XPATH, "//img[contains(@class,'form-captcha-image')]")
     #avito captcha input box

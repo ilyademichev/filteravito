@@ -177,7 +177,7 @@ class BasePage:
         return sol
 
     def crunch_captcha_by_teserract(self):
-        logging.warning("Crunching captcha with rucaptcha.")
+        logging.warning("Crunching captcha with teserract.")
         self.save_captcha_image()
         # https://stackoverflow.com/questions/48279667/scrapy-simple-captcha-solving-example
         # remove color
@@ -188,7 +188,8 @@ class BasePage:
         filename = "{}.png".format("temp")
         cv2.imwrite(filename, gray)
         # crunch by pytesseract
-        sol = pytesseract.image_to_string(Image.open('temp.png'))
+        pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
+        sol = pytesseract.image_to_string(Image.open("temp.png"))
         logging.info("CAPTCHA Solved:".format(sol))
         return sol
     #
@@ -205,7 +206,7 @@ class BasePage:
                 return False
         # send solution
             try:
-                el.sendKeys(s)
+                el.send_keys(s)
                 self.driver.find_element(*Locators.CAPTCHA_BUTTON).click()
             except Exception as e:
                 logging.error("Unable to send resolved captcha",exc_info=True)
