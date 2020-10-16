@@ -47,11 +47,17 @@ class AvitoFilterPage(BasePage):
                 # try to resolve
                 if not self.resolve_captcha():
                     raise ValueError
+                else:
+                    if self.wait_for_js_and_jquery_to_load():
+                        self.page_loaded = True
             if super().check_for_poll_popup():
                 logging.warning("On requesting avito filter page Poll Pop-up is displayed")
                 super().save_scrshot_to_temp()
                 if not super().resolve_poll_popup():
                     raise ValueError
+                else:
+                    if self.wait_for_js_and_jquery_to_load():
+                        self.page_loaded = True
         # constructor failed:
         # bad driver with too slow proxy or proxy has gone down.
         # set proper constants in CrawlerData class to adjust the behaviour

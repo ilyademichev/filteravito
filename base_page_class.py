@@ -54,7 +54,7 @@ class BasePage:
         self.driver.set_page_load_timeout(self.timeout_int)
 # cache clearing
 #        self.driver.delete_all_cookies()
-        self.attempts = self.attempts + 1
+        self.attempts += 1
         logging.info("Tried: {num_attempts} out of: {all_attempts}".format(num_attempts=self.attempts,all_attempts=CrawlerData.ATTEMPTS_INT))
         logging.info("Timeout: {timeout} s".format(timeout=self.timeout_int))
         self.page_loaded = False
@@ -193,26 +193,21 @@ class BasePage:
         return sol
     #
     def resolve_captcha(self):
-        el = self.driver.find_element(*Locators.CAPTCHA_INPUT_ID)
+            el = self.driver.find_element(*Locators.CAPTCHA_INPUT_ID)
         # try:
         #     s = self.crunch_captcha_by_rucaptcha()
         # except Exception as e:
         #     logging.error("captcha by rucaptcha solver failed")
-        try:
-            s = self.crunch_captcha_by_teserract()
-        except Exception as e:
-             logging.error("Resolving captcha by teserract solver failed",exc_info=True)
-             return False
+            try:
+                s = self.crunch_captcha_by_teserract()
+            except Exception as e:
+                logging.error("Resolving captcha by teserract solver failed",   exc_info=True)
+                return False
         # send solution
-        try:
-            el.sendKeys(s)
-            self.driver.find_element(*Locators.CAPTCHA_BUTTON).click()
-        except Exception as e:
-             logging.error("Unable to send resolved captcha",exc_info=True)
-             return False
-        # slow down intensity to avoid re-blocking
-        self.timeout_int += CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
-        self.attempts += 1
-        # initiate page reload
-        self.page_loaded = False
-        return True
+            try:
+                el.sendKeys(s)
+                self.driver.find_element(*Locators.CAPTCHA_BUTTON).click()
+            except Exception as e:
+                logging.error("Unable to send resolved captcha",exc_info=True)
+                return False
+            return True
