@@ -73,14 +73,14 @@ class AvitoParser(Parser):
         filter_page.load_page(geolocation_map[location])
         filter_page.parse_filter_page()
         # some advertisments found
-        if len(filter_page.daily_hrefs) > 0:
-            # go through each page sequentially
-            for realty_link in filter_page.daily_hrefs:
-                realty_page = RealtyApartmentPage(self.driver, realty_link)
-                if realty_page.parse_realty_apprment_page():
-                    # put a list into the queue
-                    self.db_manager.queue_realties([realty_page])
-
+        if not filter_page.daily_hrefs is None:
+            if len(filter_page.daily_hrefs) > 0:
+                # go through each page sequentially
+                for realty_link in filter_page.daily_hrefs:
+                    realty_page = RealtyApartmentPage(self.driver, realty_link)
+                    if realty_page.parse_realty_apprment_page():
+                        # put a list into the queue
+                        self.db_manager.queue_realties([realty_page])
         else:
             logging.info("No realty links parsed")
 

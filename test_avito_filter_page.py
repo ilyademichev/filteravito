@@ -83,12 +83,12 @@ class TestSplit(TestAvitoFilterPage):
 
     def test_split_timestamps_wrong_structure(self):
         self.AFP.load_page(geolocation_map["Жуков"])
-        garbaged_timestamps = {"15:19, Вчера","Вчера","15:19","фыва","Фыва","1234"}
-        self.assertEqual(self.AFP.split_timestamps(garbaged_timestamps), {})
+        wrong_timestamps = ["15:19, Вчера","Вчера","15:19","фыва","Фыва","1234"]
+        self.assertEqual(self.AFP.split_timestamps(wrong_timestamps), [])
 
     def test_split_timestamps_right_structure(self):
-        timestamps = {"Вчера, 15:19"}
-        self.assertEqual(self.AFP.split_timestamps(garbaged_timestamps), {("Вчера","15:19")})
+        timestamps = ["Вчера, 15:19"]
+        self.assertEqual(self.AFP.split_timestamps(timestamps), [("Вчера","15:19")])
 
 
 
