@@ -84,7 +84,7 @@ class AvitoFilterPage(BasePage):
     # scroll down the page till the yesterdays' mark is not present
     # to discover daily listing of ads
 
-    @property
+
     def scroll_down(self):
         # Get scroll height
         self.avito_output_exceeded = False
