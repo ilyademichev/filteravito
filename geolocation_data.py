@@ -3,6 +3,7 @@ geolocation_map = {
     "Обнинск":"obninsk",
     "Боровск":"borovsk",
     "Балабаново": "balabanovo",
+    "Краснодар": "krasnodar",
     "Малоярославец": "maloyaroslavets",
     "Наро-Фоминск":"naro-fominsk",
     "Жуков":"zhukov"

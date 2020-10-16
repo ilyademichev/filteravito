@@ -59,8 +59,8 @@ class AvitoParser(Parser):
         # hide automation - set fake UA
         profile.set_preference("general.useragent.override", useragent)
         options = Options()
-        # options.headless = False
-        options.headless = True
+        options.headless = False
+        # options.headless = True
         driver = Firefox(options=options, firefox_profile=profile, desired_capabilities=caps)
         driver.set_page_load_timeout(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
         self.driver = driver
@@ -69,7 +69,8 @@ class AvitoParser(Parser):
     # parses the given location into realty_page objects
     # feeds up the db manager with realty page
     def parse_location(self, location):
-        filter_page = AvitoFilterPage(self.driver, geolocation_map[location])
+        filter_page = AvitoFilterPage(self.driver)
+        filter_page.load_page(geolocation_map[location])
         filter_page.parse_filter_page()
         # some advertisments found
         if len(filter_page.daily_hrefs) > 0:

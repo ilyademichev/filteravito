@@ -20,18 +20,23 @@ class AvitoFilterPage(BasePage):
     # throws ValueError once the driver is too slow in loading
     # throws WebDriverException on internal webdriver error
 
-    def __init__(self, driver, location):
+    def __init__(self, driver):
         self.attempts = 0
         # base class setup
         super().__init__(driver, CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
         # self.timeout_int = CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
         self.page_loaded = False
         # set geolocation
+
+    def load_page(self,location):
+        if location is None or not location:
+            logging.error("load_page arguement of location must not be empty or None ")
+            raise ValueError
         link = CrawlerData.SORTED_ITEMS_LOCATION_LINK.replace(CrawlerData.LOCATION_TAG, location)
         # load the filter page with ATTEMPTS_INT tries
         while self.attempts < CrawlerData.ATTEMPTS_INT and not self.page_loaded:
             try:
-                driver.get(link)
+                self.driver.get(link)
             # possible slow proxy or network response
             except Exception as e:
                 self.bad_proxy_connection(e)
@@ -122,17 +127,21 @@ class AvitoFilterPage(BasePage):
 
     def parse_timestamps(self):
         timestamp = self.driver.find_elements(*Locators.TIMESTAMP_FILTER_DIV)
-        logging.info("Filter page: Timestamps found: {num_timestamps}".format(num_timestamps=len(timestamp)))
-        ls = list(map(lambda x: x.text, timestamp))
-        t = self.split_timestamps(ls)
-        # get day tags and make up a set
-        self.days = [*map(lambda x: x[0], t)]
-        self.uniquedays = set(self.days)
+        if len(timestamp)>0:
+            logging.info("Filter page: Timestamps found: {num_timestamps}".format(num_timestamps=len(timestamp)))
+            ls = list(map(lambda x: x.text, timestamp))
+            t = self.split_timestamps(ls)
+            # get day tags and make up a set
+            self.days = [*map(lambda x: x[0], t)]
+            self.uniquedays = set(self.days)
+            return True
+        else:
+            return False
 
     def scroll_day(self):
         try:
             # scroll without show more button
-            if not self.scroll_down:
+            if not self.scroll_down():
                 return False
             # if daily output reached
             if self.allday:
@@ -161,9 +170,10 @@ class AvitoFilterPage(BasePage):
                     # i.e. we crawled the whole day period or we get some more output (due to paginated avito output)
                     #
                     # for criteria we must have 3 items
-                    # one we have less we put extra empty items to go through criteria in any case
+                    # once we have less we put extra empty items to go through criteria in any case
                     while len(self.days) < 3:
                         self.days.append('')
+                    # SCROLL STOP CRITERIA :
                     if self.days[-1] != CrawlerData.TODAY_TAG and self.days[-2] != CrawlerData.TODAY_TAG and self.days[
                         -3] != CrawlerData.TODAY_TAG:
                         self.allday = True
@@ -174,13 +184,12 @@ class AvitoFilterPage(BasePage):
                     self.page_loaded = False
                     load_more_button_present = None
                     while attempts < CrawlerData.ATTEMPTS_INT and not self.page_loaded:
-
                         try:
                             if super().is_enabled(Locators.LOAD_MORE_SPAN):
                                 load_more_button_present = True
                                 super().click(Locators.LOAD_MORE_SPAN)
                                 # emulate user scroll
-                                if not self.scroll_down:
+                                if not self.scroll_down():
                                     return False
                                 # Check for message from avito no more ads can be displayed
                                 els = self.driver.find_elements(*Locators.AVITO_OUTPUT_EXCEEDED_DIV)
@@ -230,4 +239,3 @@ class AvitoFilterPage(BasePage):
             self.daily_hrefs = list(map(lambda x: x.get_attribute('href'), realtylinks))
         else:
             logging.info("Filter page: Unable to load daily output.")
-            raise ValueError

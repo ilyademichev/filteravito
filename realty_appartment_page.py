@@ -177,7 +177,7 @@ class RealtyApartmentPage(BasePage):
         # so we fetch the phone in the end
         self.phone = self.parse_phone()
         # list out all parsed fields
-        logging.info(', '.join("%s: %s \n" % item for item in vars(self).items()))
+        logging.info("\n".join("%s: %s " % item for item in vars(self).items()))
         return True
 
 
