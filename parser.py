@@ -5,8 +5,9 @@ from image_download_manager import DownloadManager
 algorithm = {
         #"TASK 0": ["Боровск"]
         #"Все окрестности": ["Жуков","Малоярославец","Наро-Фоминск","Обнинск","Боровск"]
-        "Массовый Центр": ["Москва"],
-        "Массовый Юг": ["Краснодар"]
+        "Подмосковье": ["Подольск","Химки"]
+        #"Массовый Центр": ["Москва"],
+        #"Массовый Юг": ["Краснодар"]
         #"TASK 2": ["Обнинск", "Обнинск", "Обнинск"]  # ,
         # "TASK 3":["Москва", "Обнинск", "Москва", "Обнинск","Москва", "Обнинск"]
 }
@@ -25,7 +26,9 @@ try:
         dbm = DatabaseManager(dwm,thread_count=1)
         dwm.database_manager = dbm
         dbm.download_manager = dwm
-        p.run_parser_task(algorithm,dwm , dbm)
+        for i in range(0,100):
+                logging.info("Run {0}".format(str(i)) )
+                p.run_parser_task(algorithm,dwm , dbm)
 except Exception as e:
         logging.error("Error on algorithm execution: ", exc_info=True)
 finally:

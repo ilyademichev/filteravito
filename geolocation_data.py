@@ -1,10 +1,12 @@
 geolocation_map = {
-    "Москва":"moskva",
-    "Обнинск":"obninsk",
     "Боровск":"borovsk",
     "Балабаново": "balabanovo",
+    "Жуков": "zhukov",
     "Краснодар": "krasnodar",
     "Малоярославец": "maloyaroslavets",
+    "Москва": "moskva",
     "Наро-Фоминск":"naro-fominsk",
-    "Жуков":"zhukov"
+    "Обнинск": "obninsk",
+    "Подольск" : "podolsk",
+    "Химки": "himki"
 }

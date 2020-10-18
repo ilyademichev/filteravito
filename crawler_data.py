@@ -12,7 +12,7 @@ class CrawlerData:
     YESTERDAY_TAG = r"Вчера"
     TODAY_TAG = r"Сегодня"
     #http download selenim driver timeout
-    IMPLICIT_TIMEOUT_INT_SECONDS = 120
+    IMPLICIT_TIMEOUT_INT_SECONDS = 180
     #image downloader timeout
     IMPLICIT_CDN_TIMEOUT_INT_SECONDS = 120
     SCR_SHOT_PATH = r'scrshotavito/'
