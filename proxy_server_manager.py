@@ -33,6 +33,7 @@ class ProxyServerManager():
         profile = webdriver.FirefoxProfile(CrawlerData.FF_PROFILE_PATH)
         try:
             prof_file = open(CrawlerData.FF_PROFILE_PATH,"r")
+            
 
         except OSError as e:
             logging.error("Firefox profile file IO error: ", exc_info=True)
