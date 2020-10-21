@@ -1,5 +1,5 @@
 import ipaddress
-import logging
+import parser_logger
 import random
 import re
 
@@ -25,9 +25,9 @@ class ProxyServerManager():
             for p in proxies:
                 ipaddress.IPv4Address(p)
         except OSError as e:
-            logging.error("File of proxies IO error: ", exc_info=True)
+            parser_logger.error("File of proxies IO error: ", exc_info=True)
         except ValueError as e:
-            logging.error("Wrong IP in proxy file: ", exc_info=True)
+            parser_logger.error("Wrong IP in proxy file: ", exc_info=True)
 
     def set_firefox_proxy(self):
         """
@@ -70,13 +70,13 @@ class ProxyServerManager():
                 res = pat.findall(prof_file)
                 # making up a proper link
                 self.realty_images = ["http://" + re.sub(r"\%2F", "/", w) for w in res]
-                logging.info("Item page parsing: (Image urls 640x480): {0}".format(res))
+                parser_logger.info("Item page parsing: (Image urls 640x480): {0}".format(res))
                 return True
             else:
                 return False
 
         except OSError as e:
-            logging.error("Firefox profile file IO error: ", exc_info=True)
+            parser_logger.error("Firefox profile file IO error: ", exc_info=True)
 
 
 

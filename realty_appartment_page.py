@@ -6,7 +6,7 @@ import re
 from crawler_data import CrawlerData
 from locators_realty_item import Locators
 from base_page_class import BasePage
-import logging
+import parser_logger
 
 
 class RealtyApartmentPage(BasePage):
@@ -40,7 +40,7 @@ class RealtyApartmentPage(BasePage):
         # get realty item page
         while self.attempts < CrawlerData.ATTEMPTS_INT and not self.page_loaded:
             try:
-                logging.info("Item page request: (URL) {0}".format(self.realty_hyperlink))
+                parser_logger.info("Item page request: (URL) {0}".format(self.realty_hyperlink))
                 self.driver.get(self.realty_hyperlink)
             # possible slow proxy response
             # double the implicit timeout
@@ -57,18 +57,18 @@ class RealtyApartmentPage(BasePage):
 
             # by-passing capchas and pop-ups
             if super().check_for_captcha():
-                logging.warning("Item page request: Captcha is displayed.")
+                parser_logger.warning("Item page request: Captcha is displayed.")
                 super().save_scrshot_to_temp()
                 if not self.resolve_captcha():
-                    logging.info("Item page request: Captcha is not resolved.")
+                    parser_logger.info("Item page request: Captcha is not resolved.")
             if super().check_for_poll_popup():
-                logging.warning("Item page request: Poll Pop-up is displayed")
+                parser_logger.warning("Item page request: Poll Pop-up is displayed")
                 super().save_scrshot_to_temp()
                 if not super().resolve_poll_popup():
-                    logging.info("Item page request: Poll Pop-up is not resolved.")
+                    parser_logger.info("Item page request: Poll Pop-up is not resolved.")
             # expired adv - realty page is invalid and has no relevant data
             if self.check_for_expired_ad():
-                logging.warning("Item page request: Advertisment has expired.")
+                parser_logger.warning("Item page request: Advertisment has expired.")
 
         if not self.page_loaded:
             super().save_scrshot_to_temp()
@@ -95,7 +95,7 @@ class RealtyApartmentPage(BasePage):
             self.attempts = 0
             while self.attempts < CrawlerData.ATTEMPTS_INT and not self.phone_popup_loaded:
                 try:
-                    logging.info('Item page parsing: Clicking phone link.')
+                    parser_logger.info('Item page parsing: Clicking phone link.')
                     self.click(Locators.PHONE_POPUP_SHOW_LINK)
                     # fully load the phone popup page
                     # if not fully loaded TimeoutException occurs and
@@ -117,11 +117,11 @@ class RealtyApartmentPage(BasePage):
                 #    ATTEMPTS_INT
         # no phone button at all : possibly the structure of the page is broken
         else:
-            logging.warning("Item Page parsing: Page structure could be broken - phone pop-up link locator not found:")
+            parser_logger.warning("Item Page parsing: Page structure could be broken - phone pop-up link locator not found:")
             return False
         # we reached max number of attempts and failed to load the page
         if not self.phone_popup_loaded:
-            logging.warning("Item page parsing: Maximum number of attempts reached while loading the phone pop-up: {0}".format(CrawlerData.ATTEMPTS_INT))
+            parser_logger.warning("Item page parsing: Maximum number of attempts reached while loading the phone pop-up: {0}".format(CrawlerData.ATTEMPTS_INT))
             return False
         else:
             return True
@@ -130,10 +130,10 @@ class RealtyApartmentPage(BasePage):
 
     def parse_phone(self):
         if self.display_phone_popup():
-            logging.info('Item page parsing: Fetching the phone number')
+            parser_logger.info('Item page parsing: Fetching the phone number')
             phone = self.driver.find_element(*Locators.PHONE_TEXT).text
         else:
-            logging.warning("Item page parsing: Unable to display phone pop-up.")
+            parser_logger.warning("Item page parsing: Unable to display phone pop-up.")
             return None
 
 
@@ -151,7 +151,7 @@ class RealtyApartmentPage(BasePage):
 
     # parse the currently loaded page
     def parse_realty_apprment_page(self):
-        logging.info("Item page parsing: (URL) {0}".format(self.driver.current_url))
+        parser_logger.info("Item page parsing: (URL) {0}".format(self.driver.current_url))
         # once there's no adv ID the structure of the page is broken and we skip further processing
         self.timestamp = self.get_text_if_exist(Locators.TIMESTAMP_ITEM_DIV)
         # 9 or more digits for advertisment number
@@ -159,10 +159,10 @@ class RealtyApartmentPage(BasePage):
         if not pattern is None:
             self.realty_adv_avito_number = pattern[0]
         else:
-            logging.warning("Item page parsing: Page structure is broken: no ID is found.")
+            parser_logger.warning("Item page parsing: Page structure is broken: no ID is found.")
             return False
         if not self.parse_realty_images_links():
-            logging.warning("Item page parsing: Page structure could be broken: no image links are found.")
+            parser_logger.warning("Item page parsing: Page structure could be broken: no image links are found.")
         # parse the fields except the phone
         # since the phone popup covers the fields
         self.address = self.get_text_if_exist(Locators.ADDRESS_SPAN)
@@ -178,7 +178,7 @@ class RealtyApartmentPage(BasePage):
         # so we fetch the phone in the end
         self.phone = self.parse_phone()
         # list out all parsed fields
-        logging.info(r"\n".join(r"%s: %s " % item for item in vars(self).items()))
+        parser_logger.info(r"\n".join(r"%s: %s " % item for item in vars(self).items()))
         return True
 
 
@@ -192,7 +192,7 @@ class RealtyApartmentPage(BasePage):
             res = pat.findall(self.driver.page_source)
             # making up a proper link
             self.realty_images = ["http://" + re.sub(r"\%2F", "/", w) for w in res]
-            logging.info("Item page parsing: (Image urls 640x480): {0}".format(res))
+            parser_logger.info("Item page parsing: (Image urls 640x480): {0}".format(res))
             return True
         else:
             return False

@@ -3,7 +3,7 @@ import time
 from locators_realty_item import Locators
 from crawler_data import CrawlerData
 from base_page_class import BasePage
-import logging
+from parser_logger import parser_logger
 
 
 class AvitoFilterPage(BasePage):
@@ -28,9 +28,9 @@ class AvitoFilterPage(BasePage):
         self.page_loaded = False
         # set geolocation
 
-    def load_page(self,location):
+    def load_page(self, location):
         if location is None or not location:
-            logging.error("load_page arguement of location must not be empty or None ")
+            parser_logger.error("load_page arguement of location must not be empty or None ")
             raise ValueError
         link = CrawlerData.SORTED_ITEMS_LOCATION_LINK.replace(CrawlerData.LOCATION_TAG, location)
         # load the filter page with ATTEMPTS_INT tries
@@ -47,7 +47,7 @@ class AvitoFilterPage(BasePage):
                 self.page_loaded = True
             # evaluating capcha if needed
             if super().check_for_captcha():
-                logging.warning("On requesting avito filter page Captcha is displayed")
+                parser_logger.warning("On requesting avito filter page Captcha is displayed")
                 super().save_scrshot_to_temp()
                 # try to resolve
                 if not self.resolve_captcha():
@@ -56,7 +56,7 @@ class AvitoFilterPage(BasePage):
                     if self.wait_for_js_and_jquery_to_load():
                         self.page_loaded = True
             if super().check_for_poll_popup():
-                logging.warning("On requesting avito filter page Poll Pop-up is displayed")
+                parser_logger.warning("On requesting avito filter page Poll Pop-up is displayed")
                 super().save_scrshot_to_temp()
                 if not super().resolve_poll_popup():
                     raise ValueError
@@ -83,8 +83,6 @@ class AvitoFilterPage(BasePage):
 
     # scroll down the page till the yesterdays' mark is not present
     # to discover daily listing of ads
-
-
     def scroll_down(self):
         # Get scroll height
         self.avito_output_exceeded = False
@@ -99,12 +97,12 @@ class AvitoFilterPage(BasePage):
                     break
 
             # Scroll down to bottom
-            logging.info("Filter page: scrolling down  ")
+            parser_logger.info("Filter page: scrolling down  ")
             self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             # Wait to scroll the page
             time.sleep(CrawlerData.SCROLL_PAUSE_TIME)
             if not super().wait_for_js_and_jquery_to_load():
-                logging.info("Filter page: page can not be fully loaded")
+                parser_logger.info("Filter page: page can not be fully loaded")
                 return False
 
             # Calculate new scroll height and compare with last scroll height
@@ -120,15 +118,15 @@ class AvitoFilterPage(BasePage):
                 break
             last_height = new_height
         if self.avito_output_exceeded:
-            logging.error("Filter page: Avito doesn't send more ads.")
+            parser_logger.error("Filter page: Avito doesn't send more ads.")
             return False
         else:
             return True
 
     def parse_timestamps(self):
         timestamp = self.driver.find_elements(*Locators.TIMESTAMP_FILTER_DIV)
-        if len(timestamp)>0:
-            logging.info("Filter page: Timestamps found: {num_timestamps}".format(num_timestamps=len(timestamp)))
+        if len(timestamp) > 0:
+            parser_logger.info("Filter page: Timestamps found: {num_timestamps}".format(num_timestamps=len(timestamp)))
             ls = list(map(lambda x: x.text, timestamp))
             t = self.split_timestamps(ls)
             # get day tags and make up a set
@@ -196,13 +194,14 @@ class AvitoFilterPage(BasePage):
                                 if len(els) > 0:
                                     if els[0].is_displayed():
                                         self.avito_output_exceeded = True
-                                        logging.error("Filter page: Avito doesn't send more ads.")
+                                        parser_logger.error("Filter page: Avito doesn't send more ads.")
                                         return False
                                 self.page_loaded = super().wait_for_js_and_jquery_to_load()
                             else:
-                                logging.info("Filter page: No click more button appeared after ", self.attempts,
-                                             " tries.", )
-                                logging.info("Filter page: Output of the avito filter page exceeded.")
+                                parser_logger.info("Filter page: No click more button appeared after ",
+                                                   self.attempts,
+                                                    " tries.", )
+                                parser_logger.info("Filter page: Output of the avito filter page exceeded.")
                                 # failed to wait for the page to load and the button to appear
                                 # go on processing timetamps
                                 load_more_button_present = False
@@ -238,4 +237,4 @@ class AvitoFilterPage(BasePage):
             realtylinks = self.driver.find_elements(*Locators.APPARTMENT_A)
             self.daily_hrefs = list(map(lambda x: x.get_attribute('href'), realtylinks))
         else:
-            logging.info("Filter page: Unable to load daily output.")
+            parser_logger.info("Filter page: Unable to load daily output.")

@@ -1,6 +1,6 @@
 """ Import """
 # https://pastebin.com/QrZG9e9T
-import logging
+import parser_logger
 import os
 import time
 from threading import Thread
@@ -33,9 +33,9 @@ class Downloader(Thread):
             (output_folder, link) = item
             # download the file
             #for url in links:
-            logging.info("* Thread {0} - processing URL".format(self.name))
+            parser_logger.info("* Thread {0} - processing URL".format(self.name))
             if not self.download_file(link, output_folder):
-                logging.error("* Thread {0} - file not downloaded {1}".format(self.name,link))
+                parser_logger.error("* Thread {0} - file not downloaded {1}".format(self.name,link))
             # send a signal to the queue that the job is done
             self.queue.task_done()
 
@@ -43,9 +43,9 @@ class Downloader(Thread):
     def on_exception_prepare_image_reload(self):
         self.timeout_int += CrawlerData.IMPLICIT_CDN_TIMEOUT_INT_SECONDS
         self.attempts += 1
-        logging.info("* Tried: {num_attempts} out of: {all_attempts}".format(num_attempts=self.attempts,
+        parser_logger.info("* Tried: {num_attempts} out of: {all_attempts}".format(num_attempts=self.attempts,
                                                                              all_attempts=CrawlerData.ATTEMPTS_INT))
-        logging.info("* Timeout: {timeout} s".format(timeout=self.timeout_int))
+        parser_logger.info("* Timeout: {timeout} s".format(timeout=self.timeout_int))
 
     def download_file(self, url, output_directory):
         """ download file """
@@ -61,29 +61,29 @@ class Downloader(Thread):
                 status = r.status_code
             # network errors recoverable
             except requests.exceptions.HTTPError as errh:
-                logging.error("Http Error:", exc_info=True)
+                parser_logger.error("Http Error:", exc_info=True)
                 self.on_exception_prepare_image_reload()
             except requests.exceptions.ConnectionError as errc:
-                logging.error("Error Connecting:", exc_info=True)
+                parser_logger.error("Error Connecting:", exc_info=True)
                 self.on_exception_prepare_image_reload()
             except requests.exceptions.Timeout as errt:
-                logging.error("Timeout Error:", exc_info=True)
+                parser_logger.error("Timeout Error:", exc_info=True)
                 self.on_exception_prepare_image_reload()
             # unrecoverable error
             except requests.exceptions.RequestException as err:
-                logging.error("", exc_info=True)
+                parser_logger.error("", exc_info=True)
                 return False
 
             if r.status_code == 200:
                 t_elapsed = time.process_time () - t_start
-                logging.info("* Thread: {0} Downloaded {1} in {2} seconds".format(self.name, url, str(t_elapsed)))
+                parser_logger.info("* Thread: {0} Downloaded {1} in {2} seconds".format(self.name, url, str(t_elapsed)))
                 fname = output_directory + '/' + os.path.basename(urllib.request.unquote(url))
                 os.makedirs(os.path.dirname(fname), exist_ok=True)
                 with open(fname, 'wb') as out:
                     out.write(r.content)
                 return True
             else:
-                logging.info("* Thread: {0} Bad URL: {1}".format(self.name, url))
+                parser_logger.info("* Thread: {0} Bad URL: {1}".format(self.name, url))
                 return False
 
 
@@ -123,7 +123,7 @@ class DownloadManager():
 
     # wait for the queue to finish
     def endup_downloads(self):
-        logging.info("Waiting for picture download to complete")
+        parser_logger.info("Waiting for picture download to complete")
         if not self.queue is None:
             self.queue.join()
         return

@@ -1,4 +1,3 @@
-import logging
 import time
 
 from avito_parser import AvitoParser
@@ -23,6 +22,6 @@ if __name__ == "__main__":
 
 
         except Exception as e:
-            logging.error("Error on algorithm execution", exc_info=True)
+            parser_logger.error("Error on algorithm execution", exc_info=True)
 
 

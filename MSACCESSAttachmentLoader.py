@@ -1,4 +1,4 @@
-import logging
+import parser_logger
 
 import win32api,time
 from win32com.client import Dispatch
@@ -14,7 +14,7 @@ class MSA_attachment_loader:
             self.objAccess.OpenCurrentDatabase(strDbName)
             objDB = self.objAccess.CurrentDb()
         except Exception as e:
-            logging.error("MSA COM ERROR ", exc_info=True)
+            parser_logger.error("MSA COM ERROR ", exc_info=True)
             self.objAccess.Application.Quit()
 
     #CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO
@@ -22,7 +22,7 @@ class MSA_attachment_loader:
         try:
             self.objAccess.DoCmd.RunMacro(macro_name)
         except Exception as e:
-            logging.error("MSA COM ERROR ", exc_info=True)
+            parser_logger.error("MSA COM ERROR ", exc_info=True)
 
     def dispose(self):
         self.objAccess.Application.Quit()

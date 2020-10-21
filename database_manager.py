@@ -1,6 +1,4 @@
 import os
-from contextlib import contextmanager
-import urllib
 from sqlalchemy import create_engine, exists, MetaData
 import pyodbc
 from sqlalchemy.ext.automap import automap_base
@@ -9,7 +7,7 @@ from MSACCESSAttachmentLoader import MSA_attachment_loader
 from threading import Thread, Lock
 from queue import Queue
 import binascii
-import logging
+from parser_logger import parser_logger
 from crawler_data import CrawlerData
 from realty_db import RealtyItem, Company, Rooms, RealtyStatus, AdvertismentSource, Base
 from sqlalchemy.ext.declarative import declarative_base
@@ -46,9 +44,9 @@ class DatabaseSynchronizerMSA(Thread):
         while True:
             # gets the realty item from the queue
             realty = self.queue.get(block=True,timeout=None)
-            logging.info("* Thread {0} - syncing db".format(self.name))
+            parser_logger.info("* Thread {0} - syncing db".format(self.name))
             if not self.sync_database(realty):
-                logging.error("* Thread {0} - syncing failed ".format(self.name))
+                parser_logger.error("* Thread {0} - syncing failed ".format(self.name))
             # send a signal to the queue that the job is done
             self.queue.task_done()
 
@@ -111,7 +109,7 @@ class DatabaseSynchronizerMSA(Thread):
         #             try:
         #                 q.price = str(int(realty_item.price) / 1000)
         #             except ValueError:
-        #                 logging.error("Thread {0} - price conversion failed. Set 0 price . RealtyItem:{1}}".format(self.name,realty_item))
+        #                 parser_logger.error("Thread {0} - price conversion failed. Set 0 price . RealtyItem:{1}}".format(self.name,realty_item))
         #                 q.price = str("0")
         #             #insert new realty item
         #             session.add(q)
@@ -127,7 +125,7 @@ class DatabaseSynchronizerMSA(Thread):
         #         #end up the transaction
         #         session.close()
         #     except Exception as e:
-        #         self.error = logging.error(
+        #         self.error = parser_logger.error(
         #             "Thread {0} - ORM session failed on RealtyItem:{1}".format(self.name, realty_item),exc_info=True)
         #         return False
         return True
@@ -197,7 +195,7 @@ class DatabaseManager:
         """
                wait for the queue to empty
         """
-        logging.info("Waiting for  db sync  to complete")
+        parser_logger.info("Waiting for  db sync  to complete")
         if not self.queue is None:
             self.queue.join()
         #stop the Database Engine

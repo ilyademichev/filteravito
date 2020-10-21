@@ -1,4 +1,4 @@
-import logging
+import parser_logger
 from avito_parser import AvitoParser
 from database_manager import DatabaseManager
 from image_download_manager import DownloadManager
@@ -27,7 +27,7 @@ try:
         dwm.database_manager = dbm
         dbm.download_manager = dwm
         for i in range(0,100):
-                logging.info("Run {0}".format(str(i)) )
+                parser_logger.info("Run {0}".format(str(i)) )
                 p.run_parser_task(algorithm,dwm , dbm)
 except Exception as e:
         logging.error("Error on algorithm execution: ", exc_info=True)

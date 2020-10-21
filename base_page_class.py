@@ -1,4 +1,3 @@
-import tempfile
 import uuid
 
 from captcha_solver import CaptchaSolver
@@ -8,7 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 # from captcha_decoder import decoder
 from crawler_data import CrawlerData
-import logging
+from parser_logger import parser_logger
 import time
 #captcha-solver 0.1.5
 #from captcha_solver import  CaptchaSolver
@@ -33,7 +32,7 @@ class BasePage:
         if type(exception).__name__ == 'TimeoutException':
             self.on_exception_prepare_page_reload()
         if type(exception).__name__ == 'WebDriverException':
-            logging.error("WebDriverException", exc_info=True)
+            parser_logger.error("WebDriverException", exc_info=True)
             #  slow proxy response
             if 'Reached error page' in str(exception.args):
                 time.sleep(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
@@ -49,14 +48,14 @@ class BasePage:
 # we double the wait time
 # increment the number of tries
     def on_exception_prepare_page_reload(self):
-        logging.error("Connection problem", exc_info=True)
+        parser_logger.error("Connection problem", exc_info=True)
         self.timeout_int += CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS
         self.driver.set_page_load_timeout(self.timeout_int)
 # cache clearing
 #        self.driver.delete_all_cookies()
         self.attempts += 1
-        logging.info("Tried: {num_attempts} out of: {all_attempts}".format(num_attempts=self.attempts,all_attempts=CrawlerData.ATTEMPTS_INT))
-        logging.info("Timeout: {timeout} s".format(timeout=self.timeout_int))
+        parser_logger.info("Tried: {num_attempts} out of: {all_attempts}".format(num_attempts=self.attempts,all_attempts=CrawlerData.ATTEMPTS_INT))
+        parser_logger.info("Timeout: {timeout} s".format(timeout=self.timeout_int))
         self.page_loaded = False
 
     # this function is called every time a new object of the base class is created.
@@ -113,7 +112,7 @@ class BasePage:
     # takes the screenshot of current driver page and saves it to a random file
     def save_scrshot_to_temp(self):
         tmp = CrawlerData.SCR_SHOT_PATH + str(uuid.uuid4()) + ".png"
-        logging.info(tmp)
+        parser_logger.info(tmp)
         el = self.driver.find_element_by_tag_name('body')
         el.screenshot(tmp)
 
@@ -129,7 +128,7 @@ class BasePage:
         try:
             self.driver.find_element(*Locators.POLL_POP_UP_CLOSECROSS_DIV).click()
         except Exception as e:
-            logging.error("Unable to close pop up", exc_info=True)
+            parser_logger.error("Unable to close pop up", exc_info=True)
             return False
         return True
 
@@ -167,17 +166,17 @@ class BasePage:
 
     # decodes captcha
     def crunch_captcha_by_rucaptcha(self):
-        logging.warning("Crunching captcha with rucaptcha.")
+        parser_logger.warning("Crunching captcha with rucaptcha.")
         solver = CaptchaSolver('rucaptcha', api_key='e3b85f77282f434d6fc90c642be8cce7')
         self.save_captcha_image()
         raw_data = open(self.captcha_fname, 'rb').read()
         sol = solver.solve_captcha(raw_data)
         #sol = decoder(captcha_fname,)
-        logging.info("CAPTCHA Solved:".format(sol))
+        parser_logger.info("CAPTCHA Solved:".format(sol))
         return sol
 
     def crunch_captcha_by_teserract(self):
-        logging.warning("Crunching captcha with teserract.")
+        parser_logger.warning("Crunching captcha with teserract.")
         self.save_captcha_image()
         # https://stackoverflow.com/questions/48279667/scrapy-simple-captcha-solving-example
         # remove color
@@ -190,7 +189,7 @@ class BasePage:
         # crunch by pytesseract
         pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
         sol = pytesseract.image_to_string(Image.open("temp.png"))
-        logging.info("CAPTCHA Solved:".format(sol))
+        parser_logger.info("CAPTCHA Solved:".format(sol))
         return sol
     #
     def resolve_captcha(self):
@@ -198,17 +197,17 @@ class BasePage:
         # try:
         #     s = self.crunch_captcha_by_rucaptcha()
         # except Exception as e:
-        #     logging.error("captcha by rucaptcha solver failed")
+        #     parser_logger.error("captcha by rucaptcha solver failed")
             try:
                 s = self.crunch_captcha_by_teserract()
             except Exception as e:
-                logging.error("Resolving captcha by teserract solver failed",   exc_info=True)
+                parser_logger.error("Resolving captcha by teserract solver failed",   exc_info=True)
                 return False
         # send solution
             try:
                 el.send_keys(s)
                 self.driver.find_element(*Locators.CAPTCHA_BUTTON).click()
             except Exception as e:
-                logging.error("Unable to send resolved captcha",exc_info=True)
+                parser_logger.error("Unable to send resolved captcha",exc_info=True)
                 return False
             return True
