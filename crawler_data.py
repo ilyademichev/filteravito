@@ -6,10 +6,12 @@ class CrawlerData:
     FF_EXECUTABLE_PATH=""
     BASE_URL = r"https://www.m.avito.ru"
     FF_PROFILE_PATH = \
-        r"C:\Users\ilyademichev\AppData\Roaming\Mozilla\Firefox\Profiles\b9jixrd6.avitoproxy"
+        r"C:\Users\ilyademichev\AppData\Roaming\Mozilla\Firefox\Profiles\b9jixrd6.avitoproxy\\"
+    FF_PROFILE_FILE = r"prefs.js"
     SORTED_ITEMS_LOCATION_LINK = r"https://m.avito.ru/LOCATION/kvartiry?s=104"
     LOCATION_TAG = r"LOCATION"
     YESTERDAY_TAG = r"Вчера"
+    PROXY_FILE = "proxy_list"
     TODAY_TAG = r"Сегодня"
     #http download selenim driver timeout
     IMPLICIT_TIMEOUT_INT_SECONDS = 180
