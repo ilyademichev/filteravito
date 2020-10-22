@@ -141,6 +141,7 @@ class AvitoFilterPage(BasePage):
             # scroll without show more button
             if not self.scroll_down():
                 return False
+
             # if daily output reached
             if self.allday:
                 return True
@@ -234,7 +235,16 @@ class AvitoFilterPage(BasePage):
     def parse_filter_page(self):
         self.allday = False
         if self.scroll_day():
+            # some delay for occasional page reload
+            if not super().wait_for_js_and_jquery_to_load():
+                parser_logger.info("Filter page: page can not be fully loaded.")
+                return False
             realtylinks = self.driver.find_elements(*Locators.APPARTMENT_A)
+            if len(realtylinks) == 0:
+                parser_logger.warning("Filter page: No realty links found. Possibly the structure of fileter page is broken.")
+                return False
             self.daily_hrefs = list(map(lambda x: x.get_attribute('href'), realtylinks))
+            return True
         else:
             parser_logger.info("Filter page: Unable to load daily output.")
+            return  False

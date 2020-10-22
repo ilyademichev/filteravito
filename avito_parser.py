@@ -50,8 +50,8 @@ class AvitoParser(Parser):
         # hide automation - set fake UA
         profile.set_preference("general.useragent.override", useragent)
         options = Options()
-        options.headless = False
-        # options.headless = True
+        # options.headless = False
+        options.headless = True
         driver = Firefox(options=options, firefox_profile=profile, desired_capabilities=caps)
         driver.set_page_load_timeout(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
         self.driver = driver
