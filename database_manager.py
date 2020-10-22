@@ -1,9 +1,10 @@
 import os
+import urllib
 from sqlalchemy import create_engine, exists, MetaData
 import pyodbc
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import create_session
-from MSACCESSAttachmentLoader import MSA_attachment_loader
+from MSACCESSAttachmentLoader import MSAttachmentLoader
 from threading import Thread, Lock
 from queue import Queue
 import binascii
@@ -140,12 +141,12 @@ class DatabaseManager:
     __instance = None
     queue = None
 
-    @staticmethod
-    def getInstance():
-        """ Static access method. """
-        if DatabaseManager.__instance == None:
-            DatabaseManager()
-        return DatabaseManager.__instance
+    # @staticmethod
+    # def getInstance():
+    #     """ Static access method. """
+    #     if DatabaseManager.__instance == None:
+    #         DatabaseManager()
+    #     return DatabaseManager.__instance
 
     def __init__(self,download_manager, download_dict=None, thread_count=1):
         """ Virtually private constructor. """
@@ -208,7 +209,7 @@ class DatabaseManager:
                single-user access to MSA is crucial
         """
         with self.lock:
-            self.msa = MSA_attachment_loader()
+            self.msa = MSAttachmentLoader()
             self.msa.launch_macro(CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO)
             self.msa.dispose()
         return

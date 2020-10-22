@@ -12,7 +12,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import WebDriverException
 #rotator libs
-import userAgenetRotator
+import userAgenets
 #agregating the ads timestamps
 from itertools import groupby
 
@@ -40,7 +40,7 @@ def run_parallel_selenium_processes(datalist, selenium_func):
         pool.apply_async(selenium_func, [datalist[list_start:list_end]])
 
 def parse_realty_page(realty_link):
-    useragent = random.choice(userAgenetRotator.USER_AGENTS_LIST)
+    useragent = random.choice(userAgenets.USER_AGENTS_LIST)
     profile = webdriver.FirefoxProfile("/home/ilya/.mozilla/firefox/vfwzppqq.avitoproxy")  # asdf
     # no images
     profile.set_preference('permissions.default.image', 2)
@@ -92,7 +92,7 @@ def freq_consecutive_duplicates(ls_str):
     return [(key, sum(1 for i in group)) for key, group in groupby(ls_str)]
 #fake UA
 #useragent = 'Mozilla/5.0 (Linux; Android 7.0; SM-G892A Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.107 Mobile Safari/537.36'
-useragent = random.choice(userAgenetRotator.USER_AGENTS_LIST)
+useragent = random.choice(userAgenets.USER_AGENTS_LIST)
 
 #scrennshot of  a fully loaded page last screen after scrolling
 scrshotpath = '/home/ilya/scrshotavito'

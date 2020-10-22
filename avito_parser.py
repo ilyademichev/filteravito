@@ -1,5 +1,5 @@
 import random
-import userAgenetRotator
+import userAgenets
 from avito_filter_page import AvitoFilterPage
 from base_parser_class import Parser
 from crawler_data import CrawlerData
@@ -31,7 +31,7 @@ class AvitoParser(Parser):
     #
 
     def setup(self):
-        useragent = random.choice(userAgenetRotator.USER_AGENTS_LIST)
+        useragent = random.choice(userAgenets.USER_AGENTS_LIST)
         parser_logger.info(useragent)
         # avoid loading extra resources
         caps = DesiredCapabilities().FIREFOX
@@ -50,8 +50,8 @@ class AvitoParser(Parser):
         # hide automation - set fake UA
         profile.set_preference("general.useragent.override", useragent)
         options = Options()
-        # options.headless = False
-        options.headless = True
+        options.headless = False
+        # options.headless = True
         driver = Firefox(options=options, firefox_profile=profile, desired_capabilities=caps)
         driver.set_page_load_timeout(CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
         self.driver = driver

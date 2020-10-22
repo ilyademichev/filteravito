@@ -1,10 +1,9 @@
-import parser_logger
-
-import win32api,time
+from parser_logger import parser_logger
 from win32com.client import Dispatch
 from crawler_data import CrawlerData
 
-class MSA_attachment_loader:
+
+class MSAttachmentLoader:
     def __init__(self):
         try:
             strDbName = CrawlerData.MSACCESS_DB_PATH_WINDOWS + \
@@ -17,8 +16,8 @@ class MSA_attachment_loader:
             parser_logger.error("MSA COM ERROR ", exc_info=True)
             self.objAccess.Application.Quit()
 
-    #CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO
-    def launch_macro(self,macro_name):
+    # CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO
+    def launch_macro(self, macro_name):
         try:
             self.objAccess.DoCmd.RunMacro(macro_name)
         except Exception as e:

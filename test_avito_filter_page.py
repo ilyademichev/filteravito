@@ -1,5 +1,5 @@
 from unittest import TestCase
-import userAgenetRotator
+import userAgenets
 from avito_filter_page import AvitoFilterPage
 from crawler_data import CrawlerData
 import random
@@ -10,7 +10,7 @@ from geolocation_data import geolocation_map
 
 class TestAvitoFilterPage(TestCase):
     def create_selenium_driver(self):
-        useragent = random.choice(userAgenetRotator.USER_AGENTS_LIST)
+        useragent = random.choice(userAgenets.USER_AGENTS_LIST)
         # avoid loading extra resources
         caps = DesiredCapabilities().FIREFOX
         caps["pageLoadStrategy"] = "normal"  # complete

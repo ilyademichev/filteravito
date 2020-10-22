@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import io
 import re
 from crawler_data import CrawlerData
 from locators_realty_item import Locators
 from base_page_class import BasePage
-import parser_logger
+from parser_logger import parser_logger
 
 
 class RealtyApartmentPage(BasePage):
@@ -178,7 +177,7 @@ class RealtyApartmentPage(BasePage):
         # so we fetch the phone in the end
         self.phone = self.parse_phone()
         # list out all parsed fields
-        parser_logger.info(r"\n".join(r"%s: %s " % item for item in vars(self).items()))
+        parser_logger.info(u"\n".join(u"%s: %s " % item for item in vars(self).items()))
         return True
 
 

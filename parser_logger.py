@@ -9,7 +9,7 @@ logname = str(now.strftime('%Y-%m-%dT%H-%M-%S')) + " parser.log"
 #                     format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
 #                     datefmt='%H:%M:%S')
 parser_logger= logging.getLogger()
-parser_logger.setLevel(logging.DEBUG)
+parser_logger.setLevel(logging.INFO)
 handler = logging.FileHandler(logname, 'w', 'utf-8')
 formatter = logging.Formatter('%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s','%H:%M:%S')
 handler.setFormatter(formatter)

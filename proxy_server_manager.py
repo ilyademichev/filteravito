@@ -49,9 +49,10 @@ class ProxyServerManager():
             # user_pref("network.proxy.ssl", "95.28.233.106");
             # user_pref("network.proxy.ssl_port", 8080);
             # user_pref("network.proxy.type", 1);
-            pat_ftp = re.compile(r"\"network\.proxy\.ftp\", ")
+            pat_ftp = re.compile(r"\"network\.proxy\.ftp\", (?P<name>group)")
             pat_http = re.compile(r"\"network\.proxy\.http\", ")
             pat_ssl = re.compile(r"\"network\.proxy\.ssl\", ")
+
             pat_ftp_port = re.compile(r"\"network\.proxy\.ftp_port\", ")
             pat_http_port = re.compile(r"\"network\.proxy\.http_port\", ")
             pat_ssl_port = re.compile(r"\"network\.proxy\.ssl_port\", ")

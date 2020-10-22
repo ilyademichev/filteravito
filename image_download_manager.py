@@ -1,6 +1,6 @@
 """ Import """
 # https://pastebin.com/QrZG9e9T
-import parser_logger
+from parser_logger import parser_logger
 import os
 import time
 from threading import Thread

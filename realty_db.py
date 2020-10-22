@@ -12,7 +12,6 @@ from sqlalchemy_utils import URLType
 from sqlalchemy.dialects import registry
 #registry.register("access", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
 #registry.register("access.pyodbc", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
-from realty_appartment_page import RealtyApartmentPage
 mymetadata = MetaData()
 Base = automap_base(metadata=mymetadata)
 # engine = create_engine(connection_string)
