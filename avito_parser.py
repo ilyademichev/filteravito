@@ -62,10 +62,8 @@ class AvitoParser(Parser):
     def parse_location(self, location):
         filter_page = AvitoFilterPage(self.driver)
         filter_page.load_page(geolocation_map[location])
-        filter_page.parse_filter_page()
         # some advertisments found
-        if not filter_page.daily_hrefs is None:
-            if len(filter_page.daily_hrefs) > 0:
+        if filter_page.parse_filter_page():
                 # go through each page sequentially
                 for realty_link in filter_page.daily_hrefs:
                     realty_page = RealtyApartmentPage(self.driver, realty_link)
