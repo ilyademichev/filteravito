@@ -1,3 +1,6 @@
+import uuid
+
+from crawler_data import CrawlerData
 from parser_logger import parser_logger
 from selenium.common.exceptions import WebDriverException
 # base class for parsing
@@ -39,15 +42,23 @@ class Parser:
                     parser_logger.info(location)
                     self.setup()
                     self.parse_location(location)
-
                 except ValueError:
-                    parser_logger.error("Avito parser is broken .", exc_info=True)
+                    parser_logger.error("Parser object is broken .", exc_info=True)
+                    self.save_scrshot_to_temp()
                 except WebDriverException:
                     parser_logger.error("Web driver crashed.", exc_info=True)
+                    self.save_scrshot_to_temp()
                 except Exception as e:
                     parser_logger.error("Parser crashed.", exc_info=True)
+                    self.save_scrshot_to_temp()
                 finally:
                     self.dispose()
+
+    def save_scrshot_to_temp(self):
+        tmp = CrawlerData.SCR_SHOT_PATH + str(uuid.uuid4()) + ".png"
+        parser_logger.info("Screenshot {0}".format(tmp))
+        el = self.driver.find_element_by_tag_name('body')
+        el.screenshot(tmp)
 
     def dispose(self):
         # gracefully closing the driver
