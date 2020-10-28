@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 
 class Locators:
+    # blocked page of avito
+    BLOCKED_PAGE_TEXT = (By.XPATH, "//h1[contains(text(),'Доступ с вашего IP-адреса временно ограничен')]")
     # expired ad
     EXPIRED_ADV_SPAN = (By.XPATH, "//span[contains(@class,'item-closed-warning__content')]")
     #poll pop-up

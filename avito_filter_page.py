@@ -46,6 +46,11 @@ class AvitoFilterPage(BasePage):
             if super().wait_for_js_and_jquery_to_load():
                 self.page_loaded = True
             # evaluating capcha if needed
+            if super().check_for_blocked_page():
+                parser_logger.warning("On requesting avito filter page Blocking page is displayed")
+                super().save_scrshot_to_temp()
+                super().bad_proxy_connection()
+                # raise ValueError - either wait  1 hour or revolve proxy server
             if super().check_for_captcha():
                 parser_logger.warning("On requesting avito filter page Captcha is displayed")
                 super().save_scrshot_to_temp()
