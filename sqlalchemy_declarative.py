@@ -1,3 +1,4 @@
+import datetime
 import re
 
 import inflect as inflect
@@ -8,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
-from sqlalchemy import create_engine, exists, MetaData
+from sqlalchemy import create_engine, exists, MetaData, and_
 
 from sqlalchemy import Column, String, ForeignKey, Integer, DateTime
 #Create and engine and get the metadata
@@ -35,6 +36,8 @@ import urllib
 # sqlalchemy.dialects.access.fix = fixed_dialect_mod
 # fixup_access()
 # ENGINE = sqlalchemy.create_engine('access+fix://admin@/%s' % (db_location))
+from parser_logger import parser_logger
+from realty_appartment_page import RealtyApartmentPage
 
 ABase = automap_base()
 Base = declarative_base()
@@ -166,23 +169,78 @@ session = Session(engine)
 # p = session.query(Person).all()
 # a = session.query(Address).all()
 # r = session.query(RealtyItem).all()
-c = session.query(Company).filter_by(company_name="Агентство").scalar()
-r = session.query(Rooms).filter_by(description="1").scalar()
+c = session.query(Company).filter_by(company_name="Адресъ").scalar()
+s = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
+r = session.query(Rooms).filter_by(description="2").scalar()
 so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
 # session.add(zap("test"))
-q = session.query(exists().where(
-                    RealtyItem.phone == realty_item.phone,
-                    RealtyItem.company_id == c.id,
-                    RealtyItem.rooms == r.id,
-                    RealtyItem.address == realty_item.address,
-                    RealtyItem.floor == realty_item.floor,
-                    RealtyItem.s_property == realty_item.area,
-                    #RealtyItem.s_land = "0"
-                    RealtyItem.forsale_forrent == st.id)).scalar())
+realty_item = RealtyItem()
+realty_item.phone = "9105117599"
+realty_item.company_id = c.id
+realty_item.rooms = r.id
+realty_item.address = "г. Обнинск, ул. Шацкого 13"
+realty_item.floor = "2"
+realty_item.area = "68,3"
+realty_item.forsale_forrent = s.id
+realty_item.price = "4400000"
+# unable to use nested queries in ms access
+# q = session.query( exists().where(and_(
+#                     RealtyItem.phone == realty_item.phone,
+#                     RealtyItem.company_id == realty_item.company_id,
+#                     RealtyItem.rooms == realty_item.rooms,
+#                     RealtyItem.address == realty_item.address,
+#                     RealtyItem.floor == realty_item.floor,
+#                     RealtyItem.s_property == realty_item.area,
+#                     RealtyItem.forsale_forrent == realty_item.forsale_forrent))).scalar()
+q = session.query(RealtyItem).filter_by(
+                    phone = realty_item.phone,
+                    company_id = realty_item.company_id,
+                    rooms = realty_item.rooms,
+                    address = realty_item.address,
+                    floor = realty_item.floor,
+                    s_property = realty_item.area,
+                    forsale_forrent = realty_item.forsale_forrent).scalar()
+if not q:
+        q = RealtyItem(
+            phone=realty_item.phone,
+            company_id=realty_item.company_id,
+            rooms=realty_item.rooms,
+            address=realty_item.address,
+            floor=realty_item.floor,
+            s_property=realty_item.area,
+            forsale_forrent=realty_item.forsale_forrent,
+            description=realty_item.description,
+            contact_name=realty_item.contact_name,
+            url="https://m.avito.ru/podolsk/kvartiry/3-k_kvartira_58_m_35_et._2001729439",
+            source=so.id,
+            timestamp=datetime.datetime.utcnow(),
+            call_timestamp=datetime.datetime.utcnow()
+            )
+        try:
+            q.price = str(int(int(realty_item.price) / 1000))
+        except ValueError:
+            parser_logger.error("Thread  - price conversion failed. Set 0 price . RealtyItem:}")
+            q.price = str("")
+        #insert new realty item
+            session.add(q)
+        #update realty item
+else:
+            #set current date
+            #set price
+            #set source "Avito робот"
+            q.timestamp = "" # datetime.datetime.utcnow()
+            try:
+                q.price = str(int(int(realty_item.price) / 1000))
+            except ValueError:
+                parser_logger.error("Thread  - price conversion failed. Set 0 price . RealtyItem:}")
+                q.price = str("")
+            q.source = so.id
 session.commit()
+session.close()
 print(so)
 print(r)
 print(c)
+
 # Create all tables in the engine. This is equivalent to "Create Table"
 # statements in raw SQL.
 # Base.metadata.create_all(engine)
