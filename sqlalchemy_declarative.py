@@ -178,11 +178,11 @@ realty_item = RealtyItem()
 realty_item.phone = "9105117599"
 realty_item.company_id = c.id
 realty_item.rooms = r.id
-realty_item.address = "г. Обнинск, ул. Шацкого 13"
+realty_item.address = "г. Обнинск, ул. Шацкого 11"
 realty_item.floor = "2"
 realty_item.area = "68,3"
 realty_item.forsale_forrent = s.id
-realty_item.price = "4400000"
+realty_item.price = "4200000"
 # unable to use nested queries in ms access
 # q = session.query( exists().where(and_(
 #                     RealtyItem.phone == realty_item.phone,
@@ -204,17 +204,17 @@ if not q:
         q = RealtyItem(
             phone=realty_item.phone,
             company_id=realty_item.company_id,
-            rooms=realty_item.rooms,
+            # rooms=realty_item.rooms,
             address=realty_item.address,
             floor=realty_item.floor,
             s_property=realty_item.area,
-            forsale_forrent=realty_item.forsale_forrent,
+            # forsale_forrent=realty_item.forsale_forrent,
             description=realty_item.description,
             contact_name=realty_item.contact_name,
             url="https://m.avito.ru/podolsk/kvartiry/3-k_kvartira_58_m_35_et._2001729439",
-            source=so.id,
-            timestamp=datetime.datetime.utcnow(),
-            call_timestamp=datetime.datetime.utcnow()
+            # source=so.id,
+            # timestamp=datetime.datetime.utcnow(),
+            # call_timestamp=datetime.datetime.utcnow()
             )
         try:
             q.price = str(int(int(realty_item.price) / 1000))
@@ -222,19 +222,24 @@ if not q:
             parser_logger.error("Thread  - price conversion failed. Set 0 price . RealtyItem:}")
             q.price = str("")
         #insert new realty item
-            session.add(q)
+        #session.add(q)
+        rs = engine.connect().execute('INSERT INTO Запись ( Объект*.Value ) \
+        VALUES("Avito робот") WHERE Запись.Объект* In (SELECT Запись.Объект* FROM Источники INNER JOIN Запись \
+        ON Источники.Источник/Реклама = Запись.Объект*) AND Запись.Адрес=г. Обнинск, ул. Шацкого 13 ;')
         #update realty item
 else:
             #set current date
             #set price
             #set source "Avito робот"
-            q.timestamp = "" # datetime.datetime.utcnow()
+            #q.timestamp = "" # datetime.datetime.utcnow()
             try:
                 q.price = str(int(int(realty_item.price) / 1000))
             except ValueError:
                 parser_logger.error("Thread  - price conversion failed. Set 0 price . RealtyItem:}")
                 q.price = str("")
-            q.source = so.id
+            # q.source = so.id
+            # miltivalued field cannot be altered in Access we run the raw SQL
+
 session.commit()
 session.close()
 print(so)
