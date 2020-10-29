@@ -171,14 +171,14 @@ session = Session(engine)
 # r = session.query(RealtyItem).all()
 c = session.query(Company).filter_by(company_name="Адресъ").scalar()
 s = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
-r = session.query(Rooms).filter_by(description="2").scalar()
+r = session.query(Rooms).filter_by(description="3").scalar()
 so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
 # session.add(zap("test"))
 realty_item = RealtyItem()
 realty_item.phone = "9105117599"
 realty_item.company_id = c.id
 realty_item.rooms = r.id
-realty_item.address = "г. Обнинск, ул. Шацкого 11"
+realty_item.address = "г. Обнинск, ул. Шацкого 13"
 realty_item.floor = "2"
 realty_item.area = "68,3"
 realty_item.forsale_forrent = s.id
@@ -239,6 +239,8 @@ else:
                 q.price = str("")
             # q.source = so.id
             # miltivalued field cannot be altered in Access we run the raw SQL
+            rs = engine.connect().execute('UPDATE Запись SET [Запись].[Объект*] = 2 WHERE [Адрес]=\'г. Обнинск, ул. Шацкого 13\';')
+
 
 session.commit()
 session.close()
