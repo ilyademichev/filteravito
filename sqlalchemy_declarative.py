@@ -171,7 +171,7 @@ session = Session(engine)
 # r = session.query(RealtyItem).all()
 c = session.query(Company).filter_by(company_name="Адресъ").scalar()
 s = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
-r = session.query(Rooms).filter_by(description="3").scalar()
+r = session.query(Rooms).filter_by(description="2").scalar()
 so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
 # session.add(zap("test"))
 realty_item = RealtyItem()
@@ -240,8 +240,7 @@ else:
             # q.source = so.id
             # miltivalued field cannot be altered in Access we run the raw SQL
             rs = engine.connect().execute('UPDATE Запись SET [Запись].[Объект*] = 2 WHERE [Адрес]=\'г. Обнинск, ул. Шацкого 13\';')
-
-
+            rs = engine.connect().execute('UPDATE Источники INNER JOIN Запись ON [Источники].[Код] = [Запись].[Реклама].[Value] SET [Запись].[Источник].[Value] = "Avito робот" WHERE ((Запись.Адрес)=\'г. Обнинск, ул. Шацкого 13\')');
 session.commit()
 session.close()
 print(so)
