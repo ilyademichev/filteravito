@@ -35,7 +35,7 @@ class Locators:
     # full address
     ADDRESS_SPAN = (By.XPATH, "//span[@data-marker='delivery/location']")
     # title of a company or an  owner
-    COMPANY_SPAN = (By.XPATH, "//span[@data-marker='seller-info/postfix']")
+    COMPANY_A = (By.XPATH, "//div[contains(@class,'seller-info-name')]/a")
     # name of a company or an owner contact name
     CONTACT_NAME_SPAN = (By.XPATH, "//span[@data-marker='seller-info/name']")
     # full text description

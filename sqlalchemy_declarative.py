@@ -240,7 +240,7 @@ else:
             # q.source = so.id
             # miltivalued field cannot be altered in Access we run the raw SQL
             rs = engine.connect().execute('UPDATE Запись SET [Запись].[Объект*] = 2 WHERE [Адрес]=\'г. Обнинск, ул. Шацкого 13\';')
-            rs = engine.connect().execute('UPDATE Источники INNER JOIN Запись ON [Источники].[Код] = [Запись].[Реклама].[Value] SET [Запись].[Источник].[Value] = "Avito робот" WHERE ((Запись.Адрес)=\'г. Обнинск, ул. Шацкого 13\')');
+                rs = engine.connect().execute('UPDATE Источники INNER JOIN Запись ON [Источники].[Код] = [Запись].[Реклама].[Value] SET [Запись].[Источник].[Value] = "Avito робот" WHERE ((Запись.Адрес)=\'г. Обнинск, ул. Шацкого 13\')');
 session.commit()
 session.close()
 print(so)

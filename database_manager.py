@@ -64,21 +64,25 @@ class DatabaseSynchronizerMSA(Thread):
                 #transaction covered by ORM session
                 session = create_session(bind=self.engine)
                 #ORM operations on DB
-                #get adjacent data from linked tables
-                c = session.query(Company).all() # filter_by(company_name=realty_item.company)
-                # r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
-                # st = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
-                # so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
-        #         #check for existence of a realty item
-        #         q = session.query(exists().where(
-        #             RealtyItem.phone == realty_item.phone,
-        #             RealtyItem.company_id == c.id,
-        #             RealtyItem.rooms == r.id,
-        #             RealtyItem.address == realty_item.address,
-        #             RealtyItem.floor == realty_item.floor,
-        #             RealtyItem.s_property == realty_item.area,
-        #             #RealtyItem.s_land = "0"
-        #             RealtyItem.forsale_forrent == st.id)).scalar()
+                # get adjacent data from linked tables
+                # MS ACCESS table: "Организации"
+                c = session.query(Company).filter_by(company_name=realty_item.company)
+                # MS ACCESS table: "Число комнат"
+                r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
+                # MS ACCESS table: "Продано, на задатке, не отвечает"
+                st = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
+                # MS ACCESS table: "Источники"
+                so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
+        #       #check for existence of a realty item
+                q = session.query(exists().where(
+                    RealtyItem.phone == realty_item.phone,
+                    RealtyItem.company_id == c.id,
+                    RealtyItem.rooms == r.id,
+                    RealtyItem.address == realty_item.address,
+                    RealtyItem.floor == realty_item.floor,
+                    RealtyItem.s_property == realty_item.area,
+                    #RealtyItem.s_land = "0"
+                    RealtyItem.forsale_forrent == st.id)).scalar()
         #         #key BAL , update or insert
         #         #no tiem found : insert new  realty item
         #         if not q:
@@ -122,9 +126,9 @@ class DatabaseSynchronizerMSA(Thread):
         #             q.timestamp = datetime.datetime.utcnow
         #             q.price = r.price
         #             q.source = so.id
-        #         session.commit()
+                session.commit()
         #         #end up the transaction
-        #         session.close()
+                session.close()
         #     except Exception as e:
         #         self.error = parser_logger.error(
         #             "Thread {0} - ORM session failed on RealtyItem:{1}".format(self.name, realty_item),exc_info=True)
