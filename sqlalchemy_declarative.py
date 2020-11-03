@@ -17,6 +17,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.mysql import LONGTEXT
+from sqlalchemy.orm.exc import MultipleResultsFound
 from sqlalchemy_utils import URLType
 #from sqlalchemy. access import Intege
 
@@ -165,84 +166,113 @@ engine = create_engine(connection_url,echo=True)
 # ABase.metadata.create_all(engine)
 # for c in Base.classes:
 #     print(c)
-session = Session(engine)
-# p = session.query(Person).all()
-# a = session.query(Address).all()
-# r = session.query(RealtyItem).all()
-c = session.query(Company).filter_by(company_name="Адресъ").scalar()
-s = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
-r = session.query(Rooms).filter_by(description="2").scalar()
-so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
-# session.add(zap("test"))
-realty_item = RealtyItem()
-realty_item.phone = "9105117599"
-realty_item.company_id = c.id
-realty_item.rooms = r.id
-realty_item.address = "г. Обнинск, ул. Шацкого 13"
-realty_item.floor = "2"
-realty_item.area = "68,3"
-realty_item.forsale_forrent = s.id
-realty_item.price = "4200000"
-# unable to use nested queries in ms access
-# q = session.query( exists().where(and_(
-#                     RealtyItem.phone == realty_item.phone,
-#                     RealtyItem.company_id == realty_item.company_id,
-#                     RealtyItem.rooms == realty_item.rooms,
-#                     RealtyItem.address == realty_item.address,
-#                     RealtyItem.floor == realty_item.floor,
-#                     RealtyItem.s_property == realty_item.area,
-#                     RealtyItem.forsale_forrent == realty_item.forsale_forrent))).scalar()
-q = session.query(RealtyItem).filter_by(
-                    phone = realty_item.phone,
-                    company_id = realty_item.company_id,
-                    rooms = realty_item.rooms,
-                    address = realty_item.address,
-                    floor = realty_item.floor,
-                    s_property = realty_item.area,
-                    forsale_forrent = realty_item.forsale_forrent).scalar()
-if not q:
-        q = RealtyItem(
-            phone=realty_item.phone,
-            company_id=realty_item.company_id,
-            # rooms=realty_item.rooms,
-            address=realty_item.address,
-            floor=realty_item.floor,
-            s_property=realty_item.area,
-            # forsale_forrent=realty_item.forsale_forrent,
-            description=realty_item.description,
-            contact_name=realty_item.contact_name,
-            url="https://m.avito.ru/podolsk/kvartiry/3-k_kvartira_58_m_35_et._2001729439",
-            # source=so.id,
-            # timestamp=datetime.datetime.utcnow(),
-            # call_timestamp=datetime.datetime.utcnow()
-            )
-        try:
-            q.price = str(int(int(realty_item.price) / 1000))
-        except ValueError:
-            parser_logger.error("Thread  - price conversion failed. Set 0 price . RealtyItem:}")
-            q.price = str("")
-        #insert new realty item
-        #session.add(q)
-        rs = engine.connect().execute('INSERT INTO Запись ( Объект*.Value ) \
-        VALUES("Avito робот") WHERE Запись.Объект* In (SELECT Запись.Объект* FROM Источники INNER JOIN Запись \
-        ON Источники.Источник/Реклама = Запись.Объект*) AND Запись.Адрес=г. Обнинск, ул. Шацкого 13 ;')
-        #update realty item
-else:
-            #set current date
-            #set price
-            #set source "Avito робот"
-            #q.timestamp = "" # datetime.datetime.utcnow()
+try:
+    session = Session(engine)
+    # p = session.query(Person).all()
+    # a = session.query(Address).all()
+    # r = session.query(RealtyItem).all()
+    c = session.query(Company).filter_by(company_name="-").scalar()
+    s = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
+    r = session.query(Rooms).filter_by(description="2").scalar()
+    so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
+    # session.add(zap("test"))
+    realty_item = RealtyItem()
+    realty_item.phone = "9038104886"
+    realty_item.company_id = c.id
+    realty_item.rooms = r.id
+    realty_item.address = "г. Обнинск, ул. Маркса 63"
+    realty_item.floor = "8"
+    realty_item.area = "49"
+    realty_item.forsale_forrent = s.id
+    realty_item.price = "3900000"
+    # unable to use nested queries in ms access
+    # q = session.query( exists().where(and_(
+    #                     RealtyItem.phone == realty_item.phone,
+    #                     RealtyItem.company_id == realty_item.company_id,
+    #                     RealtyItem.rooms == realty_item.rooms,
+    #                     RealtyItem.address == realty_item.address,
+    #                     RealtyItem.floor == realty_item.floor,
+    #                     RealtyItem.s_property == realty_item.area,
+    #                     RealtyItem.forsale_forrent == realty_item.forsale_forrent))).scalar()
+    q = session.query(RealtyItem).filter_by(
+                        phone = realty_item.phone,
+                        company_id = realty_item.company_id,
+                        rooms = realty_item.rooms,
+                        address = realty_item.address,
+                        floor = realty_item.floor,
+                        s_property = realty_item.area,
+                        forsale_forrent = realty_item.forsale_forrent).scalar()
+    if not q:
+        # compose new item
+            q = RealtyItem(
+                phone=realty_item.phone,
+                company_id=realty_item.company_id,
+                # rooms=realty_item.rooms,
+                address=realty_item.address,
+                floor=realty_item.floor,
+                s_property=realty_item.area,
+                # forsale_forrent=realty_item.forsale_forrent,
+                description=realty_item.description,
+                contact_name=realty_item.contact_name,
+                url="https://m.avito.ru/podolsk/kvartiry/3-k_kvartira_58_m_35_et._2001729439",
+                # source=so.id,
+                # timestamp=datetime.datetime.utcnow(),
+                # call_timestamp=datetime.datetime.utcnow()
+                )
             try:
                 q.price = str(int(int(realty_item.price) / 1000))
             except ValueError:
                 parser_logger.error("Thread  - price conversion failed. Set 0 price . RealtyItem:}")
                 q.price = str("")
-            # q.source = so.id
-            # miltivalued field cannot be altered in Access we run the raw SQL
-            rs = engine.connect().execute('UPDATE Запись SET [Запись].[Объект*] = 2 WHERE [Адрес]=\'г. Обнинск, ул. Шацкого 13\';')
+            #insert new realty item
+            #session.add(q)
+            rs = engine.connect().execute('INSERT INTO Запись ( Объект*.Value ) \
+            VALUES("Avito робот") WHERE Запись.Объект* In (SELECT Запись.Объект* FROM Источники INNER JOIN Запись \
+            ON Источники.Источник/Реклама = Запись.Объект*) AND Запись.Адрес=г. Обнинск, ул. Шацкого 13 ;')
+            #update realty item
+    else:
+                #set current date
+                #set price
+                #set source "Avito робот"
+                #q.timestamp = "" # datetime.datetime.utcnow()
+                try:
+                    q.price = str(int(int(realty_item.price) / 1000))
+                except ValueError:
+                    parser_logger.error("Thread  - price conversion failed. Set 0 price . RealtyItem:}")
+                    q.price = str("")
+                # q.source = so.id
+                # miltivalued field cannot be altered in Access we run the raw SQL
+                # rs = engine.connect().execute('UPDATE Запись SET [Запись].[Объект*] = 2 WHERE [Адрес]=\'г. Обнинск, ул. Шацкого 13\';')
                 rs = engine.connect().execute('UPDATE Источники INNER JOIN Запись ON [Источники].[Код] = [Запись].[Реклама].[Value] SET [Запись].[Источник].[Value] = "Avito робот" WHERE ((Запись.Адрес)=\'г. Обнинск, ул. Шацкого 13\')');
-session.commit()
-session.close()
+                results = (session.query(RealtyItem)
+                           .join(RealtyItem.source)
+                           .values(PlayerModel.username,
+                                   MessageModel.message,
+                                   MessageModel.time))
+
+                # query = update(Model).values(field=123)
+                # query = query.where(Model.parent_model_id == ParentModel.id)
+                # query = query.where(ParentModel.grand_parent_id == GrandParentModel.id)
+                # query = query.where(GrandParentModel.name == 'foobar')
+                # session.execute(query)
+
+                users.update().values(name='ed').where(
+                    users.c.name == select([addresses.c.email_address]). \
+                    where(addresses.c.user_id == users.c.id). \
+                    as_scalar()
+                )
+
+                resultlist = []
+                for username, message, time in results:
+                    resultlist.append({'message': message,
+                                       'username': username,
+                                       'time': time})
+    session.commit()
+    session.close()
+# scalar() raises MultipleResultsFound once multiple records found
+except MultipleResultsFound as e:
+    parser_logger.error("DB broken key violation",err_info=True)
+
 print(so)
 print(r)
 print(c)

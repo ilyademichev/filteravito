@@ -167,7 +167,7 @@ class RealtyApartmentPage(BasePage):
         self.address = self.get_text_if_exist(Locators.ADDRESS_SPAN)
         self.area = self.get_text_if_exist(Locators.AREA_SPAN)
         self.company = self.get_text_if_exist(Locators.COMPANY_A)
-        self.contact_name = self.get_text_if_exist(Locators.CONTACT_NAME_SPAN)
+        self.contact_name = self.get_text_if_exist(Locators.CONTACT_NAME_DIV)
         self.description = self.get_text_if_exist(Locators.DESCRIPTION_SPAN)
         self.price = self.get_text_if_exist(Locators.PRICE_SPAN)
         self.rooms = self.get_text_if_exist(Locators.NUMOF_ROOMS_SPAN)

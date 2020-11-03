@@ -37,15 +37,20 @@ class Locators:
     # title of a company or an  owner
     COMPANY_A = (By.XPATH, "//div[contains(@class,'seller-info-name')]/a")
     # name of a company or an owner contact name
-    CONTACT_NAME_SPAN = (By.XPATH, "//span[@data-marker='seller-info/name']")
+    # CONTACT_NAME_SPAN = (By.XPATH, "//span[@data-marker='seller-info/name']")
+    CONTACT_NAME_DIV = (By.XPATH, "//div[@class='seller-info-value']")
+
     # full text description
     DESCRIPTION_SPAN = (By.XPATH, "//div[@data-marker = 'item-description/text']")
     # area
-    AREA_SPAN = (By.XPATH, "//div[@data-marker = 'item-properties-item(9)/description']")
+    # AREA_SPAN = (By.XPATH, "//div[@data-marker = 'item-properties-item(9)/description']")
+    AREA_SPAN = (By.XPATH, "//span[(contains(text(),'Жилая площадь:'))]//parent::li")
     # floor
-    FLOOR_SPAN = (By.XPATH, "//div[@data-marker = 'item-properties-item(4)/description']")
+    # FLOOR_SPAN = (By.XPATH, "//div[@data-marker = 'item-properties-item(4)/description']")
+    FLOOR_SPAN = (By.XPATH, "//span[(contains(text(),'Этаж:'))]//parent::li")
     # rooms
-    NUMOF_ROOMS_SPAN = (By.XPATH, "//div[@data-marker = 'item-properties-item(8)/description']")
+    # NUMOF_ROOMS_SPAN = (By.XPATH, "//div[@data-marker = 'item-properties-item(8)/description']")
+    NUMOF_ROOMS_SPAN = (By.XPATH, "//span[(contains(text(),'Количество комнат:'))]//parent::li")
     # phone button link
     PHONE_POPUP_SHOW_LINK = (By.XPATH, "//a[@data-marker='item-contact-bar/call']")
     #    data-marker='item-contact-bar/call"
