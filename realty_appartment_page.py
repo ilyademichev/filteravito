@@ -147,6 +147,16 @@ class RealtyApartmentPage(BasePage):
             return els[0].text
         else:
             return None
+    def get_text_if_exist_from_li(self,loc):
+        els = self.driver.find_elements(*loc)
+        if len(els) > 0:
+            # remove heading text , leave the data
+            child = els[0].find_element_by_tag_name('span')
+            els[0].text.replace(child.text,'')
+            return els[0].text
+        else:
+            return None
+
 
     # parse the currently loaded page
     def parse_realty_apprment_page(self):
@@ -165,13 +175,13 @@ class RealtyApartmentPage(BasePage):
         # parse the fields except the phone
         # since the phone popup covers the fields
         self.address = self.get_text_if_exist(Locators.ADDRESS_SPAN)
-        self.area = self.get_text_if_exist(Locators.AREA_SPAN)
+        self.area = self.get_text_if_exist_from_li(Locators.AREA_LI)
         self.company = self.get_text_if_exist(Locators.COMPANY_A)
         self.contact_name = self.get_text_if_exist(Locators.CONTACT_NAME_DIV)
         self.description = self.get_text_if_exist(Locators.DESCRIPTION_SPAN)
         self.price = self.get_text_if_exist(Locators.PRICE_SPAN)
-        self.rooms = self.get_text_if_exist(Locators.NUMOF_ROOMS_SPAN)
-        self.floor = self.get_text_if_exist(Locators.TIMESTAMP_ITEM_DIV)
+        self.rooms = self.get_text_if_exist_from_li(Locators.NUMOF_ROOMS_LI)
+        self.floor = self.get_text_if_exist_from_li(Locators.FLOOR_LI)
         # ocassionally we need to reload the page to get the number
         # the phone button is unclickable
         # so we fetch the phone in the end

@@ -114,11 +114,11 @@ class RealtyStatus(Base):
     properties = relationship("RealtyItem", backref="Продано, на задатке, не отвечает", \
                               cascade="all, delete, delete-orphan")
 
-class Streets(Base)
+class Streets(Base):
     __tablename__ = "Улици"
     id = Column('Код', Integer, primary_key=True)
-    status = Column('Улица', String(255))
-    properties = relationship("RealtyItem", backref="", \
+    street = Column('Улица', String(255))
+    properties = relationship("RealtyItem", backref="Улици", \
                               cascade="all, delete, delete-orphan")
 
 
@@ -186,13 +186,15 @@ try:
     c = session.query(Company).filter_by(company_name="-").scalar()
     s = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
     r = session.query(Rooms).filter_by(description="2").scalar()
+    st = session.query(Streets).filter_by(street="-").scalar()
+    house_not_identified = '-'
     # so = session.query(AdvertismentSource).filter_by(source="Avito сайт").scalar()
     # session.add(zap("test"))
     realty_item = RealtyItem()
-    realty_item.phone = "9038104886"
+    realty_item.phone = "903810488"
     realty_item.company_id = c.id
     realty_item.rooms = r.id
-    realty_item.address = "г. Обнинск, ул. Маркса 0"
+    realty_item.address = "г. Обнинск, ул. Маркса 63"
     realty_item.floor = "8"
     realty_item.area = "49"
     realty_item.forsale_forrent = s.id
@@ -223,6 +225,8 @@ try:
                 company_id=realty_item.company_id,
                 rooms=realty_item.rooms,
                 address=realty_item.address,
+                street = st.id,
+                house_num = house_not_identified,
                 floor=realty_item.floor,
                 s_property=realty_item.area,
                 forsale_forrent=realty_item.forsale_forrent,
@@ -290,7 +294,7 @@ try:
 except MultipleResultsFound as e:
     parser_logger.error("DB broken key violation",err_info=True)
 
-print(so)
+#print(so)
 print(r)
 print(c)
 

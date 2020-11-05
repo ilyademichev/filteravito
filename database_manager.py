@@ -1,17 +1,17 @@
 import os
+import time
 import urllib
-from sqlalchemy import create_engine, exists, MetaData
+from sqlalchemy import create_engine
 import pyodbc
-from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import create_session
+from sqlalchemy.orm.exc import MultipleResultsFound
 from MSACCESSAttachmentLoader import MSAttachmentLoader
 from threading import Thread, Lock
 from queue import Queue
 import binascii
 from parser_logger import parser_logger
 from crawler_data import CrawlerData
-from realty_db import RealtyItem, Company, Rooms, RealtyStatus, AdvertismentSource, Base
-from sqlalchemy.ext.declarative import declarative_base
+from realty_db import RealtyItem, Company, Rooms, RealtyStatus,  Base, Streets # , AdvertismentSource
 import datetime
 connection_string = (
     r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'
@@ -54,13 +54,12 @@ class DatabaseSynchronizerMSA(Thread):
 
     def sync_database(self, realty_item):
         """  BAL business access logic"""
-        #debug print out
+        # debug print out of a pending item
         print(', '.join("%s: %s \n" % item for item in vars(realty_item).items()))
-
-        #CRUD operations for MS ACCESS are single-user
-        #lock is for safety
+        # CRUD operations for MS ACCESS are single-user
+        # lock is for safety
         with self.lock:
-        #    try:
+            try:
                 #transaction covered by ORM session
                 session = create_session(bind=self.engine)
                 #ORM operations on DB
@@ -72,63 +71,81 @@ class DatabaseSynchronizerMSA(Thread):
                 # MS ACCESS table: "Продано, на задатке, не отвечает"
                 st = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
                 # MS ACCESS table: "Источники"
-                so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
-        #       #check for existence of a realty item
-                q = session.query(exists().where(
-                    RealtyItem.phone == realty_item.phone,
-                    RealtyItem.company_id == c.id,
-                    RealtyItem.rooms == r.id,
-                    RealtyItem.address == realty_item.address,
-                    RealtyItem.floor == realty_item.floor,
-                    RealtyItem.s_property == realty_item.area,
-                    #RealtyItem.s_land = "0"
-                    RealtyItem.forsale_forrent == st.id)).scalar()
-        #         #key BAL , update or insert
-        #         #no tiem found : insert new  realty item
-        #         if not q:
-        #             # queue up the image downloader
-        #             # extract advertisment number
-        #             # Объявление: №507307470, Сегодня, 14:04
-        #             # make up a tuple of (507307470, {links})
-        #             # queue it up in the image downloader
-        #             # 507307470 will be the folder with links
-        #             adv = [(realty_item.realty_adv_avito_number, imgl) for imgl in realty_item.realty_images]
-        #             self.download_manager.queue_image_links(adv)
-        #             q = RealtyItem(
-        #                 phone=realty_item.phone,
-        #                 company_id=c.id,
-        #                 rooms=r.id,
-        #                 address=realty_item.address,
-        #                 floor=realty_item.floor,
-        #                 s_property=realty_item.area,
-        #                 forsale_forrent=st.id,
-        #                 description=realty_item.description,
-        #                 contact_name=realty_item.contact_name,
-        #                 url = realty_item.realty_hyperlink,
-        #                 source=so.id,
-        #                 timestamp=datetime.datetime.utcnow,
-        #                 call_timestamp=datetime.datetime.utcnow
-        #             )
-        #             #price field could be fictious -we go through validation
-        #             #once invalid price is set to 0
-        #             try:
-        #                 q.price = str(int(realty_item.price) / 1000)
-        #             except ValueError:
-        #                 parser_logger.error("Thread {0} - price conversion failed. Set 0 price . RealtyItem:{1}}".format(self.name,realty_item))
-        #                 q.price = str("0")
-        #             #insert new realty item
-        #             session.add(q)
-        #         #update realty item
-        #         else:
-        #             #set current date
-        #             #set price
-        #             #set source "Avito робот"
-        #             q.timestamp = datetime.datetime.utcnow
-        #             q.price = r.price
-        #             q.source = so.id
+                # so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
+                # MS ACCESS table: "Улици"
+                # we use full-address and set separate address fields to not identified
+                # street not identified
+                st = session.query(Streets).filter_by(street="-").scalar()
+                # house not identified
+                house_not_identified = '-'
+                #       #check for existence of a realty item
+                # unable to use nested queries in ms access and exists statement
+                # q = session.query( exists().where(and_(
+                #                     RealtyItem.phone == realty_item.phone,
+                #                     RealtyItem.company_id == realty_item.company_id,
+                #                     RealtyItem.rooms == realty_item.rooms,
+                #                     RealtyItem.address == realty_item.address,
+                #                     RealtyItem.floor == realty_item.floor,
+                #                     RealtyItem.s_property == realty_item.area,
+                #                     RealtyItem.forsale_forrent == realty_item.forsale_forrent))).scalar()
+                # once multiple items exist MultipleResultsFound raised - compound primary key violation
+                q = session.query(RealtyItem).filter_by(
+                    phone=realty_item.phone,
+                    company_id=realty_item.company_id,
+                    rooms=realty_item.rooms,
+                    address=realty_item.address,
+                    floor=realty_item.floor,
+                    s_property=realty_item.area,
+                    forsale_forrent=realty_item.forsale_forrent).scalar()
+                if not q:
+                    # compose new item
+                    t = datetime.date.fromtimestamp(time.time())
+                    q = RealtyItem(
+                        phone=realty_item.phone,
+                        company_id=realty_item.company_id,
+                        rooms=realty_item.rooms,
+                        address=realty_item.address,
+                        street=st.id,
+                        house_num=house_not_identified,
+                        floor=realty_item.floor,
+                        s_property=realty_item.area,
+                        forsale_forrent=realty_item.forsale_forrent,
+                        description=realty_item.description,
+                        contact_name=realty_item.contact_name,
+                        url=realty_item.realty_hyperlink,
+                        # source=so.id,
+                        timestamp=t,
+                        call_timestamp=t
+                    )
+                    try:
+                        q.price = str(int(int(realty_item.price) / 1000))
+                    except ValueError:
+                        parser_logger.error("* Thread {0} price conversion failed. Set empty price field  *".format(self.name))
+                        q.price = str("")
+                    # insert new realty item
+                    session.add(q)
+                else:
+                    # refresh the time
+                    # set current date
+                    # set price
+                    # set source "Avito робот"
+                    q.timestamp = datetime.date.fromtimestamp(time.time())
+                    try:
+                        q.price = str(int(int(realty_item.price) / 1000))
+                    except ValueError:
+                        parser_logger.error("* Thread {0} price conversion failed. Set empty price field  *".format(self.name))
+                        q.price = str("")
+
+                    # rs = engine.connect().execute('INSERT INTO Запись ( Объект*.Value ) \
+                    # VALUES("Avito робот") WHERE Запись.Объект* In (SELECT Запись.Объект* FROM Источники INNER JOIN Запись \
+                    # ON Источники.Источник/Реклама = Запись.Объект*) AND Запись.Адрес=г. Обнинск, ул. Шацкого 13 ;')
+                    # update realty item
                 session.commit()
-        #         #end up the transaction
                 session.close()
+                # scalar() raises MultipleResultsFound once multiple records found
+            except MultipleResultsFound as e:
+                    parser_logger.error("* Thread {0} multiple realty items found by complex primary key".format(self.name), err_info=True)
+                    return False
         #     except Exception as e:
         #         self.error = parser_logger.error(
         #             "Thread {0} - ORM session failed on RealtyItem:{1}".format(self.name, realty_item),exc_info=True)

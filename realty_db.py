@@ -42,7 +42,7 @@ class RealtyItem(Base):
     contact_name=Column('Имя 1', String(255))
     url=Column('Ссылка', URLType)
     price=Column('Цена min*1000', String(255))
-    source=Column('Источник', Integer,ForeignKey('Источники.Код'))
+    #source=Column('Источник', Integer,ForeignKey('Источники.Код'))
     timestamp=Column('Дата Подачи', DateTime)
     call_timestamp=Column('Дата Прозвона/Преостановлено до/Позвонить', DateTime)
 
@@ -68,12 +68,19 @@ class RealtyStatus(Base):
     properties = relationship("RealtyItem", backref="Продано, на задатке, не отвечает", \
                               cascade="all, delete, delete-orphan")
 
-class AdvertismentSource(Base):
-    __tablename__ = "Источники"
+# class AdvertismentSource(Base):
+#     __tablename__ = "Источники"
+#     id = Column('Код', Integer, primary_key=True)
+#     source = Column('Источник/Реклама', String(255))
+#     properties = relationship("RealtyItem", backref="Источники", \
+#                           cascade="all, delete, delete-orphan")
+
+class Streets(Base):
+    __tablename__ = "Улици"
     id = Column('Код', Integer, primary_key=True)
-    source = Column('Источник/Реклама', String(255))
-    properties = relationship("RealtyItem", backref="Источники", \
-                          cascade="all, delete, delete-orphan")
+    street = Column('Улица', String(255))
+    properties = relationship("RealtyItem", backref="Улици", \
+                              cascade="all, delete, delete-orphan")
 
 # user_table = Table('Запись', metadata,
 #             Column('id', Integer, primary_key=True),
