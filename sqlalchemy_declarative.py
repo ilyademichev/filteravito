@@ -1,5 +1,6 @@
 import datetime
 import re
+import time
 
 import inflect as inflect
 import pyodbc
@@ -75,7 +76,9 @@ class RealtyItem(Base):
     phone=Column('Телефон 1*', String(255), primary_key=True)
     company_id = Column('Организация*',Integer, ForeignKey('Организации.Код'),primary_key=True)
     rooms=Column('Объект*', Integer,ForeignKey('Число комнат.Код'), primary_key=True)
-    address=Column('Адрес', String(255), primary_key=True)
+    address=Column('Адрес', String(255))
+    street=Column('Ул/пр*', Integer,ForeignKey('Улици.Код'), primary_key=True)
+    house_num=Column('№ дома*', String(255), primary_key=True)
     floor=Column('Этаж*', String(255), primary_key=True)
     #agent_name=Column('Организация*', Integer, )
     s_property=Column('S общ*/объекта', String(255), primary_key=True)
@@ -85,7 +88,7 @@ class RealtyItem(Base):
     contact_name=Column('Имя 1', String(255))
     url=Column('Ссылка', URLType)
     price=Column('Цена min*1000', String(255))
-    source=Column('Источник', Integer,ForeignKey('Источники.Код'))
+    # source=Column('Источник', Integer,ForeignKey('Источники.Код'))
     timestamp=Column('Дата Подачи', DateTime)
     call_timestamp=Column('Дата Прозвона/Преостановлено до/Позвонить', DateTime)
 
@@ -111,12 +114,20 @@ class RealtyStatus(Base):
     properties = relationship("RealtyItem", backref="Продано, на задатке, не отвечает", \
                               cascade="all, delete, delete-orphan")
 
-class AdvertismentSource(Base):
-    __tablename__ = "Источники"
+class Streets(Base)
+    __tablename__ = "Улици"
     id = Column('Код', Integer, primary_key=True)
-    source = Column('Источник/Реклама', String(255))
-    properties = relationship("RealtyItem", backref="Источники", \
-                          cascade="all, delete, delete-orphan")
+    status = Column('Улица', String(255))
+    properties = relationship("RealtyItem", backref="", \
+                              cascade="all, delete, delete-orphan")
+
+
+# class AdvertismentSource(Base):
+#     __tablename__ = "Источники"
+#     id = Column('Код', Integer, primary_key=True)
+#     source = Column('Источник/Реклама', String(255))
+#     properties = relationship("RealtyItem", backref="Источники", \
+#                           cascade="all, delete, delete-orphan")
 
 
 
@@ -171,16 +182,17 @@ try:
     # p = session.query(Person).all()
     # a = session.query(Address).all()
     # r = session.query(RealtyItem).all()
+    # test item
     c = session.query(Company).filter_by(company_name="-").scalar()
     s = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
     r = session.query(Rooms).filter_by(description="2").scalar()
-    so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
+    # so = session.query(AdvertismentSource).filter_by(source="Avito сайт").scalar()
     # session.add(zap("test"))
     realty_item = RealtyItem()
     realty_item.phone = "9038104886"
     realty_item.company_id = c.id
     realty_item.rooms = r.id
-    realty_item.address = "г. Обнинск, ул. Маркса 63"
+    realty_item.address = "г. Обнинск, ул. Маркса 0"
     realty_item.floor = "8"
     realty_item.area = "49"
     realty_item.forsale_forrent = s.id
@@ -194,6 +206,7 @@ try:
     #                     RealtyItem.floor == realty_item.floor,
     #                     RealtyItem.s_property == realty_item.area,
     #                     RealtyItem.forsale_forrent == realty_item.forsale_forrent))).scalar()
+    # once multiple items exist MultipleResultsFound raised - compound primary key violation
     q = session.query(RealtyItem).filter_by(
                         phone = realty_item.phone,
                         company_id = realty_item.company_id,
@@ -204,20 +217,21 @@ try:
                         forsale_forrent = realty_item.forsale_forrent).scalar()
     if not q:
         # compose new item
+            t = datetime.date.fromtimestamp(time.time())
             q = RealtyItem(
                 phone=realty_item.phone,
                 company_id=realty_item.company_id,
-                # rooms=realty_item.rooms,
+                rooms=realty_item.rooms,
                 address=realty_item.address,
                 floor=realty_item.floor,
                 s_property=realty_item.area,
-                # forsale_forrent=realty_item.forsale_forrent,
+                forsale_forrent=realty_item.forsale_forrent,
                 description=realty_item.description,
                 contact_name=realty_item.contact_name,
                 url="https://m.avito.ru/podolsk/kvartiry/3-k_kvartira_58_m_35_et._2001729439",
                 # source=so.id,
-                # timestamp=datetime.datetime.utcnow(),
-                # call_timestamp=datetime.datetime.utcnow()
+                timestamp =  t, # '#2009-04-21 14:25:53#', # datetime.datetime.utcnow(),
+                call_timestamp = t #'#2009-04-21 14:25:53#'  # datetime.datetime.utcnow()
                 )
             try:
                 q.price = str(int(int(realty_item.price) / 1000))
@@ -225,16 +239,16 @@ try:
                 parser_logger.error("Thread  - price conversion failed. Set 0 price . RealtyItem:}")
                 q.price = str("")
             #insert new realty item
-            #session.add(q)
-            rs = engine.connect().execute('INSERT INTO Запись ( Объект*.Value ) \
-            VALUES("Avito робот") WHERE Запись.Объект* In (SELECT Запись.Объект* FROM Источники INNER JOIN Запись \
-            ON Источники.Источник/Реклама = Запись.Объект*) AND Запись.Адрес=г. Обнинск, ул. Шацкого 13 ;')
+            session.add(q)
+            # rs = engine.connect().execute('INSERT INTO Запись ( Объект*.Value ) \
+            # VALUES("Avito робот") WHERE Запись.Объект* In (SELECT Запись.Объект* FROM Источники INNER JOIN Запись \
+            # ON Источники.Источник/Реклама = Запись.Объект*) AND Запись.Адрес=г. Обнинск, ул. Шацкого 13 ;')
             #update realty item
     else:
                 #set current date
                 #set price
                 #set source "Avito робот"
-                #q.timestamp = "" # datetime.datetime.utcnow()
+                q.timestamp = datetime.date.fromtimestamp(time.time())
                 try:
                     q.price = str(int(int(realty_item.price) / 1000))
                 except ValueError:
@@ -243,12 +257,13 @@ try:
                 # q.source = so.id
                 # miltivalued field cannot be altered in Access we run the raw SQL
                 # rs = engine.connect().execute('UPDATE Запись SET [Запись].[Объект*] = 2 WHERE [Адрес]=\'г. Обнинск, ул. Шацкого 13\';')
-                rs = engine.connect().execute('UPDATE Источники INNER JOIN Запись ON [Источники].[Код] = [Запись].[Реклама].[Value] SET [Запись].[Источник].[Value] = "Avito робот" WHERE ((Запись.Адрес)=\'г. Обнинск, ул. Шацкого 13\')');
-                results = (session.query(RealtyItem)
-                           .join(RealtyItem.source)
-                           .values(PlayerModel.username,
-                                   MessageModel.message,
-                                   MessageModel.time))
+
+                # rs = engine.connect().execute('INSERT INTO [Запись]([Источник].Value) VALUES ('+str(so.id)+') WHERE (([Запись].[Адрес])=\'г. Обнинск, ул. Маркса 63\')');
+                # results = (session.query(RealtyItem)
+                #            .join(RealtyItem.source)
+                #            .values(PlayerModel.username,
+                #                    MessageModel.message,
+                #                    MessageModel.time))
 
                 # query = update(Model).values(field=123)
                 # query = query.where(Model.parent_model_id == ParentModel.id)
@@ -256,17 +271,19 @@ try:
                 # query = query.where(GrandParentModel.name == 'foobar')
                 # session.execute(query)
 
-                users.update().values(name='ed').where(
-                    users.c.name == select([addresses.c.email_address]). \
-                    where(addresses.c.user_id == users.c.id). \
-                    as_scalar()
-                )
-
-                resultlist = []
-                for username, message, time in results:
-                    resultlist.append({'message': message,
-                                       'username': username,
-                                       'time': time})
+                # users.update().values(name='ed').where(
+                #     users.c.name == select([addresses.c.email_address]). \
+                #     where(addresses.c.user_id == users.c.id). \
+                #     as_scalar()
+                # )
+                #
+                # resultlist = []
+                # for username, message, time in results:
+                #     resultlist.append({'message': message,
+                #                        'username': username,
+                #                        'time': time})
+                #
+                # s.compile(compile_kwargs={"literal_binds": True}))
     session.commit()
     session.close()
 # scalar() raises MultipleResultsFound once multiple records found
