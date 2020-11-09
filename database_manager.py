@@ -72,7 +72,7 @@ class DatabaseSynchronizerMSA(Thread):
                 # MS ACCESS table: "Число комнат"
                 r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
                 if not r :
-                    c = Rooms(description=realty_item.rooms)
+                    r = Rooms(description=realty_item.rooms)
                     session.add(r)
                 # MS ACCESS table: "Продано, на задатке, не отвечает"
                 st = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
