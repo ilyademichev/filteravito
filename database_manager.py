@@ -4,7 +4,7 @@ import urllib
 from sqlalchemy import create_engine
 import pyodbc
 from sqlalchemy.orm import create_session
-from sqlalchemy.orm.exc import MultipleResultsFound
+from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from MSACCESSAttachmentLoader import MSAttachmentLoader
 from threading import Thread, Lock
 from queue import Queue
@@ -144,12 +144,11 @@ class DatabaseSynchronizerMSA(Thread):
                 session.close()
                 # scalar() raises MultipleResultsFound once multiple records found
             except MultipleResultsFound as e:
-                    parser_logger.error("* Thread {0} multiple realty items found by complex primary key".format(self.name), err_info=True)
-                    return False
-        #     except Exception as e:
-        #         self.error = parser_logger.error(
-        #             "Thread {0} - ORM session failed on RealtyItem:{1}".format(self.name, realty_item),exc_info=True)
-        #         return False
+                parser_logger.error("* Thread {0} multiple realty items found by complex primary key".format(self.name), err_info=True)
+                return False
+            except Exception as e:
+                parser_logger.error("Thread {0} - ORM session failed on RealtyItem:{1}".format(self.name, realty_item),exc_info=True)
+                return False
         return True
 
 class DatabaseManager:

@@ -34,6 +34,8 @@ class RealtyItem(Base):
     rooms=Column('Объект*', Integer,ForeignKey('Число комнат.Код'), primary_key=True)
     address=Column('Адрес', String(255), primary_key=True)
     floor=Column('Этаж*', String(255), primary_key=True)
+    street=Column('Ул/пр*', Integer,ForeignKey('Улици.Код'), primary_key=True)
+    house_num=Column('№ дома*', String(255), primary_key=True)
     #agent_name=Column('Организация*', Integer, )
     s_property=Column('S общ*/объекта', String(255), primary_key=True)
     #s_land=Column('S уч, сот', String(255), primary_key=True)

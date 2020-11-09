@@ -130,7 +130,7 @@ class RealtyApartmentPage(BasePage):
     def parse_phone(self):
         if self.display_phone_popup():
             parser_logger.info('Item page parsing: Fetching the phone number')
-            phone = self.driver.find_element(*Locators.PHONE_TEXT).text
+            self.phone = self.driver.find_element(*Locators.PHONE_TEXT).text
         else:
             parser_logger.warning("Item page parsing: Unable to display phone pop-up.")
             return None
@@ -175,13 +175,13 @@ class RealtyApartmentPage(BasePage):
         # parse the fields except the phone
         # since the phone popup covers the fields
         self.address = self.get_text_if_exist(Locators.ADDRESS_SPAN)
-        self.area = self.get_text_if_exist_from_li(Locators.AREA_LI)
-        self.company = self.get_text_if_exist(Locators.COMPANY_A)
-        self.contact_name = self.get_text_if_exist(Locators.CONTACT_NAME_DIV)
+        self.area = self.get_text_if_exist(Locators.AREA_DIV)
+        self.company = self.get_text_if_exist(Locators.COMPANY_SPAN)
+        self.contact_name = self.get_text_if_exist(Locators.CONTACT_NAME_SPAN)
         self.description = self.get_text_if_exist(Locators.DESCRIPTION_SPAN)
         self.price = self.get_text_if_exist(Locators.PRICE_SPAN)
-        self.rooms = self.get_text_if_exist_from_li(Locators.NUMOF_ROOMS_LI)
-        self.floor = self.get_text_if_exist_from_li(Locators.FLOOR_LI)
+        self.rooms = self.get_text_if_exist(Locators.NUMOF_ROOMS_DIV)
+        self.floor = self.get_text_if_exist(Locators.FLOOR_DIV)
         # ocassionally we need to reload the page to get the number
         # the phone button is unclickable
         # so we fetch the phone in the end
