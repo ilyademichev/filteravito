@@ -65,9 +65,15 @@ class DatabaseSynchronizerMSA(Thread):
                 #ORM operations on DB
                 # get adjacent data from linked tables
                 # MS ACCESS table: "Организации"
-                c = session.query(Company).filter_by(company_name=realty_item.company)
+                c = session.query(Company).filter_by(company_name=realty_item.company).scalar()
+                if not c :
+                    c = Company(company_name=realty_item.company)
+                    session.add(c)
                 # MS ACCESS table: "Число комнат"
                 r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
+                if not r :
+                    c = Rooms(description=realty_item.rooms)
+                    session.add(r)
                 # MS ACCESS table: "Продано, на задатке, не отвечает"
                 st = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
                 # MS ACCESS table: "Источники"
