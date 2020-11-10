@@ -65,23 +65,33 @@ class DatabaseSynchronizerMSA(Thread):
                 #ORM operations on DB
                 # get adjacent data from linked tables
                 # MS ACCESS table: "Организации"
-                c = session.query(Company).filter_by(company_name=realty_item.company).scalar()
-                if not c :
+                try:
+                    c = session.query(Company).filter_by(company_name=realty_item.company).scalar()
+                except NoResultFound as e:
+                    parser_logger.info("Appending Company")
                     c = Company(company_name=realty_item.company)
                     session.add(c)
                 # MS ACCESS table: "Число комнат"
-                r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
-                if not r :
+                try:
+                    r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
+                except NoResultFound as e:
+                    parser_logger.info("Appending Rooms")
                     r = Rooms(description=realty_item.rooms)
                     session.add(r)
                 # MS ACCESS table: "Продано, на задатке, не отвечает"
-                st = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
+                try:
+                    st = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
+                except NoResultFound as e:
+                    parser_logger.error("* Thread {0} - Required record not found: possibly DB structure is broken {1}".format(self.name, "status='в Продаже'"),exc_info=True)
                 # MS ACCESS table: "Источники"
                 # so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
                 # MS ACCESS table: "Улици"
                 # we use full-address and set separate address fields to not identified
                 # street not identified
-                st = session.query(Streets).filter_by(street="-").scalar()
+                try:
+                    st = session.query(Streets).filter_by(street="-").scalar()
+                except NoResultFound as e:
+                    parser_logger.error("* Thread {0} - Required record not found: possibly DB structure is broken {1}".format(self.name, "street='-'"), exc_info=True)
                 # house not identified
                 house_not_identified = '-'
                 #       #check for existence of a realty item
@@ -95,15 +105,17 @@ class DatabaseSynchronizerMSA(Thread):
                 #                     RealtyItem.s_property == realty_item.area,
                 #                     RealtyItem.forsale_forrent == realty_item.forsale_forrent))).scalar()
                 # once multiple items exist MultipleResultsFound raised - compound primary key violation
-                q = session.query(RealtyItem).filter_by(
-                    phone=realty_item.phone,
-                    company_id=realty_item.company_id,
-                    rooms=realty_item.rooms,
-                    address=realty_item.address,
-                    floor=realty_item.floor,
-                    s_property=realty_item.area,
-                    forsale_forrent=realty_item.forsale_forrent).scalar()
-                if not q:
+                try:
+                    q = session.query(RealtyItem).filter_by(
+                        phone=realty_item.phone,
+                        company_id=realty_item.company_id,
+                        rooms=realty_item.rooms,
+                        address=realty_item.address,
+                        floor=realty_item.floor,
+                        s_property=realty_item.area,
+                        forsale_forrent=realty_item.forsale_forrent).scalar()
+                except NoResultFound as e:
+                    parser_logger.info("Appending RealtyItem")
                     # compose new item
                     t = datetime.date.fromtimestamp(time.time())
                     q = RealtyItem(
