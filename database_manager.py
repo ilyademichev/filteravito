@@ -3,7 +3,7 @@ import time
 import urllib
 from sqlalchemy import create_engine
 import pyodbc
-from sqlalchemy.orm import create_session
+from sqlalchemy.orm import create_session, sessionmaker, scoped_session
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from MSACCESSAttachmentLoader import MSAttachmentLoader
 from threading import Thread, Lock
@@ -29,12 +29,16 @@ connection_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(conne
 class DatabaseSynchronizerMSA(Thread):
     download_manager = None
     engine = None
+    Session = None
 
     def __init__(self, queue ,download_manager):
         """  thread initiation """
        # self.engine = engine
         self.queue = queue         #realties queue
         self.download_manager = download_manager
+        self.engine = create_engine(connection_url, echo=True)
+        session_factory = sessionmaker(bind=self.engine)
+        self.Session = scoped_session(session_factory)
         #thread for database CRUD business logic
         Thread.__init__( self ,name=binascii.hexlify(os.urandom(16)))
         #protect CRUD operations against thread-racing
@@ -61,36 +65,32 @@ class DatabaseSynchronizerMSA(Thread):
         with self.lock:
             try:
                 #transaction covered by ORM session
-                session = create_session(bind=self.engine)
+                session = self.Session()
                 #ORM operations on DB
                 # get adjacent data from linked tables
                 # MS ACCESS table: "Организации"
-                try:
-                    c = session.query(Company).filter_by(company_name=realty_item.company).scalar()
-                except NoResultFound as e:
+                c = session.query(Company).filter_by(company_name=realty_item.company).scalar()
+                if not c:
                     parser_logger.info("Appending Company")
                     c = Company(company_name=realty_item.company)
                     session.add(c)
                 # MS ACCESS table: "Число комнат"
-                try:
-                    r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
-                except NoResultFound as e:
+                r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
+                if not r:
                     parser_logger.info("Appending Rooms")
                     r = Rooms(description=realty_item.rooms)
                     session.add(r)
                 # MS ACCESS table: "Продано, на задатке, не отвечает"
-                try:
-                    st = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
-                except NoResultFound as e:
+                stat = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
+                if not stat:
                     parser_logger.error("* Thread {0} - Required record not found: possibly DB structure is broken {1}".format(self.name, "status='в Продаже'"),exc_info=True)
                 # MS ACCESS table: "Источники"
                 # so = session.query(AdvertismentSource).filter_by(source="Avito робот").scalar()
                 # MS ACCESS table: "Улици"
                 # we use full-address and set separate address fields to not identified
                 # street not identified
-                try:
-                    st = session.query(Streets).filter_by(street="-").scalar()
-                except NoResultFound as e:
+                st = session.query(Streets).filter_by(street="-").scalar()
+                if not st:
                     parser_logger.error("* Thread {0} - Required record not found: possibly DB structure is broken {1}".format(self.name, "street='-'"), exc_info=True)
                 # house not identified
                 house_not_identified = '-'
@@ -105,8 +105,7 @@ class DatabaseSynchronizerMSA(Thread):
                 #                     RealtyItem.s_property == realty_item.area,
                 #                     RealtyItem.forsale_forrent == realty_item.forsale_forrent))).scalar()
                 # once multiple items exist MultipleResultsFound raised - compound primary key violation
-                try:
-                    q = session.query(RealtyItem).filter_by(
+                q = session.query(RealtyItem).filter_by(
                         phone=realty_item.phone,
                         company_id=realty_item.company_id,
                         rooms=realty_item.rooms,
@@ -114,7 +113,7 @@ class DatabaseSynchronizerMSA(Thread):
                         floor=realty_item.floor,
                         s_property=realty_item.area,
                         forsale_forrent=realty_item.forsale_forrent).scalar()
-                except NoResultFound as e:
+                if not q:
                     parser_logger.info("Appending RealtyItem")
                     # compose new item
                     t = datetime.date.fromtimestamp(time.time())
@@ -127,7 +126,7 @@ class DatabaseSynchronizerMSA(Thread):
                         house_num=house_not_identified,
                         floor=realty_item.floor,
                         s_property=realty_item.area,
-                        forsale_forrent=realty_item.forsale_forrent,
+                        forsale_forrent=stat.id,
                         description=realty_item.description,
                         contact_name=realty_item.contact_name,
                         url=realty_item.realty_hyperlink,
@@ -159,7 +158,7 @@ class DatabaseSynchronizerMSA(Thread):
                     # ON Источники.Источник/Реклама = Запись.Объект*) AND Запись.Адрес=г. Обнинск, ул. Шацкого 13 ;')
                     # update realty item
                 session.commit()
-                session.close()
+                self.Session.remove()
                 # scalar() raises MultipleResultsFound once multiple records found
             except MultipleResultsFound as e:
                 parser_logger.error("* Thread {0} multiple realty items found by complex primary key".format(self.name), err_info=True)
@@ -201,7 +200,7 @@ class DatabaseManager:
         self.lock = Lock()
         # mediate orm doamin models with  db tables
         #Base.metadata.create_all(self.engine, checkfirst=False)
-        Base.prepare(self.engine, reflect=True)
+        # Base.prepare(self.engine, reflect=True)
         #Base.metadata.reflect(self.engine,reflect=True)
         #ABase = automap_base(metadata=metadata)
         #ABase.prepare()

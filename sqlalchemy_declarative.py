@@ -183,6 +183,13 @@ try:
     # a = session.query(Address).all()
     # r = session.query(RealtyItem).all()
     # test item
+    company = "new"
+    c = session.query(Company).filter_by(company_name=company).scalar()
+    if not c:
+        parser_logger.info("Appending Company")
+        c = Company(company_name=company)
+        session.add(c)
+
     c = session.query(Company).filter_by(company_name="-").scalar()
     s = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
     r = session.query(Rooms).filter_by(description="2").scalar()

@@ -13,7 +13,8 @@ from sqlalchemy.dialects import registry
 #registry.register("access", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
 #registry.register("access.pyodbc", "sqlalchemy_access.pyodbc", "AccessDialect_pyodbc")
 mymetadata = MetaData()
-Base = automap_base(metadata=mymetadata)
+# Base = automap_base(metadata=mymetadata)
+Base = declarative_base()
 # engine = create_engine(connection_string)
 class Person(Base):
     __tablename__ = 'person'
