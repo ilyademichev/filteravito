@@ -130,7 +130,7 @@ class RealtyApartmentPage(BasePage):
     def parse_phone(self):
         if self.display_phone_popup():
             parser_logger.info('Item page parsing: Fetching the phone number')
-            self.phone = self.driver.find_element(*Locators.PHONE_TEXT).text
+            return self.driver.find_element(*Locators.PHONE_TEXT).text
         else:
             parser_logger.warning("Item page parsing: Unable to display phone pop-up.")
             return None
