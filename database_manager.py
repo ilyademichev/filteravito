@@ -1,4 +1,5 @@
 import os
+import re
 import time
 import urllib
 from sqlalchemy import create_engine
@@ -105,22 +106,28 @@ class DatabaseSynchronizerMSA(Thread):
                 #                     RealtyItem.s_property == realty_item.area,
                 #                     RealtyItem.forsale_forrent == realty_item.forsale_forrent))).scalar()
                 # once multiple items exist MultipleResultsFound raised - compound primary key violation
+                try:
+                    phone = re.sub(r"[^\w]", '', realty_item.phone) # remove spaces and -
+                    phone = phone[1:] if phone.startswith('7') else phone # remove heading 7
+                except:
+                    pass
+                session.commit()
                 q = session.query(RealtyItem).filter_by(
-                        phone=realty_item.phone,
-                        company_id=realty_item.company_id,
-                        rooms=realty_item.rooms,
+                        phone=phone,
+                        company_id=c.id,
+                        rooms=r.id,
                         address=realty_item.address,
                         floor=realty_item.floor,
                         s_property=realty_item.area,
-                        forsale_forrent=realty_item.forsale_forrent).scalar()
+                        forsale_forrent=stat.id).scalar()
                 if not q:
                     parser_logger.info("Appending RealtyItem")
                     # compose new item
                     t = datetime.date.fromtimestamp(time.time())
                     q = RealtyItem(
-                        phone=realty_item.phone,
-                        company_id=realty_item.company_id,
-                        rooms=realty_item.rooms,
+                        phone=phone,
+                        company_id=c.id,
+                        rooms=r.id,
                         address=realty_item.address,
                         street=st.id,
                         house_num=house_not_identified,

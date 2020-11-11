@@ -175,13 +175,29 @@ class RealtyApartmentPage(BasePage):
         # parse the fields except the phone
         # since the phone popup covers the fields
         self.address = self.get_text_if_exist(Locators.ADDRESS_SPAN)
-        self.area = self.get_text_if_exist(Locators.AREA_DIV)
+        # area
+        # 58 м²
+        # \d+([.]\d+)
+        p = re.search(r'\d+([.]\d+)?', self.get_text_if_exist(Locators.AREA_DIV))
+        if not p is None:
+            self.area = p[0]
+        else:
+            parser_logger.warning("Item page parsing: Page structure is broken: no Area is found.")
+            return False
         self.company = self.get_text_if_exist(Locators.COMPANY_SPAN)
         self.contact_name = self.get_text_if_exist(Locators.CONTACT_NAME_SPAN)
         self.description = self.get_text_if_exist(Locators.DESCRIPTION_SPAN)
         self.price = self.get_text_if_exist(Locators.PRICE_SPAN)
         self.rooms = self.get_text_if_exist(Locators.NUMOF_ROOMS_DIV)
-        self.floor = self.get_text_if_exist(Locators.FLOOR_DIV)
+        # floor
+        # 24 из 52
+        # (\d{1,2})
+        p = re.findall(r"(\d+) из (\d+)",  self.get_text_if_exist(Locators.FLOOR_DIV))
+        if not p is None:
+            self.floor, max_floor = p[0]
+        else:
+            parser_logger.warning("Item page parsing: Page structure is broken: no Floor is found.")
+            return False
         # ocassionally we need to reload the page to get the number
         # the phone button is unclickable
         # so we fetch the phone in the end

@@ -14,11 +14,11 @@ class CrawlerData:
     PROXY_FILE = "proxy_list"
     TODAY_TAG = r"Сегодня"
     #http download selenim driver timeout
-    IMPLICIT_TIMEOUT_INT_SECONDS = 180
+    IMPLICIT_TIMEOUT_INT_SECONDS = 240
     #image downloader timeout
     IMPLICIT_CDN_TIMEOUT_INT_SECONDS = 120
     SCR_SHOT_PATH = r'scrshotavito/'
     ATTEMPTS_INT = 30 # maximum one hour wait
-    SCROLL_PAUSE_TIME = 15
+    SCROLL_PAUSE_TIME = 30
 
 
