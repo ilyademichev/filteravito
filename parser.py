@@ -27,7 +27,7 @@ try:
     dbm = DatabaseManager(dwm, thread_count=1)
     dwm.database_manager = dbm
     dbm.download_manager = dwm
-    for i in range(0, 100):
+    for i in range(0, 1000):
         parser_logger.info("Run {0}".format(str(i)))
         p.run_parser_task(algorithm, dwm, dbm)
 except Exception as e:

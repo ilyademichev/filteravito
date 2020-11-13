@@ -45,7 +45,10 @@ class Locators:
     # area
     # AREA_SPAN = (By.XPATH, "//div[@data-marker = 'item-properties-item(9)/description']")
     # AREA_LI = (By.XPATH, "//span[(contains(text(),'Жилая площадь'))]//parent::li")
-    AREA_DIV = (By.XPATH, "//div[(contains(text(),'Жилая площадь'))]/following-sibling::div")
+    # living area
+    AREA_LIVING_DIV = (By.XPATH, "//div[(contains(text(),'Жилая площадь'))]/following-sibling::div")
+    # toatal area
+    AREA_TOTAL_DIV = (By.XPATH, "//div[(contains(text(),'Общая площадь'))]/following-sibling::div")
     # floor
     # FLOOR_SPAN = (By.XPATH, "//div[@data-marker = 'item-properties-item(4)/description']")
     # FLOOR_LI = (By.XPATH, "//span[(contains(text(),'Этаж'))]//parent::li")

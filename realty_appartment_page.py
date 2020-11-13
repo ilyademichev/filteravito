@@ -160,6 +160,8 @@ class RealtyApartmentPage(BasePage):
 
     # parse the currently loaded page
     def parse_realty_apprment_page(self):
+        area_empty_value = '-'
+        floor_empty_value = '-'
         parser_logger.info("Item page parsing: (URL) {0}".format(self.driver.current_url))
         # once there's no adv ID the structure of the page is broken and we skip further processing
         self.timestamp = self.get_text_if_exist(Locators.TIMESTAMP_ITEM_DIV)
@@ -178,12 +180,21 @@ class RealtyApartmentPage(BasePage):
         # area
         # 58 м²
         # \d+([.]\d+)
-        p = re.search(r'\d+([.]\d+)?', self.get_text_if_exist(Locators.AREA_DIV))
-        if not p is None:
-            self.area = p[0]
+        # area could be living or total
+        # living area checked first
+        # once no area found , area set to area_empty_value
+        a = self.get_text_if_exist(Locators.AREA_LIVING_DIV)
+        if a is None:
+            a = self.get_text_if_exist(Locators.AREA_TOTAL_DIV)
+        if a is None:
+                a = area_empty_value
         else:
-            parser_logger.warning("Item page parsing: Page structure is broken: no Area is found.")
-            return False
+            p = re.search(r'\d+([.]\d+)?', a)
+            if not p is None:
+                self.area = p[0]
+            else:
+                parser_logger.warning("Item page parsing: Page structure could be broken: no Area is found. Set Area is set to area_empty_value={0}".format(area_empty_value))
+                a = area_empty_value
         self.company = self.get_text_if_exist(Locators.COMPANY_SPAN)
         self.contact_name = self.get_text_if_exist(Locators.CONTACT_NAME_SPAN)
         self.description = self.get_text_if_exist(Locators.DESCRIPTION_SPAN)
@@ -192,12 +203,13 @@ class RealtyApartmentPage(BasePage):
         # floor
         # 24 из 52
         # (\d{1,2})
+        # try to parse floor if not found then set to floor_empty_value
         p = re.findall(r"(\d+) из (\d+)",  self.get_text_if_exist(Locators.FLOOR_DIV))
         if not p is None:
             self.floor, max_floor = p[0]
         else:
             parser_logger.warning("Item page parsing: Page structure is broken: no Floor is found.")
-            return False
+            self.floor = floor_empty_value
         # ocassionally we need to reload the page to get the number
         # the phone button is unclickable
         # so we fetch the phone in the end
