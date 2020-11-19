@@ -4,22 +4,23 @@ import time
 import urllib
 from sqlalchemy import create_engine
 import pyodbc
-from sqlalchemy.orm import create_session, sessionmaker, scoped_session
-from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
+from sqlalchemy.orm import  sessionmaker, scoped_session
+from sqlalchemy.orm.exc import MultipleResultsFound
 from MSACCESSAttachmentLoader import MSAttachmentLoader
 from threading import Thread, Lock
 from queue import Queue
 import binascii
 from parser_logger import parser_logger
 from crawler_data import CrawlerData
-from realty_db import RealtyItem, Company, Rooms, RealtyStatus,  Base, Streets # , AdvertismentSource
+from realty_db import RealtyItem, Company, Rooms, RealtyStatus,  Streets # , AdvertismentSource
 import datetime
 connection_string = (
     r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'
     # r'UID=admin;UserCommitSync=Yes;Threads=3;SafeTransactions=0;'
     # r'PageTimeout=5;MaxScanRows=8;MaxBufferSize=2048;FIL=MS Access;'
     # r'DriverId=25;DefaultDir=C:\REALTYDB;'
-    r'DBQ=C:\REALTYDB\realty.accdb;'
+    # r'DBQ=C:\REALTYDB\realty.accdb;'
+    r'DBQ=' + CrawlerData.MSACCESS_DB_PATH_WINDOWS + CrawlerData.MSACCESS_DB_FILENAME_WINDOWS + ';'
     r'ExtendedAnsiSQL=1')
 # engine = create_engine(connection_string)
 connection_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(connection_string)}"
@@ -55,12 +56,29 @@ class DatabaseSynchronizerMSA(Thread):
                 parser_logger.error("* Thread {0} - syncing failed ".format(self.name))
             # send a signal to the queue that the job is done
             self.queue.task_done()
+# make price conversion
+# input: ri_price of text from RealtyApprtmentPage.price
+# output: price /1000 as string
+# ValueError : conversion error
+    def get_price(self,ri_price):
+        try:
+            price = re.sub(r"[^\w]", '', ri_price)  # remove spaces
+            m = re.match(r"\d+", price)
+            if m:
+                price = str(int(int(m.group(0)) / 1000))
+            else:
+                parser_logger.error(
+                    "* Thread {0} Wrong price value. Set empty price field  *".format(self.name))
+                price = str("")
+        except ValueError:
+            parser_logger.error("* Thread {0} price conversion failed. Set empty price field  *".format(self.name))
+            price = str("")
+        return price
 
-
-    def sync_database(self, realty_item):
+    def sync_database(self, realty_item_page):
         """  BAL business access logic"""
         # debug print out of a pending item
-        print(', '.join("%s: %s \n" % item for item in vars(realty_item).items()))
+        print(', '.join("%s: %s \n" % item for item in vars(realty_item_page).items()))
         # CRUD operations for MS ACCESS are single-user
         # lock is for safety
         with self.lock:
@@ -70,16 +88,16 @@ class DatabaseSynchronizerMSA(Thread):
                 #ORM operations on DB
                 # get adjacent data from linked tables
                 # MS ACCESS table: "Организации"
-                c = session.query(Company).filter_by(company_name=realty_item.company).scalar()
+                c = session.query(Company).filter_by(company_name=realty_item_page.company).scalar()
                 if not c:
                     parser_logger.info("Appending Company")
-                    c = Company(company_name=realty_item.company)
+                    c = Company(company_name=realty_item_page.company)
                     session.add(c)
                 # MS ACCESS table: "Число комнат"
-                r = session.query(Rooms).filter_by(description=realty_item.rooms).scalar()
+                r = session.query(Rooms).filter_by(description=realty_item_page.rooms).scalar()
                 if not r:
                     parser_logger.info("Appending Rooms")
-                    r = Rooms(description=realty_item.rooms)
+                    r = Rooms(description=realty_item_page.rooms)
                     session.add(r)
                 # MS ACCESS table: "Продано, на задатке, не отвечает"
                 stat = session.query(RealtyStatus).filter_by(status="в Продаже").scalar()
@@ -107,7 +125,7 @@ class DatabaseSynchronizerMSA(Thread):
                 #                     RealtyItem.forsale_forrent == realty_item.forsale_forrent))).scalar()
                 # once multiple items exist MultipleResultsFound raised - compound primary key violation
                 try:
-                    phone = re.sub(r"[^\w]", '', realty_item.phone) # remove spaces and -
+                    phone = re.sub(r"[^\w]", '', realty_item_page.phone) # remove spaces and -
                     phone = phone[1:] if phone.startswith('7') else phone # remove heading 7
                 except:
                     pass
@@ -116,9 +134,9 @@ class DatabaseSynchronizerMSA(Thread):
                         phone=phone,
                         company_id=c.id,
                         rooms=r.id,
-                        address=realty_item.address,
-                        floor=realty_item.floor,
-                        s_property=realty_item.area,
+                        address=realty_item_page.address,
+                        floor=realty_item_page.floor,
+                        s_property=realty_item_page.area,
                         forsale_forrent=stat.id).scalar()
                 if not q:
                     parser_logger.info("Appending RealtyItem")
@@ -128,38 +146,34 @@ class DatabaseSynchronizerMSA(Thread):
                         phone=phone,
                         company_id=c.id,
                         rooms=r.id,
-                        address=realty_item.address,
+                        address=realty_item_page.address,
                         street=st.id,
                         house_num=house_not_identified,
-                        floor=realty_item.floor,
-                        s_property=realty_item.area,
+                        floor=realty_item_page.floor,
+                        s_property=realty_item_page.area,
                         forsale_forrent=stat.id,
-                        description=realty_item.description,
-                        contact_name=realty_item.contact_name,
-                        url=realty_item.realty_hyperlink,
+                        description=realty_item_page.description,
+                        contact_name=realty_item_page.contact_name,
+                        url=realty_item_page.realty_hyperlink,
                         # source=so.id,
                         timestamp=t,
-                        call_timestamp=t
+                        call_timestamp=t,
+                        price=self.get_price(realty_item_page.price),
+                        realty_adv_avito_number=realty_item_page.realty_adv_avito_number
                     )
-                    try:
-                        q.price = str(int(int(realty_item.price) / 1000))
-                    except ValueError:
-                        parser_logger.error("* Thread {0} price conversion failed. Set empty price field  *".format(self.name))
-                        q.price = str("")
                     # insert new realty item
                     session.add(q)
+                    # queue download manager with fresh image links from new item
+                    image_folder =CrawlerData.MSACCESS_DB_PATH_WINDOWS + CrawlerData.IMAGE_FOLDER + realty_item_page.realty_adv_avito_number
+                    image_queue_dict = [( image_folder, link) for link in realty_item_page.realty_images]
+                    self.download_manager.queue_image_links(image_queue_dict)
                 else:
                     # refresh the time
                     # set current date
                     # set price
                     # set source "Avito робот"
                     q.timestamp = datetime.date.fromtimestamp(time.time())
-                    try:
-                        q.price = str(int(int(realty_item.price) / 1000))
-                    except ValueError:
-                        parser_logger.error("* Thread {0} price conversion failed. Set empty price field  *".format(self.name))
-                        q.price = str("")
-
+                    q.price = self.get_price(realty_item_page.price)
                     # rs = engine.connect().execute('INSERT INTO Запись ( Объект*.Value ) \
                     # VALUES("Avito робот") WHERE Запись.Объект* In (SELECT Запись.Объект* FROM Источники INNER JOIN Запись \
                     # ON Источники.Источник/Реклама = Запись.Объект*) AND Запись.Адрес=г. Обнинск, ул. Шацкого 13 ;')
@@ -171,7 +185,7 @@ class DatabaseSynchronizerMSA(Thread):
                 parser_logger.error("* Thread {0} multiple realty items found by complex primary key".format(self.name), err_info=True)
                 return False
             except Exception as e:
-                parser_logger.error("Thread {0} - ORM session failed on RealtyItem:{1}".format(self.name, realty_item),exc_info=True)
+                parser_logger.error("Thread {0} - ORM session failed on RealtyItem".format(self.name),exc_info=True)
                 return False
         return True
 
