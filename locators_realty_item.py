@@ -14,6 +14,8 @@ class Locators:
     CAPTCHA_IMG_CLASS = (By.XPATH, "//img[contains(@class,'form-captcha-image')]")
     #avito captcha input box
     CAPTCHA_INPUT_ID = (By.ID, "captcha-field")
+    # images in mobile version
+    IMAGES_LINK_elementtiming = (By.XPATH, "//img[@elementtiming='bx.gallery']//parent::div//parent::div//parent::li//parent::ul//li//div//div//img")
     #images container
     IMAGES_CONTAINER_SCRIPT = (By.XPATH, "(//body")
     IMAGE_REGEXP = "\d{10}.jpg"

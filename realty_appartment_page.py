@@ -221,15 +221,35 @@ class RealtyApartmentPage(BasePage):
 
     # extracts all links to  640x480 images and makes up a proper URL links
     def parse_realty_images_links(self):
+        # first way of getting images from JS script directly
         # images by the size 640x480
+        images_parsed = False
         pat = re.compile(r"\d{2}\.img\.avito\.st\%2F640x480\%2F\d{10}.jpg")
         # images_div = self.driver.find_elements(*Locators.IMAGES_CONTAINER_SCRIPT)
         # res = pat.findall(images_div[0].get_attribute('innerHTML'))
         if not pat is None:
             res = pat.findall(self.driver.page_source)
+            # second way of getting images
+            if not res:
+                images_parsed = False
+            else:
             # making up a proper link
-            self.realty_images = ["http://" + re.sub(r"\%2F", "/", w) for w in res]
-            parser_logger.info("Item page parsing: (Image urls 640x480): {0}".format(res))
-            return True
+                self.realty_images = ["http://" + re.sub(r"\%2F", "/", w) for w in res]
+                parser_logger.info("Item page parsing: (Image urls 640x480): {0}".format(res))
+                images_parsed = True
         else:
-            return False
+            images_parsed = False
+        # second way of getting images from elementtiming="bx.gallery"
+        if not images_parsed:
+            els = self.driver.find_elements(*Locators.IMAGES_LINK_elementtiming)
+            if len(els) > 0:
+                for e in els:
+                    self.realty_images.append(e[0].getAttribute("src"))
+                images_parsed = True
+            else:
+                images_parsed = False
+        return images_parsed
+
+
+
+
