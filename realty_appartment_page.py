@@ -238,7 +238,7 @@ class RealtyApartmentPage(BasePage):
                 parser_logger.info("Item page parsing: (Image urls 640x480): {0}".format(res))
                 images_parsed = True
         else:
-            images_parsed = False
+            raise ValueError("Pattern for image search not compiled.")
         # second way of getting images from elementtiming="bx.gallery"
         if not images_parsed:
             els = self.driver.find_elements(*Locators.IMAGES_LINK_elementtiming)

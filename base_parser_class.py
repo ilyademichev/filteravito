@@ -56,9 +56,10 @@ class Parser:
 
     def save_scrshot_to_temp(self):
         tmp = CrawlerData.SCR_SHOT_PATH + str(uuid.uuid4()) + ".png"
-        parser_logger.info("Screenshot {0}".format(tmp))
         el = self.driver.find_element_by_tag_name('body')
         el.screenshot(tmp)
+        parser_logger.info("Screenshot {0}".format(tmp))
+
 
     def dispose(self):
         # gracefully closing the driver
