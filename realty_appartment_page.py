@@ -244,7 +244,7 @@ class RealtyApartmentPage(BasePage):
             els = self.driver.find_elements(*Locators.IMAGES_LINK_elementtiming)
             if len(els) > 0:
                 for e in els:
-                    self.realty_images.append(e[0].getAttribute("src"))
+                    self.realty_images.append(e.getAttribute("src"))
                 images_parsed = True
             else:
                 images_parsed = False
