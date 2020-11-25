@@ -266,10 +266,10 @@ class DatabaseManager:
                write images into MSA
                single-user access to MSA is crucial
         """
-        with self.lock:
-            self.msa = MSAttachmentLoader()
-            self.msa.launch_macro(CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO)
-            self.msa.dispose()
+        # with self.lock:
+        self.msa = MSAttachmentLoader()
+        self.msa.launch_macro(CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO)
+        self.msa.dispose()
         return
 
 

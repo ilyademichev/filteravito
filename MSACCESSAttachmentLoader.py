@@ -9,7 +9,7 @@ class MSAttachmentLoader:
             strDbName = CrawlerData.MSACCESS_DB_PATH_WINDOWS + \
                         CrawlerData.MSACCESS_DB_FILENAME_WINDOWS
             self.objAccess = Dispatch("Access.Application")
-            self.objAccess.Visible = False
+            self.objAccess.Visible = True
             self.objAccess.OpenCurrentDatabase(strDbName)
             objDB = self.objAccess.CurrentDb()
         except Exception as e:

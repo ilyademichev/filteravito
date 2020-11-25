@@ -77,7 +77,7 @@ class Downloader(Thread):
             if r.status_code == 200:
                 t_elapsed = time.process_time () - t_start
                 parser_logger.info("* Thread: {0} Downloaded {1} in {2} seconds".format(self.name, url, str(t_elapsed)))
-                fname = output_directory + '/' + os.path.basename(urllib.request.unquote(url))
+                fname = output_directory + '/' + os.path.basename(urllib.request.unquote(url)) + '.jpeg'
                 os.makedirs(os.path.dirname(fname), exist_ok=True)
                 with open(fname, 'wb') as out:
                     out.write(r.content)

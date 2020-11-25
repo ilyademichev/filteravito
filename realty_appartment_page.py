@@ -223,32 +223,31 @@ class RealtyApartmentPage(BasePage):
     def parse_realty_images_links(self):
         # first way of getting images from JS script directly
         # images by the size 640x480
-        images_parsed = False
+        images_parsed_first = False
+        images_parsed_second = False
         pat = re.compile(r"\d{2}\.img\.avito\.st\%2F640x480\%2F\d{10}.jpg")
         # images_div = self.driver.find_elements(*Locators.IMAGES_CONTAINER_SCRIPT)
         # res = pat.findall(images_div[0].get_attribute('innerHTML'))
         if not pat is None:
             res = pat.findall(self.driver.page_source)
-            # second way of getting images
             if not res:
-                images_parsed = False
+                images_parsed_first = False
             else:
             # making up a proper link
                 self.realty_images = ["http://" + re.sub(r"\%2F", "/", w) for w in res]
                 parser_logger.info("Item page parsing: (Image urls 640x480): {0}".format(res))
-                images_parsed = True
+                images_parsed_first = True
         else:
             raise ValueError("Pattern for image search not compiled.")
         # second way of getting images from elementtiming="bx.gallery"
-        if not images_parsed:
-            els = self.driver.find_elements(*Locators.IMAGES_LINK_elementtiming)
-            if len(els) > 0:
-                for e in els:
-                    self.realty_images.append(e.getAttribute("src"))
-                images_parsed = True
-            else:
-                images_parsed = False
-        return images_parsed
+        els = self.driver.find_elements( *Locators.IMAGES_LINK_elementtiming )
+        if len ( els ) > 0 :
+            for e in els :
+                self.realty_images.append ( e.get_attribute ( "data-src" ) )
+            images_parsed_second = True
+        else :
+            images_parsed_second = False
+        return ( images_parsed_first or images_parsed_second )
 
 
 
