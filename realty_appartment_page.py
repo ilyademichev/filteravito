@@ -10,26 +10,34 @@ from parser_logger import parser_logger
 
 class RealtyApartmentPage(BasePage):
     """loads  realty item page """
-    phone_popup_loaded = None
-    realty_images = list()
-    realty_adv_avito_number = None
-    realty_hyperlink = None
-    # data fields
-    address = None
-    area = None
-    company = None
-    contact_name = None
-    description = None
-    price = None
-    rooms = None
-    timestamp = None
-    phone = None
-    floor = None
+
     #data field used to store images by the same name
 
     # throws WebDriverException on internal webdriver error
     def __init__(self, driver, realty_link):
         super().__init__(driver, CrawlerData.IMPLICIT_TIMEOUT_INT_SECONDS)
+        # popup with mobile phone is diplayed
+        self.phone_popup_loaded = None
+        # image links
+        self.realty_images = None
+        # advertisment number as on the realty item page
+        self.realty_adv_avito_number = None
+        # url link of the realty item
+        # data fields
+        self.realty_hyperlink = None
+        self.address = None
+        self.area = None
+        self.company = None
+        self.contact_name = None
+        self.description = None
+        self.price = None
+        self.rooms = None
+        self.timestamp = None
+        self.phone = None
+        self.floor = None
+        # initializing some attributes
+        self.realty_images = list()
+        # load the realty item Web-page by given URL
         self.realty_hyperlink = realty_link
         self.load_page()
 
@@ -243,10 +251,11 @@ class RealtyApartmentPage(BasePage):
         els = self.driver.find_elements( *Locators.IMAGES_LINK_elementtiming )
         if len ( els ) > 0 :
             for e in els :
-                self.realty_images.append ( e.get_attribute ( "data-src" ) )
+                self.realty_images.append ( e.get_attribute ( "src" ) )
             images_parsed_second = True
         else :
             images_parsed_second = False
+
         return ( images_parsed_first or images_parsed_second )
 
 

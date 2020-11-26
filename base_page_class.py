@@ -201,16 +201,16 @@ class BasePage:
         return sol
     #
     def resolve_captcha(self):
-            el = self.driver.find_element(*Locators.CAPTCHA_INPUT_ID)
-        # try:
-        #     s = self.crunch_captcha_by_rucaptcha()
-        # except Exception as e:
-        #     parser_logger.error("captcha by rucaptcha solver failed")
-            try:
-                s = self.crunch_captcha_by_teserract()
-            except Exception as e:
-                parser_logger.error("Resolving captcha by teserract solver failed",   exc_info=True)
-                return False
+        el = self.driver.find_element(*Locators.CAPTCHA_INPUT_ID)
+        try:
+            s = self.crunch_captcha_by_rucaptcha()
+        except Exception as e:
+            parser_logger.error("captcha by rucaptcha solver failed")
+        #     try:
+        #         s = self.crunch_captcha_by_teserract()
+        #     except Exception as e:
+        #         parser_logger.error("Resolving captcha by teserract solver failed",   exc_info=True)
+        #         return False
         # send solution
             try:
                 el.send_keys(s)
