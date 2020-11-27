@@ -14,31 +14,32 @@ algorithm = {
 }
 dwm = None
 dbm = None
-try:
-    # OOP agregation:
-    # Parser uses DownloadManager
-    # Parser uses DatabaseManager
-    # DownloadManager uses DatabaseManager
-    # DatabaseManager uses DownloadManager
-    p = AvitoParser()
-    # pc = CianParser()
-    # pd = DomClickParser()
-    dwm = DownloadManager(thread_count=4)
-    dbm = DatabaseManager(dwm, thread_count=1)
-    dwm.database_manager = dbm
-    dbm.download_manager = dwm
-    for i in range(0, 1000):
+for i in range ( 0, 1000 ) :
+    try:
+        # OOP agregation:
+        # Parser uses DownloadManager
+        # Parser uses DatabaseManager
+        # DownloadManager uses DatabaseManager
+        # DatabaseManager uses DownloadManager
+        p = AvitoParser()
+        # pc = CianParser()
+        # pd = DomClickParser()
+        dwm = DownloadManager(thread_count=4)
+        dbm = DatabaseManager(dwm, thread_count=1)
+        dwm.database_manager = dbm
+        dbm.download_manager = dwm
+
         parser_logger.info("Run {0}".format(str(i)))
         p.run_parser_task(algorithm, dwm, dbm)
-except Exception as e:
-    parser_logger.error("Error on algorithm execution: ", exc_info=True)
-finally:
-    # wait for CRUD queue
-    if dbm is not None:
-        dbm.endup_db_sync()
-    # wait for images queue
-    if dwm is not None:
-        dwm.endup_downloads()
-    if dbm is not None:
-        # load attachments: images into db
-        dbm.MSA_image_sync()
+    except Exception as e:
+        parser_logger.error("Error on algorithm execution: ", exc_info=True)
+    finally:
+        # wait for CRUD queue
+        if dbm is not None:
+            dbm.endup_db_sync()
+        # wait for images queue
+        if dwm is not None:
+            dwm.endup_downloads()
+        if dbm is not None:
+            # load attachments: images into db
+            dbm.MSA_image_sync()

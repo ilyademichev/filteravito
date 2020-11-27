@@ -10,6 +10,8 @@ class MSAttachmentLoader:
                         CrawlerData.MSACCESS_DB_FILENAME_WINDOWS
             self.objAccess = Dispatch("Access.Application")
             self.objAccess.Visible = True
+            # self.objAccess.Visible = False
+
             self.objAccess.OpenCurrentDatabase(strDbName)
             objDB = self.objAccess.CurrentDb()
         except Exception as e:
@@ -27,3 +29,4 @@ class MSAttachmentLoader:
     def dispose(self):
         self.objAccess.CloseCurrentDatabase()
         self.objAccess.Application.Quit()
+        del self.objAccess
