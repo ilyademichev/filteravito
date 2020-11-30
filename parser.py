@@ -14,6 +14,11 @@ algorithm = {
 }
 dwm = None
 dbm = None
+# singleton class for ORM operations
+dbm = DatabaseManager ( dwm, thread_count=1 )
+dwm = DownloadManager ( thread_count=4 )
+dwm.database_manager = dbm
+dbm.download_manager = dwm
 for i in range ( 0, 1000 ) :
     try:
         # OOP agregation:
@@ -24,11 +29,6 @@ for i in range ( 0, 1000 ) :
         p = AvitoParser()
         # pc = CianParser()
         # pd = DomClickParser()
-        dwm = DownloadManager(thread_count=4)
-        dbm = DatabaseManager(dwm, thread_count=1)
-        dwm.database_manager = dbm
-        dbm.download_manager = dwm
-
         parser_logger.info("Run {0}".format(str(i)))
         p.run_parser_task(algorithm, dwm, dbm)
     except Exception as e:

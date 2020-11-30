@@ -11,9 +11,8 @@ class MSAttachmentLoader:
             self.objAccess = Dispatch("Access.Application")
             self.objAccess.Visible = True
             # self.objAccess.Visible = False
-
             self.objAccess.OpenCurrentDatabase(strDbName)
-            objDB = self.objAccess.CurrentDb()
+            # self.objDB = self.objAccess.CurrentDb()
         except Exception as e:
             parser_logger.error("MSA COM ERROR ", exc_info=True)
             self.dispose()
@@ -27,6 +26,7 @@ class MSAttachmentLoader:
             self.dispose()
 
     def dispose(self):
-        self.objAccess.CloseCurrentDatabase()
+#        pass
+        self.objAccess.DoCmd.CloseDatabase()
         self.objAccess.Application.Quit()
-        del self.objAccess
+        # del self.objAccess
