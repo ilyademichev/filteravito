@@ -128,14 +128,16 @@ class DatabaseSynchronizerMSA(Thread):
                     phone = re.sub(r"[^\w]", '', realty_item_page.phone) # remove spaces and -
                     phone = phone[1:] if phone.startswith('7') else phone # remove heading 7
                 except:
-                    pass
-                session.commit()
+                    parser_logger.error ("* Thread {0} - Phone Conversion Failed {1}".format (
+                            self.name, realty_item_page.phone ), exc_info=True )
                 q = session.query(RealtyItem).filter_by(
                         phone=phone,
                         company_id=c.id,
                         rooms=r.id,
                         address=realty_item_page.address,
                         floor=realty_item_page.floor,
+                        street=st.id,
+                        house_num=house_not_identified,
                         s_property=realty_item_page.area,
                         forsale_forrent=stat.id).scalar()
                 if not q:
