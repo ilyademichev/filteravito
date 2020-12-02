@@ -53,7 +53,7 @@ class RealtyItem(Base):
     # source=Column('Источник', Integer,ForeignKey('Источники.Код'))
     timestamp = Column('Дата Подачи', DateTime)
     call_timestamp = Column('Дата Прозвона/Преостановлено до/Позвонить', DateTime)
-    realty_adv_avito_number = Column('Номер объевления авито', String(255))
+    realty_adv_avito_number = Column('Номер объявления авито', String(255))
 
 
 class Company(Base):

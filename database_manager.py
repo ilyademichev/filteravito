@@ -131,15 +131,17 @@ class DatabaseSynchronizerMSA(Thread):
                     parser_logger.error ("* Thread {0} - Phone Conversion Failed {1}".format (
                             self.name, realty_item_page.phone ), exc_info=True )
                 q = session.query(RealtyItem).filter_by(
-                        phone=phone,
-                        company_id=c.id,
-                        rooms=r.id,
-                        address=realty_item_page.address,
-                        floor=realty_item_page.floor,
-                        street=st.id,
-                        house_num=house_not_identified,
-                        s_property=realty_item_page.area,
-                        forsale_forrent=stat.id).scalar()
+                        realty_adv_avito_number = realty_item_page.realty_adv_avito_number
+                        # phone=phone,
+                        # company_id=c.id,
+                        # rooms=r.id,
+                        # address=realty_item_page.address,
+                        # floor=realty_item_page.floor,
+                        # # street=st.id,
+                        # # house_num=house_not_identified,
+                        # s_property=realty_item_page.area,
+                        # forsale_forrent=stat.id
+                ).scalar()
                 if not q:
                     parser_logger.info("Appending RealtyItem")
                     # compose new item

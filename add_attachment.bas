@@ -114,8 +114,3 @@ Set db = Nothing
 Set rst = Nothing
 
 End Sub
-
-
-
-
-
