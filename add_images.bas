@@ -4,15 +4,21 @@ Public Function AddImageAttchm()
     Dim sSQL As String
     Dim sAttfieldName As String
     'name for photo field attachment
-    sAttfieldName = "Ð¤Ð¾Ñ‚Ð¾"
+    sAttfieldName = "Фото"
     'root directory for images
     sFilePath = "C:\REALTYDB\avito_images_by_adv_id\"
     'check for folders
     folders = FF_ListFilesInDir(sFilePath)
-    For i = LBound(folders) To UBound(folders)
-        sSQL = "SELECT * FROM [Çàïèñü] WHERE (Çàïèñü.[Íîìåð îáúÿâëåíèÿ àâèòî]) LIKE '" & folders(i) & "'"
-        Call LoadAttchm(sAttfieldName, sFilePath & "\" & folders(i), "*", sSQL)
-    Next
+    On Error Resume Next
+    If IsError(UBound(folders)) Then
+        Debug.Print "folders array is empty."
+        Debug.Print "Skipping appending"
+    Else
+        For i = LBound(folders) To UBound(folders)
+            sSQL = "SELECT * FROM [Запись] WHERE (Запись.[Номер объявления авито]) LIKE '" & folders(i) & "'"
+            Call LoadAttchm(sAttfieldName, sFilePath & "\" & folders(i), "*", sSQL)
+        Next
+    End If
 End Function
 
 
@@ -22,3 +28,5 @@ End Function
 Public Function AddImageAttchmFunc()
     Call AddImageAttchm
 End Function
+
+
