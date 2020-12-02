@@ -19,6 +19,11 @@ class MSAttachmentLoader :
 
     def dispose(self) :
         #        pass
-        self.objAccess.DoCmd.CloseDatabase ()
-        self.objAccess.Application.Quit ()
+        try:
+            self.objAccess.DoCmd.CloseDatabase ()
+            self.objAccess.Application.Quit ()
+        except Exception as e:
+            parser_logger.error ( "MSA COM ERROR ", exc_info=True )
+            self.objAccess = None
+
         # del self.objAccess
