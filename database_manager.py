@@ -271,9 +271,13 @@ class DatabaseManager:
                single-user access to MSA is crucial
         """
         # with self.lock:
-        self.msa = MSAttachmentLoader()
-        self.msa.launch_macro(CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO)
-        self.msa.dispose()
+        try:
+            self.msa = MSAttachmentLoader()
+            self.msa.launch_macro(CrawlerData.MSACCESS_IMPORT_IMAGES_MACRO)
+        except Exception as e:
+            parser_logger.error( "MSA COM ERROR ", exc_info=True )
+        finally:
+            self.msa.dispose()
         return
 
 
