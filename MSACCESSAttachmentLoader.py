@@ -25,5 +25,3 @@ class MSAttachmentLoader :
         except Exception as e:
             parser_logger.error ( "MSA COM ERROR ", exc_info=True )
             self.objAccess = None
-
-        # del self.objAccess

@@ -223,6 +223,7 @@ class DatabaseManager:
         #initiate the Database Engine
         self.engine = create_engine(connection_url, echo=True)
         self.lock = Lock()
+        self.msa = None
         # mediate orm doamin models with  db tables
         #Base.metadata.create_all(self.engine, checkfirst=False)
         # Base.prepare(self.engine, reflect=True)
