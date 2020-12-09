@@ -32,7 +32,7 @@ class AvitoFilterPage(BasePage):
         if location is None or not location:
             parser_logger.error("load_page arguement of location must not be empty or None ")
             raise ValueError
-        link = CrawlerData.SORTED_ITEMS_LOCATION_LINK.replace(CrawlerData.LOCATION_TAG, location)
+        link = CrawlerData.SORTED_APPARTMENTS_LOCATION_LINK.replace(CrawlerData.LOCATION_TAG, location)
         # load the filter page with ATTEMPTS_INT tries
         while self.attempts < CrawlerData.ATTEMPTS_INT and not self.page_loaded:
             try:
@@ -52,6 +52,11 @@ class AvitoFilterPage(BasePage):
                 # give more time for loading
                 super().bad_proxy_connection()
                 # raise ValueError - either wait  1 hour or revolve proxy server
+            if super.check_for_server_fail():
+                parser_logger.warning("On requesting avito filter page Server Fail page is displayed")
+                super().save_scrshot_to_temp()
+                # give more time for loading
+                super().bad_proxy_connection()
             if super().check_for_captcha():
                 parser_logger.warning("On requesting avito filter page Captcha is displayed")
                 super().save_scrshot_to_temp()

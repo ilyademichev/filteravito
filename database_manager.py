@@ -36,6 +36,7 @@ class DatabaseSynchronizerMSA(Thread):
     def __init__(self, queue ,download_manager):
         """  thread initiation """
        # self.engine = engine
+        
         self.queue = queue         #realties queue
         self.download_manager = download_manager
         self.engine = create_engine(connection_url, echo=True)
@@ -146,6 +147,10 @@ class DatabaseSynchronizerMSA(Thread):
                     parser_logger.info("Appending RealtyItem")
                     # compose new item
                     t = datetime.date.fromtimestamp(time.time())
+                    # make up a desktop url out of mobile, remove prefix m.
+                    desktop_url = realty_item_page.realty_hyperlink.replace("//m.", "//")
+                    # ms access hyperlink format (text to display)#(Target URL)
+                    msaccess_desktop_url =  desktop_url + "#" + desktop_url + "#"
                     q = RealtyItem(
                         phone=phone,
                         company_id=c.id,
@@ -158,7 +163,7 @@ class DatabaseSynchronizerMSA(Thread):
                         forsale_forrent=stat.id,
                         description=realty_item_page.description,
                         contact_name=realty_item_page.contact_name,
-                        url=realty_item_page.realty_hyperlink,
+                        url=msaccess_desktop_url,
                         # source=so.id,
                         timestamp=t,
                         call_timestamp=t,
@@ -176,7 +181,7 @@ class DatabaseSynchronizerMSA(Thread):
                     # set current date
                     # set price
                     # set source "Avito робот"
-                    q.timestamp = datetime.date.fromtimestamp(time.time())
+                    q.call_timestamp = datetime.date.fromtimestamp(time.time())
                     q.price = self.get_price(realty_item_page.price)
                     # rs = engine.connect().execute('INSERT INTO Запись ( Объект*.Value ) \
                     # VALUES("Avito робот") WHERE Запись.Объект* In (SELECT Запись.Объект* FROM Источники INNER JOIN Запись \
@@ -278,7 +283,8 @@ class DatabaseManager:
         except Exception as e:
             parser_logger.error( "MSA COM ERROR ", exc_info=True )
         finally:
-            self.msa.dispose()
+            if self.msa is not None:
+                self.msa.dispose()
         return
 
 

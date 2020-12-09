@@ -8,7 +8,8 @@ class CrawlerData:
     FF_PROFILE_PATH = \
         r"C:\Users\ilyademichev\AppData\Roaming\Mozilla\Firefox\Profiles\b9jixrd6.avitoproxy\\"
     FF_PROFILE_FILE = r"prefs.js"
-    SORTED_ITEMS_LOCATION_LINK = r"https://m.avito.ru/LOCATION/kvartiry?s=104"
+    SORTED_APPARTMENTS_LOCATION_LINK = r"https://m.avito.ru/LOCATION/kvartiry?s=104"
+    SORTED_ROOMS_LOCATION_LINK = r"https://m.avito.ru/LOCATION/komnaty?s=104"
     LOCATION_TAG = r"LOCATION"
     YESTERDAY_TAG = r"Вчера"
     PROXY_FILE = "proxy_list"

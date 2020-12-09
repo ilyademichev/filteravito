@@ -117,12 +117,18 @@ class BasePage:
         el.screenshot(tmp)
 
     def check_for_blocked_page(self):
-        return False
-        # els = self.driver.find_elements(*Locators.BLOCKED_PAGE_TEXT)
-        # if len(els) > 0:
-        #     return True
-        # else:
-        #     return False
+        els = self.driver.find_elements(*Locators.BLOCKED_PAGE_TEXT)
+        if len(els) > 0:
+            return True
+        else:
+            return False
+
+    def check_for_server_fail(self):
+        els = self.driver.find_elements ( *Locators.SERVER_FAIL_TEXT )
+        if len ( els ) > 0 :
+            return True
+        else :
+            return False
 
     # check for poll pop-up
     def check_for_poll_popup(self):
