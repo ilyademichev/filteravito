@@ -44,15 +44,42 @@ class AvitoAddressDecomposer(Thread):
         #, Ленинградская ул., 3к4
         #, ул. Объездная Дорога, 4 корпус 6 строение 7
         # or it could start without comma
-        street_pattern = r"(, ([^,]+) (ул\.,|пр-т|пр\.))|(, (ул\.|пр-т|пр\.) ([^,]+),)"
-        if  re.search ( street_pattern, s, re.IGNORECASE ) :
-            print
-            'possible matches thanks to regex'
-        else :
-            print
-            'no matches'
         if any ( x in s for x in a.street_prefix ) :
-            match = next ( (x for x in a.street_prefix if x in s), False )
+            street_pattern = r"(, ([^,]+) (ул\.,|пр-т|пр\.))|(, (ул\.|пр-т|пр\.) ([^,]+),)"
+            house_pattern = r"\d([^,]+)$| \d{1,2}$"
+            locality_pattern=r""
+            regional_district_pattern=r""
+            region_pattern=r""
+            if  re.search ( street_pattern, s, re.IGNORECASE ):
+                if s in self.streets:
+                    # just write the steet code
+                else:
+                    # add new street
+                if re.search(house_pattern,s):
+                    if h in self.houses:
+                        # just write the house code
+                    else:
+                        # write new house and the code
+                else:
+                    a.house = a.empty_field
+            else :
+                a.street =a.empty_field
+
+            if re.search(locality_pattern,s,re.IGNORECASE):
+                pass
+            else:
+                a.locality = a.empty_field
+
+            if re.search(regional_district_pattern,s,re.IGNORECASE):
+                pass
+            else:
+                a.regional_district = a.empty_field
+
+            if re.search(region_pattern,s,re.IGNORECASE):
+                pass
+            else:
+                a.region = a.empty_field
+
 
             return a
         return None
