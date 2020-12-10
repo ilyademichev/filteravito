@@ -88,8 +88,9 @@ class AvitoAddressDecomposer(Thread):
             else:
                 a.region = a.empty_field
 
-
             return a
-        return None
+        # no street found
+        else:
+            return None
 
 
