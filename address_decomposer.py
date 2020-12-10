@@ -44,7 +44,8 @@ class AvitoAddressDecomposer(Thread):
         #, Ленинградская ул., 3к4
         #, ул. Объездная Дорога, 4 корпус 6 строение 7
         # or it could start without comma
-        if  re.search ( r'|'.join(self.street_prefix)+'*,', s, re.IGNORECASE ) :
+        street_pattern = r"(, ([^,]+) (ул\.,|пр-т|пр\.))|(, (ул\.|пр-т|пр\.) ([^,]+),)"
+        if  re.search ( street_pattern, s, re.IGNORECASE ) :
             print
             'possible matches thanks to regex'
         else :
@@ -57,20 +58,3 @@ class AvitoAddressDecomposer(Thread):
         return None
 
 
-
-
-
-
-def run(self) :
-    """  thread queue cycle """
-    while True :
-        # gets the realty item from the queue
-        realty = self.queue.get ( block=True, timeout=None )
-        parser_logger.info ( "* Thread {0} - syncing db".format ( self.name ) )
-        if not self.sync_database ( realty ) :
-            parser_logger.error ( "* Thread {0} - syncing failed ".format ( self.name ) )
-        # send a signal to the queue that the job is done
-        self.queue.task_done ()
-
-
-def address_decompose(self, ) :
