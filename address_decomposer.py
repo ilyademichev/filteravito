@@ -51,14 +51,22 @@ class AvitoAddressDecomposer(Thread):
             regional_district_pattern=r""
             region_pattern=r""
             if  re.search ( street_pattern, s, re.IGNORECASE ):
-                if s in self.streets:
+                # found_street = some group
+                found_street = None
+                if found_street in self.streets:
+                    pass
                     # just write the steet code
                 else:
+                    pass
                     # add new street
                 if re.search(house_pattern,s):
-                    if h in self.houses:
+                    # found_house = some group
+                    found_house = None
+                    if found_house in self.houses:
+                        pass
                         # just write the house code
                     else:
+                        pass
                         # write new house and the code
                 else:
                     a.house = a.empty_field
