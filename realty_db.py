@@ -95,6 +95,38 @@ class Streets(Base):
     properties = relationship("RealtyItem", backref="Улици",
                               cascade="all, delete, delete-orphan")
 
+class Regions(Base):
+    __tablename__ = "Области"
+    id = Column ( 'Код', Integer, primary_key=True )
+    region = Column ( 'Область', String ( 255 ) )
+    # properties = relationship ( "RealtyItem", backref="Улици",
+    #                             cascade="all, delete, delete-orphan" )
+
+class RegionalDistrict(Base):
+    __tablename__ = "Район"
+    id = Column ( 'Код', Integer, primary_key=True )
+    district = Column ( 'Область', String ( 255 ) )
+    # properties = relationship ( "RealtyItem", backref="Улици",
+    #                             cascade="all, delete, delete-orphan" )
+
+class Locality(Base):
+    __tablename__ = "Города"
+    id = Column ( 'Код', Integer, primary_key=True )
+    locality = Column ( 'НП', String ( 255 ) )
+    kind = Column ( 'Тип НП', String ( 255 ) )
+    #     # properties = relationship ( "RealtyItem", backref="Улици",
+    #     #                             cascade="all, delete, delete-orphan" )
+
+class HouseNumber(Base):
+    __tablename__ = "Номер дома"
+    id = Column ( 'Код', Integer, primary_key=True )
+    locality = Column ( 'НП', String ( 255 ) )
+    kind = Column ( 'Тип НП', String ( 255 ) )
+    #     # properties = relationship ( "RealtyItem", backref="Улици",
+    #     #                             cascade="all, delete, delete-orphan" )
+
+
+
 # user_table = Table('Запись', metadata,
 #             Column('id', Integer, primary_key=True),
 #             Column('name', String),

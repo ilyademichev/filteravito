@@ -57,6 +57,7 @@ class DatabaseSynchronizerMSA(Thread):
                 parser_logger.error("* Thread {0} - syncing failed ".format(self.name))
             # send a signal to the queue that the job is done
             self.queue.task_done()
+
 # make price conversion
 # input: ri_price of text from RealtyApprtmentPage.price
 # output: price /1000 as string
@@ -75,6 +76,7 @@ class DatabaseSynchronizerMSA(Thread):
             parser_logger.error("* Thread {0} price conversion failed. Set empty price field  *".format(self.name))
             price = str("")
         return price
+
 
     def sync_database(self, realty_item_page):
         """  BAL business access logic"""
@@ -286,6 +288,9 @@ class DatabaseManager:
             if self.msa is not None:
                 self.msa.dispose()
         return
+
+    def get_address_components(self):
+        pass
 
 
 

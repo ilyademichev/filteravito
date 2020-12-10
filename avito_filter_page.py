@@ -52,7 +52,7 @@ class AvitoFilterPage(BasePage):
                 # give more time for loading
                 super().bad_proxy_connection()
                 # raise ValueError - either wait  1 hour or revolve proxy server
-            if super.check_for_server_fail():
+            if super().check_for_server_fail():
                 parser_logger.warning("On requesting avito filter page Server Fail page is displayed")
                 super().save_scrshot_to_temp()
                 # give more time for loading
