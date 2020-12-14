@@ -16,27 +16,48 @@ class Address:
         self.empty_field = "-"
         self.street_prefix =("ул.","пр.","пр-т")
 
-#
+
 class AvitoAddressDecomposer(Thread):
-    """"""
-    def __init__(self):
-        self.regions=[]
-        self.districts=[]
-        self.localities=[]
-        self.streets=[]
-        self.houses=[]
-        self.queue = Queue()
+    """ Splits the string address into fields """
+    def __init__(self,dbm,regions=[],districts=[],localities=[],streets=[],houses=[]):
+        if dbm is None:
+            parser_logger.info("* Thread {0} - Database manager object is required".format(self.name))
+            raise  ValueError
+        self.__database_manager = dbm
+        self.__queue = Queue()
+        # dictionaries to search from
+        self.regions = regions
+        self.districts =districts
+        self.localities=localities
+        self.streets=streets
+        self.houses=houses
+
+    @property
+    def regions(self):
+        return self.__regions
+
+    @regions.setter
+    def regions(self, val):
+        if val < 0:
+            self.__regions = 0
+        elif val > 1000:
+            self.__regions = 1000
+        else:
+            self.__regions = val
 
     def run(self):
+        """ decomposes the adress s and push the address object into database queue"""
         while True:
-            # gets the realty item from the queue
-            (s,adv_number) = self.queue.get(block=True,timeout=None)
+            # gets the adress item from the queue
+            s = self.__queue.get(block=True,timeout=None)
             parser_logger.info("* Thread {0} - decomposing address".format(self.name))
             a = self.decompose( s )
             if a is None:
-                parser_logger.error("* Thread {0} - decomposing failed ".format(self.name))
+                parser_logger.error("* Thread {0} - address decomposing failed : {1} ".format(self.name, s))
+            else:
+                self.__database_manager.
             # send a signal to the queue that the job is done
-            self.queue.task_done()
+            self.__queue.task_done()
 
     def decompose(self, s):
         a = Address(s)
@@ -92,5 +113,19 @@ class AvitoAddressDecomposer(Thread):
         # no street found
         else:
             return None
+
+class AddressManager:
+    def __init__(self,download_manager, download_dict=None, thread_count=1):
+        pass
+    def begin_addr_sync(self):
+        pass
+    def queue_addresses(self, addresses_list):
+        pass
+    def endup_addr_sync(self):
+        pass
+
+
+
+
 
 

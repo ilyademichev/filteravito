@@ -60,8 +60,8 @@ class AvitoParser(Parser):
     # parses the given location into realty_page objects
     # feeds up the db manager with realty page
     def parse_location(self, location):
-        filter_page = AvitoFilterPage(self.driver)
-        filter_page.load_page(geolocation_map[location])
+        filter_page = AvitoFilterPage( self.driver )
+        filter_page.load_page( geolocation_map[location] )
         # some advertisments found
         if filter_page.parse_filter_page():
                 # go through each page sequentially

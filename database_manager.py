@@ -28,17 +28,26 @@ connection_url = f"access+pyodbc:///?odbc_connect={urllib.parse.quote_plus(conne
 #creates DB thread fed from realties queue
 
 
+
 class DatabaseSynchronizerMSA(Thread):
     download_manager = None
     engine = None
     Session = None
 
-    def __init__(self, queue ,download_manager):
+    def __init__(self, r_queue ,download_manager,addr_decomposer):
         """  thread initiation """
        # self.engine = engine
-        
-        self.queue = queue         #realties queue
+        if download_manager is None:
+            parser_logger.error("* Thread {0} - Download manager object is required ".format(self.name))
+            raise ValueError
+        if addr_decomposer is None:
+            parser_logger.error("* Thread {0} - Address decomposer object is required ".format(self.name))
+            raise ValueError
+
+        self.realties_queue = r_queue         #realties queue
+        # self.address_queue = a_queue        #address queue
         self.download_manager = download_manager
+        self.address_manager = addr_decomposer
         self.engine = create_engine(connection_url, echo=True)
         session_factory = sessionmaker(bind=self.engine)
         self.Session = scoped_session(session_factory)
@@ -51,7 +60,7 @@ class DatabaseSynchronizerMSA(Thread):
         """  thread queue cycle """
         while True:
             # gets the realty item from the queue
-            realty = self.queue.get(block=True,timeout=None)
+            realty = self.realties_queue.get(block=True,timeout=None)
             parser_logger.info("* Thread {0} - syncing db".format(self.name))
             if not self.sync_database(realty):
                 parser_logger.error("* Thread {0} - syncing failed ".format(self.name))
@@ -145,6 +154,9 @@ class DatabaseSynchronizerMSA(Thread):
                         # s_property=realty_item_page.area,
                         # forsale_forrent=stat.id
                 ).scalar()
+                # quering the address decomposition thread if  the address is parsed
+                #if self.address_manager.ready(realty_item_page.realty_adv_avito_number):
+                #wait for the address to come
                 if not q:
                     parser_logger.info("Appending RealtyItem")
                     # compose new item
@@ -178,6 +190,7 @@ class DatabaseSynchronizerMSA(Thread):
                     image_folder =CrawlerData.MSACCESS_DB_PATH_WINDOWS + CrawlerData.IMAGE_FOLDER + realty_item_page.realty_adv_avito_number
                     image_queue_dict = [( image_folder, link) for link in realty_item_page.realty_images]
                     self.download_manager.queue_image_links(image_queue_dict)
+                    self.
                 else:
                     # refresh the time
                     # set current date
@@ -244,12 +257,13 @@ class DatabaseManager:
         """
         Start CRUD threads
         """
-        self.queue = Queue()
+        self.__realty_queue = Queue()
+        self.__address_queue = Queue()
         # Create a thread pool and give them a queue
         # optional: for DBA engine with m-thread support
         for i in range(self.thread_count):
         # for MSA create only one single thread
-            t = DatabaseSynchronizerMSA(self.queue,self.download_manager)
+            t = DatabaseSynchronizerMSA(self.__realty_queue,self.__address_queue,self.download_manager)
             t.setDaemon(True)
             t.start()
         return
@@ -259,16 +273,26 @@ class DatabaseManager:
         fill the queue with realties
         """
         for realty in realties_list:
-            self.queue.put(realty)
+            self.__realty_queue.put( realty )
         return
+
+    def queue_addresses(self, addresses_list):
+        """
+            fill the queue with adresses
+        """
+        for a in addresses_list:
+            self.__address_queue.put( a )
+        return
+
+
 
     def endup_db_sync(self):
         """
                wait for the queue to empty
         """
         parser_logger.info("Waiting for  db sync  to complete")
-        if not self.queue is None:
-            self.queue.join()
+        if not self.__queue is None:
+            self.__queue.join()
         #stop the Database Engine
         self.engine.dispose()
         return

@@ -155,6 +155,7 @@ class RealtyApartmentPage(BasePage):
             return els[0].text
         else:
             return None
+
     def get_text_if_exist_from_li(self,loc):
         els = self.driver.find_elements(*loc)
         if len(els) > 0:
