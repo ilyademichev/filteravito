@@ -44,7 +44,7 @@ class DatabaseSynchronizerMSA(Thread):
             parser_logger.error("* Thread {0} - Address decomposer object is required ".format(self.name))
             raise ValueError
 
-        self.realties_queue = r_queue         #realties queue
+        self.__realties_queue = r_queue         #realties queue
         # self.address_queue = a_queue        #address queue
         self.download_manager = download_manager
         self.address_manager = addr_decomposer
@@ -60,7 +60,7 @@ class DatabaseSynchronizerMSA(Thread):
         """  thread queue cycle """
         while True:
             # gets the realty item from the queue
-            realty = self.realties_queue.get(block=True,timeout=None)
+            realty = self.__realties_queue.get(block=True,timeout=None)
             parser_logger.info("* Thread {0} - syncing db".format(self.name))
             if not self.sync_database(realty):
                 parser_logger.error("* Thread {0} - syncing failed ".format(self.name))
@@ -190,7 +190,7 @@ class DatabaseSynchronizerMSA(Thread):
                     image_folder =CrawlerData.MSACCESS_DB_PATH_WINDOWS + CrawlerData.IMAGE_FOLDER + realty_item_page.realty_adv_avito_number
                     image_queue_dict = [( image_folder, link) for link in realty_item_page.realty_images]
                     self.download_manager.queue_image_links(image_queue_dict)
-                    self.
+                    #self.
                 else:
                     # refresh the time
                     # set current date
@@ -215,23 +215,20 @@ class DatabaseSynchronizerMSA(Thread):
 
 class DatabaseManager:
     """ singleton database manager. """
-
-    download_manager = None #refence to DownloadManager
-    download_dict = None #items to proceed
-    thread_count = None
-    engine = None
     __instance = None
-    queue = None
-
     # @staticmethod
     # def getInstance():
     #     """ Static access method. """
     #     if DatabaseManager.__instance == None:
     #         DatabaseManager()
     #     return DatabaseManager.__instance
-
     def __init__(self,download_manager, download_dict=None, thread_count=1):
         """ Virtually private constructor. """
+        self.download_manager = None  # refence to DownloadManager
+        self.download_dict = None  # items to proceed
+        self.thread_count = None
+        self.engine = None
+        self.__queue = None
         # singleton pattern logic
         if DatabaseManager.__instance != None:
             raise Exception("This class is a singleton!")
