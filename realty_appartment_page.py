@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import re
+
+from selenium.webdriver import ActionChains
+
 from crawler_data import CrawlerData
 from locators_realty_item import Locators
 from base_page_class import BasePage
@@ -249,8 +252,25 @@ class RealtyApartmentPage(BasePage):
         else:
             raise ValueError("Pattern for image search not compiled.")
         # second way of getting images from elementtiming="bx.gallery"
+
         els = self.driver.find_elements( *Locators.IMAGES_LINK_elementtiming )
         if len ( els ) > 0 :
+            # slide images right to left in image gallery in order for all the images to display
+            # locate the slider
+            slider_el = self.driver.find_element ()
+            # enumerate elements in a slider
+            num_of_images = self.driver.find_elements ()
+            action = ActionChains ( self.driver )
+            for _ in num_of_images :
+                # center the mouse on the image
+                action.move_by_offset ()
+                # fix the mouse button for a slide
+                action.click_and_hold ()
+                # slide the image gallery by one item
+                action.move_by_offset ()
+                # wait for image to  fully load
+                super ().wait_for_js_and_jquery_to_load ()
+            # all images are loaded into the list , parse them into the page
             for e in els :
                 self.realty_images.append ( e.get_attribute ( "src" ) )
             images_parsed_second = True
