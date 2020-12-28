@@ -71,6 +71,7 @@ class RealtyApartmentPage(BasePage):
                 super().save_scrshot_to_temp()
                 if not self.resolve_captcha():
                     parser_logger.info("Item page request: Captcha is not resolved.")
+                    raise ValueError
                 else:
                     if self.wait_for_js_and_jquery_to_load():
                         self.page_loaded = True
