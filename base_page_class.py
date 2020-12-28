@@ -207,21 +207,26 @@ class BasePage:
         return sol
     #
     def resolve_captcha(self):
+        # input box for ru captcha
+        #
         el = self.driver.find_element(*Locators.CAPTCHA_INPUT_ID)
         try:
             s = self.crunch_captcha_by_rucaptcha()
         except Exception as e:
             parser_logger.error("captcha by rucaptcha solver failed")
+            return False
         #     try:
         #         s = self.crunch_captcha_by_teserract()
         #     except Exception as e:
         #         parser_logger.error("Resolving captcha by teserract solver failed",   exc_info=True)
         #         return False
         # send solution
-            try:
-                el.send_keys(s)
-                self.driver.find_element(*Locators.CAPTCHA_BUTTON).click()
-            except Exception as e:
-                parser_logger.error("Unable to send resolved captcha",exc_info=True)
-                return False
-            return True
+        try:
+            # type resolved captcha into input box
+            el.send_keys(s)
+            # submit the captcha form
+            self.driver.find_element(*Locators.CAPTCHA_BUTTON).click()
+        except Exception as e:
+            parser_logger.error("Unable to send resolved captcha",exc_info=True)
+            return False
+        return True
