@@ -261,19 +261,20 @@ class RealtyApartmentPage(BasePage):
         if len ( els ) > 0 :
             # slide images right to left in image gallery in order for all the images to display
             # locate the slider
-            # slider_el = self.driver.find_element ()
+            slider_el = els[0]
             # # enumerate elements in a slider
-            # num_of_images = self.driver.find_elements ()
-            # action = ActionChains ( self.driver )
-            # for _ in num_of_images :
-            #     # center the mouse on the image
-            #     action.move_by_offset ()
-            #     # fix the mouse button for a slide
-            #     action.click_and_hold ()
-            #     # slide the image gallery by one item
-            #     action.move_by_offset ()
-            #     # wait for image to  fully load
-            #     super ().wait_for_js_and_jquery_to_load ()
+            num_of_images = len ( els )
+            action = ActionChains ( self.driver )
+            for _ in num_of_images :
+                # center the mouse on the image
+                action.move_to_element (els[0]).perform()
+                action.move_by_offset(els[0].size["width"] - 5, els[0].size["height"]  // 2).perform()
+                # fix the mouse button for a slide
+                action.click_and_hold ().perform()
+                # slide the image gallery by one item
+                action.move_by_offset ( -els[0].size["width"], els[0].size["height"]  // 2).perform()
+                # wait for image to  fully load
+                super ().wait_for_js_and_jquery_to_load ()
             # # all images are loaded into the list , parse them into the page
             for e in els :
                 self.realty_images.append ( e.get_attribute ( "src" ) )

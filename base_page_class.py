@@ -184,7 +184,7 @@ class BasePage:
         solver = CaptchaSolver('rucaptcha', api_key='e3b85f77282f434d6fc90c642be8cce7')
         self.save_captcha_image()
         raw_data = open(self.captcha_fname, 'rb').read()
-        sol = '' #solver.solve_captcha(raw_data)
+        sol = solver.solve_captcha(raw_data)
         #sol = decoder(captcha_fname,)
         parser_logger.info("CAPTCHA Solved:".format(sol))
         return sol
